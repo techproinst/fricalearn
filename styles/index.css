@@ -1,0 +1,303 @@
+:root {
+  --main-color: #3b2a56;
+  --nav-bg: #f1f1f3;
+  --dark-color: #262626;
+  --light-color: #ca13ab;
+}
+
+.hero-heading {
+  color: var(--main-color);
+}
+
+#hero-section {
+  padding: 60px 0;
+}
+
+#courses {
+  padding: 60px 0;
+}
+
+#exciting {
+  padding: 60px 0;
+  background-color: var(--main-color);
+}
+#connect {
+  padding: 60px 0;
+}
+
+#native {
+  padding: 60px 0;
+  background-color: var(--main-color);
+}
+
+#faq {
+  padding: 60px 0;
+}
+
+#footer {
+  padding: 60px 0 0 0;
+  background-color: #fafafa;
+}
+
+.hero-text {
+  font-size: 17px;
+}
+
+.demo-btn {
+  color: var(--nav-bg);
+  background-color: var(--main-color);
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 15px 25px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.demo-btn:hover {
+  color: var(--dark-color);
+  background: #fff;
+  border: 1px solid var(--main-color);
+  transform: translateX(-2px);
+}
+
+.text-color {
+  color: var(--main-color);
+}
+
+.rating {
+  margin-top: -125px;
+  background-color: #fafafa;
+  padding: 70px;
+}
+
+@media (max-width: 1399px) {
+  .rating {
+    margin-top: -115px;
+  }
+}
+
+@media (max-width: 1199px) {
+  h1 div {
+    font-size: 1.8rem !important;
+  }
+  .demo-btn {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 12px 20px;
+  }
+  #hero-section {
+    padding: 65px;
+  }
+}
+
+@media (max-width: 978px) {
+  h1 div {
+    font-size: 1.8rem !important;
+  }
+  .demo-btn {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 12px 20px;
+  }
+  #hero-section {
+    padding: 40px;
+  }
+
+  #courses {
+    padding: 40px 0;
+  }
+
+  #exciting {
+    padding: 40px 0;
+  }
+  #connect {
+    padding: 40px 0;
+  }
+  #native {
+    padding: 40px 0;
+  }
+
+  #faq {
+    padding: 40px 0;
+  }
+
+  #footer {
+    padding: 40px 0 0 0;
+  }
+
+  .rating {
+    margin-top: -80px;
+  }
+}
+
+@media (max-width: 846px) {
+  .rating {
+    margin-top: -70px;
+  }
+}
+
+@media (max-width: 804px) {
+  .rating {
+    margin-top: -70px;
+  }
+}
+
+@media (max-width: 785px) {
+  .rating {
+    margin-top: -68px;
+  }
+}
+
+@media (max-width: 774px) {
+  .rating {
+    margin-top: -68px;
+  }
+  .demo-btn {
+    margin-top: -20px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .rating {
+    margin-top: -105px;
+  }
+  .demo-btn {
+    margin-top: 0px !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .rating {
+    margin-top: -99px;
+  }
+}
+
+@media (max-width: 644px) {
+  .rating {
+    margin-top: -90px;
+  }
+}
+
+@media (max-width: 523px) {
+  .rating {
+    margin-top: -85px;
+  }
+}
+
+@media (max-width: 481px) {
+  .rating {
+    margin-top: -68px;
+  }
+}
+
+.rating-border {
+  border-right: 1px solid black;
+}
+
+.second-rating-border {
+  border-right: 1px solid black;
+}
+
+@media (max-width: 991px) {
+  .second-rating-border {
+    border: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .rating-border,
+  .second-rating-border {
+    border: none;
+  }
+}
+
+.view-btn {
+  color: var(--dark-color);
+  background: #f1f1f3;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: inline;
+}
+
+.view-btn:hover {
+  color: var(--nav-bg);
+  background-color: var(--main-color);
+  transform: translateX(-2px);
+}
+
+@media (max-width: 767px) {
+  .view-btn {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 12px 100px;
+  }
+}
+
+
+.exciting-intro h6 {
+  color: var(--light-color);
+}
+
+h1 strong {
+  color: var(--light-color);
+}
+
+.touch-btn {
+  color: var(--nav-bg);
+  background: var(--light-color);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 18px 25px;
+  border-radius: 30px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: inline;
+}
+
+.touch-btn:hover {
+  color: var(--dark-color);
+  background-color: var(--nav-bg);
+  transform: translateX(-2px);
+}
+
+@media (max-width: 768px) {
+  .touch-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+.kids-lang-img {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.kids-lang-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.root-wrapper {
+  color: var(--light-color);
+}
+
+.root-wrapper span {
+  color: #2f327d;
+}
+
+@media (max-width: 767.98px) {
+  .lead {
+    font-size: 1rem !important;
+    font-weight: normal !important;
+  }
+}

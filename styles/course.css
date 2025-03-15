@@ -1,0 +1,45 @@
+:root {
+  --main-color: #3b2a56;
+  --nav-bg: #f1f1f3;
+  --dark-color: #262626;
+  --light-color: #ca13ab;
+}
+#course-section {
+  padding: 60px 0;
+  background-color: #fafafa;
+}
+#card-section {
+  padding: 20px 0 60px 0;
+}
+
+h1 div {
+  color: #262626;
+}
+
+h1 .test {
+  font-size: 60px;
+  color: white;
+}
+
+@media (max-width: 978px) {
+  h1 div {
+    font-size: 1.8rem !important;
+  }
+  #course-section {
+    padding: 40px 0;
+  }
+  #card-section {
+    padding: 2px 0 0px 0;
+  }
+  #native {
+    padding: 40px 0;
+  }
+
+  #faq {
+    padding: 40px 0;
+  }
+
+  #footer {
+    padding: 40px 0 0 0;
+  }
+}
