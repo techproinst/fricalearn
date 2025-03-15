@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="nav.css" />
+    <style>
+      :root {
+        --main-color: #3b2a56;
+        --nav-bg: #f1f1f3;
+        --dark-color: #262626;
+        --light-color: #ca13ab;
+      }
+      .announcement-bar {
+        background-color: var(--main-color);
+        height: 35px;
+      }
+
+      .left-section {
+        display: flex;
+        align-items: center;
+      }
+
+      .sign-up {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .login {
+        color: var(--nav-bg);
+        background-color: var(--main-color);
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .login:hover {
+        color: var(--dark-color);
+        background: #fff;
+        transform: translateX(-2px);
+      }
+      .sign-up:hover {
+        color: var(--nav-bg);
+        background-color: var(--main-color);
+        transform: translateX(-2px);
+      }
+
+      .hero-heading {
+        color: var(--main-color);
+      }
+
+      #hero-section {
+        padding: 60px 0;
+      }
+
+      #courses {
+        padding: 60px 0;
+      }
+
+      #exciting {
+        padding: 60px 0;
+        background-color: var(--main-color);
+      }
+      #connect {
+        padding: 60px 0;
+      }
+
+      #native {
+        padding: 60px 0;
+        background-color: var(--main-color);
+      }
+
+      #faq {
+        padding: 60px 0;
+      }
+
+      #footer {
+        padding: 60px 0 0 0 ;
+        background-color: #fafafa;
+      }
+
+      .hero-text {
+        font-size: 17px;
+      }
+
+      .demo-btn {
+        color: var(--nav-bg);
+        background-color: var(--main-color);
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 15px 25px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .demo-btn:hover {
+        color: var(--dark-color);
+        background: #fff;
+        border: 1px solid var(--main-color);
+        transform: translateX(-2px);
+      }
+
+      .text-color {
+        color: var(--main-color);
+      }
+
+      .rating {
+        margin-top: -125px;
+        background-color: #fafafa;
+        padding: 70px;
+      }
+
+      @media (max-width: 1399px) {
+        .rating {
+          margin-top: -115px;
+        }
+      }
+
+      @media (max-width: 1199px) {
+        h1 div {
+          font-size: 1.8rem !important;
+        }
+        .demo-btn {
+          font-size: 12px;
+          font-weight: 500;
+          padding: 12px 20px;
+        }
+        #hero-section {
+          padding: 65px;
+        }
+      }
+
+      @media (max-width: 978px) {
+        h1 div {
+          font-size: 1.8rem !important;
+        }
+        .demo-btn {
+          font-size: 12px;
+          font-weight: 500;
+          padding: 12px 20px;
+        }
+        #hero-section {
+          padding: 40px;
+        }
+
+        #courses {
+          padding: 40px 0;
+        }
+
+        #exciting {
+          padding: 40px 0;
+        }
+        #connect {
+          padding: 40px 0;
+        }
+        #native {
+          padding: 40px 0;
+        }
+
+        #faq {
+          padding: 40px 0;
+        }
+
+        #footer {
+          padding: 40px 0 0 0 ;
+        }
+
+        .rating {
+          margin-top: -80px;
+        }
+      }
+
+      @media (max-width: 846px) {
+        .rating {
+          margin-top: -70px;
+        }
+      }
+
+      @media (max-width: 804px) {
+        .rating {
+          margin-top: -70px;
+        }
+      }
+
+      @media (max-width: 785px) {
+        .rating {
+          margin-top: -68px;
+        }
+      }
+
+      @media (max-width: 774px) {
+        .rating {
+          margin-top: -68px;
+        }
+        .demo-btn {
+          margin-top: -20px !important;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .rating {
+          margin-top: -105px;
+        }
+        .demo-btn {
+          margin-top: 0px !important;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .rating {
+          margin-top: -99px;
+        }
+      }
+
+      @media (max-width: 644px) {
+        .rating {
+          margin-top: -90px;
+        }
+      }
+
+      @media (max-width: 523px) {
+        .rating {
+          margin-top: -85px;
+        }
+      }
+
+      @media (max-width: 481px) {
+        .rating {
+          margin-top: -68px;
+        }
+      }
+
+      .rating-border {
+        border-right: 1px solid black;
+      }
+
+      .second-rating-border {
+        border-right: 1px solid black;
+      }
+
+      @media (max-width: 991px) {
+        .second-rating-border {
+          border: none;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .rating-border,
+        .second-rating-border {
+          border: none;
+        }
+      }
+
+      .view-btn {
+        color: var(--dark-color);
+        background: #f1f1f3;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        display: inline;
+      }
+
+      .view-btn:hover {
+        color: var(--nav-bg);
+        background-color: var(--main-color);
+        transform: translateX(-2px);
+      }
+
+      @media (max-width: 767px) {
+        .view-btn {
+          font-size: 12px;
+          font-weight: 500;
+          padding: 12px 100px;
+        }
+      }
+
+      .explore-btn {
+        color: var(--dark-color);
+        background: #f1f1f3;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 10px 54px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        width: 100%;
+        text-align: center;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+
+      .explore-btn:hover {
+        color: var(--nav-bg);
+        background-color: var(--main-color);
+        transform: translateX(-2px);
+      }
+
+      .exciting-intro h6 {
+        color: var(--light-color);
+      }
+
+      h1 strong {
+        color: var(--light-color);
+      }
+
+      .touch-btn {
+        color: var(--nav-bg);
+        background: var(--light-color);
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 18px 25px;
+        border-radius: 30px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        display: inline;
+      }
+
+      .touch-btn:hover {
+        color: var(--dark-color);
+        background-color: var(--nav-bg);
+        transform: translateX(-2px);
+      }
+
+      @media (max-width: 768px) {
+        .touch-btn {
+          padding: 12px 20px;
+          font-size: 14px;
+        }
+      }
+
+      .kids-lang-img {
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      .kids-lang-img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 30px;
+      }
+
+      .root-wrapper {
+        color: var(--light-color);
+      }
+
+      .root-wrapper span {
+        color: #2f327d;
+      }
+
+      @media (max-width: 767.98px) {
+        /* Applies to screens smaller than 768px (Bootstrap "md" breakpoint) */
+        .lead {
+          font-size: 1rem !important; /* Reset lead styling */
+          font-weight: normal !important;
+        }
+      }
+
+      .enroll-now-btn {
+        color: var(--main-color);
+        background-color: rgb(226, 222, 222);
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 13px 22px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .get-btn {
+        color: var(--nav-bg);
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 13px 18px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        border: 1px solid #f1f1f3;
+      }
+
+      .enroll-now-btn:hover {
+        color: var(--nav-bg);
+        background-color: transparent;
+        border: 1px solid var(--main-color);
+        transform: translateX(-2px);
+      }
+
+      .get-btn:hover {
+        color: var(--main-color);
+        background-color: rgb(226, 222, 222);
+        transform: translateX(-2px);
+      }
+
+      .native-wrapper {
+        background-color: #251a36;
+        padding: 66px 65px 0px 65px;
+        border-radius: 18px;
+      }
+
+      @media (max-width: 574px) {
+        .enroll-now-btn {
+          font-size: 14px;
+          padding: 10px 15px;
+        }
+        .get-btn {
+          font-size: 14px;
+          padding: 10px 15px;
+        }
+        #native {
+          background-color: transparent;
+        }
+        .native-wrapper {
+          padding: 50px 50px 0px 50px;
+        }
+      }
+
+      @media (max-width: 463px) {
+        .enroll-now-btn {
+          font-size: 12px;
+          padding: 10px 10px;
+        }
+        .get-btn {
+          font-size: 12px;
+          padding: 10px 8px;
+        }
+
+        .native-wrapper {
+          padding: 40px 40px 0px 40px;
+        }
+      }
+
+      .info {
+        color: var(--light-color);
+      }
+      .accordion {
+        max-width: 650px;
+        margin: auto;
+      }
+
+      .accordion-item {
+        background: #fff;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding: 10px 0;
+        overflow: hidden;
+      }
+
+      .accordion-header {
+        width: 100%;
+        background: #fff;
+        border: none;
+        padding: 15px 30px;
+        font-size: 16px;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+      }
+
+      .accordion-content {
+        display: none;
+        padding: 15px 30px;
+        font-size: 14px;
+        color: #555;
+        border-top: 1px solid #ddd;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      .icon {
+        background-color: #e9e9ff;
+        padding: 4px;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .accordion-btn {
+        color: #333333;
+        background-color: #f7f7f8;
+        text-decoration: none;
+        display: inline-block;
+        width: 100%;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 13px 22px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .accordion-arrow {
+        padding: 4px 6px;
+        border-radius: 50%;
+        background-color: #ffffff;
+      }
+
+      .accordion-btn:hover {
+        color: var(--nav-bg);
+        background-color: var(--main-color);
+        transform: translateX(-2px);
+      }
+
+      /* Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .see-btn {
+        color: #333333;
+        background-color: #f7f7f8;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 13px 20px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        display: inline-block;
+        transition: all 0.3s ease;
+      }
+      .see-btn:hover {
+        color: var(--nav-bg);
+        background-color: var(--main-color);
+        transform: translateX(-2px);
+      }
+
+      /*
+      #footer {
+        background-color: #f8f9fa;
+        font-size: 16px;
+      }
+
+      #footer p {
+        color: #59595a;
+        margin-bottom: 8px;
+      }
+
+      #footer h6 {
+        font-weight: 600;
+      }
+
+  
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: black;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        background-color: #f7f7f8;
+        border: 1px solid #f1f1f3;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .social-link:hover {
+        background-color: var(--main-color);
+        color: white;
+        transform: scale(1.1);
+      }
+
+    
+      .quick-links a,
+      .legal-links a {
+        text-decoration: none;
+        color: #59595a;
+        display: inline-block;
+        position: relative;
+      }
+
+      .quick-links a::after,
+      .legal-links a::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 2px;
+        background-color: var(--main-color);
+        transition: width 0.3s ease;
+      }
+
+      .quick-links a:hover::after,
+      .legal-links a:hover::after {
+        width: 100%;
+      }
+
+    
+      @media (max-width: 768px) {
+        #footer {
+          text-align: center;
+        }
+
+        .social-link {
+          margin: 5px;
+        }
+
+        .quick-links,
+        .legal-links {
+          margin-top: 20px;
+        }
+      }
+
+      */
+    </style>
+  </head>
+  <body>
+    <section
+      class="announcement-bar d-flex justify-content-center text-white align-items-center"
+    >
+      <h6 class="mb-0">
+        Free Courses ⭐ Sales Ends Soon, Get it Now
+        <span><i class="bi bi-arrow-right ms-2"></i></span>
+      </h6>
+    </section>
+
+    <nav>
+      <div class="left-section">
+        <div class="logo">
+          <img src="./images/logo.png" alt="" />
+        </div>
+
+        <ul>
+          <li><a class="active" href="#">Home</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <input type="checkbox" id="click" />
+      <label for="click" class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <ul>
+        <a class="sign-up me-2" href="#">Sign Up</a>
+        <a class="login" href="#">Login</a>
+        <li><a class="mobile-link active" href="#">Home</a></li>
+        <li><a class="mobile-link" href="#">Courses</a></li>
+        <li><a class="mobile-link" href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section id="hero-section">
+      <div class="container-lg">
+        <div class="row align-items-center text-center text-md-start">
+          <div class="col-12 col-md-6">
+            <h1>
+              <div class="fw-bold">Explore Your Mother's</div>
+              <div class="fw-bold">Language and Culture</div>
+            </h1>
+            <div class="my-2">
+              <div class="hero-text">
+                Discover the beauty of your mother's tongue and dive into the
+              </div>
+              <div class="hero-text">
+                Vibrant culture of Africa with learning and methods tailored
+                just for you!
+              </div>
+            </div>
+
+            <a class="demo-btn my-4" href="">Explore Our Demo Classes</a>
+          </div>
+          <div class="col-12 col-md-6 d-flex justify-content-center">
+            <img
+              class="img-fluid me-5 test"
+              src="./images/hero-image.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rating">
+      <div class="container-lg">
+        <div
+          class="row d-flex justify-content-center align-items-center text-center"
+        >
+          <div class="col-12 col-md-6 col-lg-3 mb-4 rating-border text-color">
+            <h1 class="mb-0">5+</h1>
+            <p class="mb-0">Years in Business</p>
+          </div>
+          <div
+            class="col-12 col-md-6 col-lg-3 mb-4 second-rating-border text-color"
+          >
+            <h1 class="mb-0">5+</h1>
+            <p class="mb-0">Years in Business</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3 mb-4 rating-border text-color">
+            <h1 class="mb-0">7k+</h1>
+            <p class="mb-0">Happy Customers</p>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3 text-color">
+            <h1 class="mb-0">20+</h1>
+            <p class="mb-0">Succesful Partners</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="courses">
+      <div class="container-lg overflow-hidden">
+        <h1 class="mb-4 text-center text-md-start">
+          <div class="fw-bold">Our Courses</div>
+        </h1>
+        <div class="row align-items-center">
+          <div class="col-md-9 col-lg-8">
+            <div class="text-muted">
+              Lorem ipsum dolor sit amet. Error facere unde quibusdam optio cum
+              quasi?
+            </div>
+            <div class="text-muted">
+              Lorem ipsum dolor. Omnis eaque optio voluptas quos cum tempore ea
+              qui earum odit magni.
+            </div>
+          </div>
+          <div
+            class="col-md-3 col-lg-4 d-flex justify-content-center justify-content-md-end my-3"
+          >
+            <a class="view-btn" href="">View All</a>
+          </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 my-2">
+          <div class="col">
+            <div class="card h-100">
+              <img
+                src="./images/yoruba.png"
+                class="card-img-top pt-4 px-4"
+                alt="..."
+              />
+              <div class="card-body px-4">
+                <h5 class="card-title">
+                  Kíkọ Ẹ̀dè Yorùbá fún Ọmọdé (Learning Yorùbá for Children)
+                </h5>
+                <p class="card-text">
+                  È kú àbẹ̀wò! This course introduces children to the Yoruba
+                  language (Ẹ̀dè).
+                </p>
+                <a href="#" class="explore-btn my-2">Explore Courses</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img
+                src="./images/igbo.png"
+                class="card-img-top pt-4 px-4"
+                alt="..."
+              />
+              <div class="card-body px-4">
+                <h5 class="card-title">
+                  Ìmù Àsụsụ Ìgbò Màkà Ndí Nwa (Learning Igbo for Children)
+                </h5>
+                <p class="card-text">
+                  Nnọọ! Welcome! This Interactive course introduces children to
+                  the language.
+                </p>
+                <a href="#" class="explore-btn my-2">Explore Courses</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img
+                src="./images/hausa.png"
+                class="card-img-top pt-4 px-4"
+                alt="..."
+              />
+              <div class="card-body px-4">
+                <h5 class="card-title">
+                  Koyon Harshen Hausa fun Omode (Learning Hausa for Children)
+                </h5>
+                <p class="card-text">
+                  This course introduces children to the basics of the Yoruba
+                  language.
+                </p>
+                <a href="#" class="explore-btn my-2">Explore Courses</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="exciting">
+      <div class="container-lg">
+        <div class="exciting-intro text-center">
+          <h6>
+            <span><i class="bi bi-lightning-charge"></i></span>
+            Join Thousands of Kids Learning Their Home Language!
+          </h6>
+
+          <h1 style="color: white">
+            <div>Exciting & Fun Ways to Learn Your Native</div>
+            <div>Language!</div>
+          </h1>
+        </div>
+
+        <div class="row pt-5 d-flex justify-content-center align-items-center">
+          <div class="col-md-6 text-center">
+            <img
+              class="img-fluid pt-md-5 kids-lang-img"
+              src="./images/image 68.png"
+              alt="Kids learning their native language"
+            />
+          </div>
+          <div class="col-md-6">
+            <div
+              class="py-4 border-bottom text-white d-flex justify-content-around"
+            >
+              <div class="text-center">
+                <h1 class="display-5">640<strong>+</strong></h1>
+                <p>Kids Learning</p>
+              </div>
+              <div class="text-center">
+                <h1 class="display-5">253<strong>+</strong></h1>
+                <p>Fun Lessons</p>
+              </div>
+            </div>
+            <div class="py-5 text-white d-flex justify-content-around">
+              <div class="text-center">
+                <h1 class="display-5">93<strong>%</strong></h1>
+                <p>of Kids Love It!</p>
+              </div>
+              <div class="text-center">
+                <h1 class="display-5">28<strong>+</strong></h1>
+                <p>Friendly Teachers</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center my-4">
+            <a class="touch-btn" href=""
+              >Get in Touch <span><i class="bi bi-arrow-right"></i></span
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="connect">
+      <div class="container-lg">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1 class="root-wrapper text-center text-lg-start">
+              <div>Connect with Your Roots</div>
+              <div>and <span>Culture</span></div>
+            </h1>
+
+            <p class="lead text-muted pt-3">
+              Help your child deepen their connection to their heritage through
+              language! 🌍 With culturally rich stories, traditions, and
+              interactive lessons, they’ll embrace their roots while building
+              fluency in a fun and meaningful way.
+            </p>
+          </div>
+          <div class="col-lg-6 d-flex justify-content-center">
+            <img class="img-fluid" src="./images/student.png" alt="" />
+          </div>
+        </div>
+
+        <div class="row py-5 align-items-center">
+          <div
+            class="col-lg-6 d-flex justify-content-center order-2 order-lg-1"
+          >
+            <img class="img-fluid" src="./images/clock.png" alt="" />
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2">
+            <h1 class="root-wrapper text-center text-lg-start">
+              <div>Learn at Your</div>
+              <div><span>Pace</span></div>
+            </h1>
+
+            <p class="lead text-muted py-3">
+              Empower your child to learn their native language at a comfortable
+              pace! With flexible lessons, engaging activities, and expert
+              guidance, they can progress confidently, anytime, anywhere.
+            </p>
+          </div>
+        </div>
+
+        <div class="row py-md-5 align-items-start">
+          <div class="col-lg-6">
+            <h1 class="root-wrapper text-center text-lg-start pt-5">
+              <div>Class Management Tools</div>
+              <div>for <span>Our Student</span></div>
+            </h1>
+
+            <p class="lead text-muted py-3">
+              Effortlessly manage your child's learning with our class
+              management tools! Track progress, schedule lessons, and stay
+              involved—all in one place!
+            </p>
+          </div>
+          <div class="col-lg-6 d-flex justify-content-center">
+            <img class="img-fluid" src="./images/group.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="native">
+      <div class="container-sm">
+        <div class="row native-wrapper">
+          <div class="col-lg-6">
+            <h1 style="font-size: 60px" class="text-white">
+              <div>Learn Your Native</div>
+              <div>Language!</div>
+            </h1>
+            <div class="py-4">
+              <p class="py-3 text-white">
+                Unlock your child’s native language with fun, interactive
+                lessons! 🌟 Whether they’re starting or building fluency, our
+                expert-led program makes learning easy and engaging.
+              </p>
+
+              <a class="enroll-now-btn me-3 mt-3 mb-2" href="#"
+                >Enroll Now<span><i class="bi bi-arrow-right ms-2"></i></span
+              ></a>
+              <a class="get-btn" href="#"
+                >Get In Touch<span><i class="bi bi-arrow-right ms-2"></i></span
+              ></a>
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex justify-content-center">
+            <img class="img-fluid me-5" src="./images/animate.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container-lg">
+        <div class="row">
+          <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
+            <h1>
+              <div>Frequently</div>
+              <div>Asked Questions</div>
+            </h1>
+            <p class="text-muted">
+              Still you have any questions? Contact our Team via
+              <span class="info">Info@fricalearn.com</span>
+            </p>
+
+            <a class="see-btn my-2" href="">See All FAQ’s</a>
+          </div>
+          <div class="col-lg-8">
+            <div class="accordion">
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  Can I enroll in multiple courses at once?
+                  <span class="icon">✖</span>
+                </button>
+                <div class="accordion-content" style="display: block">
+                  <p>
+                    Absolutely! You can enroll in multiple courses
+                    simultaneously and access them at your convenience.
+                  </p>
+                  <a class="accordion-btn" href="">
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <span>Enrollment Process for Different Courses </span>
+                      <i
+                        class="bi bi-arrow-right accordion-arrow text-dark"
+                      ></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div
+                style="border-top: 1px solid whitesmoke"
+                class="accordion-item"
+              >
+                <button class="accordion-header">
+                  What kind of support can I expect from instructors?
+                  <span class="icon">➕</span>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    Our instructors provide support through live sessions,
+                    email, and discussion forums.
+                  </p>
+                  <a class="accordion-btn" href="">
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <span>Learn About Instructor Support </span>
+                      <i
+                        class="bi bi-arrow-right accordion-arrow text-dark"
+                      ></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div
+                style="border-top: 1px solid whitesmoke"
+                class="accordion-item"
+              >
+                <button class="accordion-header">
+                  Are the courses self-paced or do they have specific start
+                  dates?
+                  <span class="icon">➕</span>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    Most courses are self-paced, but some have scheduled start
+                    and end dates.
+                  </p>
+                  <a class="accordion-btn" href="">
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <span>View Course Scheduling Options</span>
+                      <i
+                        class="bi bi-arrow-right accordion-arrow text-dark"
+                      ></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div
+                style="border-top: 1px solid whitesmoke"
+                class="accordion-item"
+              >
+                <button class="accordion-header">
+                  Are there any prerequisites for the courses?
+                  <span class="icon">➕</span>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    Some courses require basic knowledge, but many are
+                    beginner-friendly.
+                  </p>
+                  <a class="accordion-btn" href="">
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <span>Check Course Prerequisites</span>
+                      <i
+                        class="bi bi-arrow-right accordion-arrow text-dark"
+                      ></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div
+                style="border-top: 1px solid whitesmoke"
+                class="accordion-item"
+              >
+                <button class="accordion-header">
+                  Can I download the course materials for offline access?
+                  <span class="icon">➕</span>
+                </button>
+                <div class="accordion-content">
+                  <p>
+                    Yes, most course materials are available for offline access.
+                  </p>
+                  <a class="accordion-btn" href="">
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <span>Download Course Materials</span>
+                      <i
+                        class="bi bi-arrow-right accordion-arrow text-dark"
+                      ></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer" class="bg-light">
+      <div class="container-lg">
+        <div class="row gy-4">
+          <div class="col-lg-6 text-center text-lg-start">
+            <img class="img-fluid my-3" src="./images/logo.png" alt="Logo" />
+            <p><i class="bi bi-envelope-fill me-2"></i>Info@fricalearn.com</p>
+            <p><i class="bi bi-telephone-fill me-2"></i>+44 735 166 2748</p>
+            <p>
+              <i class="bi bi-geo-alt-fill me-2"></i>3a, High Street Gillingham
+              Kent ME7 5AA
+            </p>
+
+            <h6 class="pt-4">Social Profiles</h6>
+            <div
+              class="d-flex justify-content-center justify-content-lg-start gap-3"
+            >
+              <a class="social-link" href="#"><i class="bi bi-facebook"></i></a>
+              <a class="social-link" href="#"><i class="bi bi-twitter"></i></a>
+              <a class="social-link" href="#"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 quick-links text-center text-lg-start">
+            <h6 class="mt-4">Quick Links</h6>
+            <p><a href="#">About Us</a></p>
+            <p><a href="#">Yoruba Courses</a></p>
+            <p><a href="#">Igbo Courses</a></p>
+            <p><a href="#">Hausa Courses</a></p>
+          </div>
+
+          <div class="col-lg-3 legal-links text-center text-lg-start">
+            <h6 class="mt-4">Legals</h6>
+            <p><a href="#">Terms of Service</a></p>
+            <p><a href="#">Frequently Asked Questions</a></p>
+            <p><a href="#">Our Goals</a></p>
+          </div>
+        </div>
+
+        <div class="text-center py-3 mt-4 border-top">
+          © FricaLearn. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
