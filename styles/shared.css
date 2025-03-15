@@ -69,6 +69,7 @@
   transform: translateX(-2px);
 }
 
+
 .get-btn:hover {
   color: var(--main-color);
   background-color: rgb(226, 222, 222);

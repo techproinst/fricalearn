@@ -1,0 +1,100 @@
+:root {
+  --main-color: #3b2a56;
+  --nav-bg: #f1f1f3;
+  --dark-color: #262626;
+  --light-color: #ca13ab;
+}
+#course-section {
+  padding: 60px 0;
+  background-color: #fafafa;
+}
+#sub-course-card-section {
+  background-color: #f2f4f8;
+  padding: 20px 0 60px 0;
+}
+
+#other-courses {
+  padding: 60px 0;
+}
+
+h3 div {
+  color: #262626;
+}
+
+h1 .test {
+  font-size: 60px;
+  color: white;
+}
+
+@media (max-width: 978px) {
+  h3 div {
+    font-size: 1.5rem !important;
+  }
+  h1 div {
+    font-size: 1.8rem !important;
+  
+  }
+  #course-section {
+    padding: 40px 0;
+  }
+  #sub-course-card-section {
+    padding: 2px 0 25px 0;
+  }
+  #other-courses {
+    padding: 40px 0;
+  }
+  #native {
+    padding: 40px 0;
+  }
+
+  #faq {
+    padding: 40px 0;
+  }
+
+  #footer {
+    padding: 40px 0 0 0;
+  }
+}
+h5 {
+  color: #262626;
+}
+.sub-course-explore-btn {
+  color: var(--nav-bg);
+  background-color: var(--main-color);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px 54px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  width: 100%;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.sub-course-explore-btn:hover {
+  color: var(--dark-color);
+  background: #f1f1f3;
+  transform: translateX(-2px);
+}
+
+.level-btn {
+  text-decoration: none;
+  font-weight: 500;
+  color: #59595a;
+  background-color: #f7f7f8;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.level-btn:hover {
+  color: var(--nav-bg);
+  background-color: var(--main-color);
+  transform: translateX(-2px);
+}
