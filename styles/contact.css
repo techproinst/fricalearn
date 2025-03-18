@@ -5,15 +5,25 @@
   --light-color: #ca13ab;
 }
 
-#contact-section {
-  padding: 30px 0;
+#intro-section {
+  padding: 30px 0 20px 0;
   background-color: #fafafa;
 }
+
 
 #form-section {
   padding: 50px 0;
   background-color: #f2f4f8;
 }
+
+#mobile-contact {
+  padding: 40px 0;
+  background-color: #f2f4f8;
+}
+
+
+
+
 #map-section {
   padding: 60px 0;
 }
@@ -25,24 +35,40 @@
 
 h1 div {
   font-size: 35px;
+  color: var(--main-color);
 }
 
 @media (max-width: 978px) {
   h1 div {
     font-size: 1.8rem !important;
   }
+
   #form-section {
-    padding: 30px 0;
+    padding: 30px 0 3px 0;
   }
+
 
   #map-section {
     padding: 40px 0;
   }
 }
 
+.input-width {
+  background-color: #FCFCFD;
+  border: 1px solid #F1F1F3;
+}
+
+.contact-wrapper {
+  background-color: #FCFCFD;
+  border: 1px solid #F1F1F3;
+
+}
+
 .input-height {
   height: 55px;
+
 }
+
 .form-wrapper {
   border-radius: 10px;
 }
@@ -72,11 +98,25 @@ h1 div {
   .border-lg-end {
     border-right: none !important;
   }
+
+  .contact-wrapper {
+    width: 100%;
+
+  }
+
 }
+
+@media (min-width:971px) {
+  #mobile-contact {
+    display: none;
+  }
+}
+
 @media (max-width: 767px) {
   .input-height {
     height: 45px;
   }
+
   .submit-btn {
     font-size: 14px;
     width: 100%;
@@ -84,10 +124,12 @@ h1 div {
 }
 
 @media (max-width: 568px) {
+
   /* Target mobile and tablets */
   .input-width {
     width: 125% !important;
   }
+
   .submit-btn {
     font-size: 14px;
     width: 125%;
@@ -101,4 +143,10 @@ h1 div {
 .contact-social-link a:hover img {
   border-radius: 4px;
   box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
+}
+
+.icon-color {
+
+  color: var(--light-color);
+  font-size: 20px;
 }
