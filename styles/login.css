@@ -1,0 +1,62 @@
+.text-end a {
+  color: #4c4c4d;
+  text-decoration: none;
+  font-size: 14px;
+}
+.rem-color {
+  color: #656567;
+  font-size: 14px;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ccc; /* Light gray line */
+  margin: 0 10px;
+}
+
+.separator span {
+  font-size: 14px;
+  color: #98989a;
+}
+
+.google-sign-btn {
+  border: none;
+  color: var(--main-color);
+  background: #f7f7f8;
+  text-decoration: none;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 11px 54px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.google-sign-btn:hover {
+  color: var(--nav-bg);
+  background-color: var(--main-color);
+  transform: translateX(-2px);
+}
+p span a {
+  color: #262626;
+  text-decoration-color: none;
+  font-size: 14px;
+  font-weight: 500;
+  
+}
+.dont-text {
+  font-size: 14px;
+  color:  #262626;
+}

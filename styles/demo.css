@@ -50,7 +50,7 @@ label a {
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  padding: 12px 54px;
+  padding: 11px 54px;
   border-radius: 5px;
   letter-spacing: 1px;
   text-align: center;
@@ -66,4 +66,8 @@ label a {
 
 .demo-input-height {
   height: 50px;
-}
+  background-color: #FCFCFD;
+  border: 1px solid #F1F1F3;
+} 
+
+
