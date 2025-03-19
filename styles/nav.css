@@ -16,7 +16,7 @@ nav {
   /* background: var(--nav-bg); */
   align-items: center;
   justify-content: space-between;
-  padding: 0 50px 0 100px; 
+  padding: 0 50px 0 100px;
   flex-wrap: wrap;
 
 }
@@ -101,8 +101,7 @@ input[type="checkbox"] {
 }
 
 .login {
-  color: var(--nav-bg);
-  background-color: var(--main-color);
+  color: var(--main-color);
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
@@ -112,18 +111,31 @@ input[type="checkbox"] {
   transition: all 0.3s ease;
 }
 
-.login:hover {
+.login.active,
+.sign-up.active {
+  color: var(--nav-bg);
+  background-color: var(--main-color);
+}
+
+
+
+.login.active:hover,
+.sign-up.active:hover {
   color: var(--dark-color);
-  /* background: #fff; */
   background: var(--nav-bg);
+  transform: translateX(-2px);
+
+}
+
+
+.login:hover,
+.sign-up:hover {
+  color: var(--nav-bg);
+  background: var(--main-color);
   transform: translateX(-2px);
 }
 
-.sign-up:hover {
-  color: var(--nav-bg);
-  background-color: var(--main-color);
-  transform: translateX(-2px);
-}
+
 
 @media (max-width: 920px) {
   nav .menu-btn i {

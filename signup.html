@@ -19,11 +19,18 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/css/intlTelInput.css"
+    />
     <link rel="stylesheet" href="./styles/nav.css" />
     <link rel="stylesheet" href="./styles/demo.css" />
     <link rel="stylesheet" href="./styles/login.css" />
+    <link rel="stylesheet" href="./styles/sign-up.css">
 
-    <style></style>
+    <style>
+     
+    </style>
   </head>
   <body>
     <section
@@ -53,8 +60,8 @@
         <i class="fas fa-bars"></i>
       </label>
       <ul>
-        <a class="sign-up me-2" href="signup.html">Sign Up</a>
-        <a class="login active" href="login.html">Login</a>
+        <a class="sign-up active me-2" href="#form-section">Sign Up</a>
+        <a class="login" href="login.html">Login</a>
         <li><a class="mobile-link" href="#">Home</a></li>
         <li><a class="mobile-link" href="#">Courses</a></li>
         <li><a class="mobile-link" href="#">Contact</a></li>
@@ -67,9 +74,11 @@
           <div class="col-lg-6 mx-auto bg-white p-5 rounded">
             <div class="text-center">
               <h1>
-                <div style="word-spacing: 6px">Login</div>
+                <div style="word-spacing: 6px">Sign Up</div>
               </h1>
-              <p class="text-muted">Login to start learning</p>
+              <p class="text-muted">
+                Create an account for your kid to start learning.
+              </p>
             </div>
             <form action="">
               <div class="mb-3">
@@ -81,7 +90,17 @@
                   placeholder="Enter your Email"
                 />
               </div>
-              <div class="mb-1">
+              <div class="mb-2">
+                <label for="phone" class="form-label">Phone Number</label><br />
+                <input
+                  type="tel"
+                  class="form-control demo-input-height w-100"
+                  id="phone"
+                  placeholder="(234) 000 000 0000"
+                />
+              </div>
+
+              <div class="mb-2">
                 <label for="password" class="form-label">Password</label>
                 <input
                   type="password"
@@ -90,21 +109,17 @@
                   placeholder="Enter your Password"
                 />
               </div>
-              <div class="text-end">
-                <a href="">Forgot Password?</a>
-              </div>
-              <div class="form-check">
+              <div class="form-check my-3">
                 <input
                   class="form-check-input d-block"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
                 />
-                <label
-                  class="form-check-label rem-color"
-                  for="flexCheckDefault"
-                >
-                  Remember Me
+                <label class="form-check-label" for="flexCheckDefault">
+                  <span>I agree with </span><a href="">Terms of Use</a>
+                  <span>and</span>
+                  <a href="">Privacy Policy</a>
                 </label>
               </div>
               <button
@@ -113,7 +128,7 @@
               >
                 Login
               </button>
-              <div class="separator">
+              <div class="separator my-2">
                 <span>OR</span>
               </div>
               <a class="google-sign-btn my-2" href=""
@@ -122,9 +137,9 @@
               >
               <div class="text-center mt-2">
                 <p class="dont-text">
-                  Don’t have an account?
+                  Already have an account? 
                   <span
-                    ><a href="">Sign Up</a>
+                    ><a href="">Login</a>
                     <img width="10" src="./images/up-arrow.png" alt=""
                   /></span>
                 </p>
@@ -180,5 +195,17 @@
     </footer>
 
     <script src="./scripts/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/intlTelInput.min.js"></script>
+    <script>
+      const phoneInput = document.querySelector("#phone");
+      // Initialize intlTelInput
+      const iti = window.intlTelInput(phoneInput, {
+        initialCountry: "au", // Default country
+        separateDialCode: true, // Shows country code separately
+        preferredCountries: ["us", "gb", "ng", "ca"], // Preferred countries at top
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
+    </script>
   </body>
 </html>

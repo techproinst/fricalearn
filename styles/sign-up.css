@@ -1,0 +1,19 @@
+.iti {
+  width: 100% !important;
+}
+
+.iti input {
+  width: 100% !important;
+  max-width: 600px;
+  min-width: 250px;
+}
+
+label span {
+  font-size: 14px;
+}
+
+label a {
+  text-decoration-color: var(--main-color);
+  color: #59595a;
+  font-size: 14px;
+}
