@@ -38,6 +38,8 @@ nav ul {
   display: none;
 }
 
+
+
 nav ul li {
   margin: 0 5px;
 }
@@ -172,7 +174,8 @@ input[type="checkbox"] {
 
   }
 
-  nav ul li a {
+  nav ul li a,
+   .dropdown-item.mobile-link {
     color: var(--nav-bg);
     width: 100%;
     margin-left: -100%;
@@ -204,6 +207,45 @@ input[type="checkbox"] {
   .announcement-bar h6 {
     font-size: 12px;
   }
+
+  .dropdown {
+    display: none;
+  }
+}
+
+/* Styling for user dropdown */
+.user-dropdown {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.user-dropdown img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-dropdown i {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when active */
+.user-dropdown.show i {
+  transform: rotate(180deg);
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  width: 100px;
+}
+
+.dropdown-item {
+  font-size: 14px;
 }
 
 

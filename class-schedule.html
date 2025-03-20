@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="./styles/nav.css" />
+    <link rel="stylesheet" href="./styles/class-schedule.css" />
+
+    <style></style>
+  </head>
+  <body>
+    <section
+      class="announcement-bar d-flex justify-content-center text-white align-items-center"
+    >
+      <h6 class="mb-0">
+        Free Courses ⭐ Sales Ends Soon, Get it Now
+        <span><i class="bi bi-arrow-right ms-2"></i></span>
+      </h6>
+    </section>
+
+    <nav>
+      <div class="left-section">
+        <div class="logo">
+          <img src="./images/logo.png" alt="" />
+        </div>
+
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="courses.html">Courses</a></li>
+          <li><a href="contact-us.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <input type="checkbox" id="click" />
+      <label for="click" class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <ul>
+        <div class="dropdown">
+          <div
+            class="user-dropdown d-flex align-items-center"
+            data-bs-toggle="dropdown"
+          >
+            <img src="./images/avatar.png" alt="User" />
+            <div>
+              <strong>John Doe</strong>
+              <p class="text-muted m-0">Parent</p>
+            </div>
+            <i class="bi bi-chevron-down ms-2"></i>
+          </div>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+          </ul>
+        </div>
+
+        <!-- <a class="sign-up active me-2" href="#form-section">Sign Up</a>
+          <a class="login" href="login.html">Login</a> -->
+        <li><a class="mobile-link active" href="#">Home</a></li>
+        <li><a class="mobile-link" href="#">Courses</a></li>
+        <li><a class="mobile-link" href="#">Contact</a></li>
+
+        <!-- authenticated user -->
+        <li><a class="dropdown-item mobile-link" href="#">Profile</a></li>
+        <li><a class="dropdown-item mobile-link" href="#">Settings</a></li>
+        <li>
+          <a class="dropdown-item mobile-link text-danger" href="#">Logout</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section id="form-section">
+      <div class="container">
+        <div class="text-center mb-4">
+          <h1>
+            <div>Select Class Schedule</div>
+          </h1>
+          <p>
+            Choose a class schedule that works best for your child! Select a
+            convenient time <br />
+            for their lessons and ensure a smooth and enjoyable learning
+            experience.
+          </p>
+        </div>
+        <form action="" method="">
+          <input type="hidden" name="monday_time" id="monday_time" />
+          <input type="hidden" name="wednesday_time" id="wednesday_time" />
+          <input type="hidden" name="friday_time" id="friday_time" />
+
+          <div class="row g-4 justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+              <div class="card border-none" data-day="Monday">
+                <div class="card-body p-5">
+                  <h5 class="card-title custom-title">Monday</h5>
+                  <h6 class="py-3 avail-text">Available Time</h6>
+                  <div
+                    class="time-wrapper p-3"
+                    data-day="Monday"
+                    data-time="12:00 WAT"
+                  >
+                    <h6 class="time-text">Time</h6>
+                    <h6>12:00 WAT</h6>
+                    <button type="button" class="timer-btn">
+                      <img src="./images/timer.png" alt="" /> 45 Minutes
+                    </button>
+                  </div>
+                  <div
+                    class="time-wrapper p-3 mt-3"
+                    data-day="Monday"
+                    data-time="4:00 WAT"
+                  >
+                    <h6 class="time-text">Time</h6>
+                    <h6>4:00 WAT</h6>
+                    <button type="button" class="timer-btn">
+                      <img src="./images/timer.png" alt="" /> 45 Minutes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+              <div class="card border-none" data-day="Wednesday">
+                <div class="card-body p-5">
+                  <h5 class="card-title custom-title">Wednesday</h5>
+                  <h6 class="py-3 avail-text">Available Time</h6>
+                  <div
+                    class="time-wrapper p-3"
+                    data-day="Wednesday"
+                    data-time="12:00 WAT"
+                  >
+                    <h6 class="time-text">Time</h6>
+                    <h6>12:00 WAT</h6>
+                    <button type="button" class="timer-btn">
+                      <img src="./images/timer.png" alt="" /> 45 Minutes
+                    </button>
+                  </div>
+                  <div
+                    class="time-wrapper p-3 mt-3"
+                    data-day="Wednesday"
+                    data-time="4:00 WAT"
+                  >
+                    <h6 class="time-text">Time</h6>
+                    <h6>4:00 WAT</h6>
+                    <button type="button" class="timer-btn">
+                      <img src="./images/timer.png" alt="" /> 45 Minutes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+              <div class="card border-none" data-day="Friday">
+                <div class="card-body p-5">
+                  <h5 class="card-title custom-title">Friday</h5>
+                  <h6 class="py-3 avail-text">Available Time</h6>
+                  <div
+                    class="time-wrapper p-3"
+                    data-day="Friday"
+                    data-time="12:00 WAT"
+                  >
+                    <h6 class="time-text">Time</h6>
+                    <h6>12:00 WAT</h6>
+                    <button type="button" class="timer-btn">
+                      <img src="./images/timer.png" alt="" /> 45 Minutes
+                    </button>
+                  </div>
+                  <div
+                    class="time-wrapper p-3 mt-3"
+                    data-day="Friday"
+                    data-time="4:00 WAT"
+                  >
+                    <h6 class="time-text">Time</h6>
+                    <h6>4:00 WAT</h6>
+                    <button type="button" class="timer-btn">
+                      <img src="./images/timer.png" alt="" /> 45 Minutes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-9 text-center mx-auto mt-4">
+            <button class="proceed-btn" type="submit">Proceed</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer id="footer" class="bg-light">
+      <div class="container-lg">
+        <div class="row gy-4">
+          <div class="col-lg-6 text-center text-lg-start">
+            <img class="img-fluid my-3" src="./images/logo.png" alt="Logo" />
+            <p><i class="bi bi-envelope-fill me-2"></i>Info@fricalearn.com</p>
+            <p><i class="bi bi-telephone-fill me-2"></i>+44 735 166 2748</p>
+            <p>
+              <i class="bi bi-geo-alt-fill me-2"></i>3a, High Street Gillingham
+              Kent ME7 5AA
+            </p>
+
+            <h6 class="pt-4">Social Profiles</h6>
+            <div
+              class="d-flex justify-content-center justify-content-lg-start gap-3"
+            >
+              <a class="social-link" href="#"><i class="bi bi-facebook"></i></a>
+              <a class="social-link" href="#"><i class="bi bi-twitter"></i></a>
+              <a class="social-link" href="#"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 quick-links text-center text-lg-start">
+            <h6 class="mt-4">Quick Links</h6>
+            <p><a href="#">About Us</a></p>
+            <p><a href="course-yoruba.html">Yoruba Courses</a></p>
+            <p><a href="course-igbo.html">Igbo Courses</a></p>
+            <p><a href="course-hausa.html">Hausa Courses</a></p>
+          </div>
+
+          <div class="col-lg-3 legal-links text-center text-lg-start">
+            <h6 class="mt-4">Legals</h6>
+            <p><a href="#">Terms of Service</a></p>
+            <p><a href="#">Frequently Asked Questions</a></p>
+            <p><a href="#">Our Goals</a></p>
+          </div>
+        </div>
+
+        <div class="text-center py-3 mt-4 border-top">
+          © FricaLearn. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/schedule.js"></script>
+  </body>
+</html>
