@@ -1,0 +1,145 @@
+.currency-wrapper {
+  background-color: #f2f4f8;
+  border-radius: 6px;
+}
+
+.naira-btn,
+.pounds-btn {
+  background-color: transparent;
+  padding: 11px 30px;
+  width: 220px;
+  border: none;
+}
+
+@media (max-width: 767px) {
+  .naira-btn,
+  .pounds-btn {
+    font-size: 12px;
+    padding: 11px 30px;
+    width: 200px;
+  }
+}
+
+@media (max-width: 427px) {
+  .naira-btn,
+  .pounds-btn {
+    font-size: 12px;
+    padding: 11px 30px;
+    width: 180px;
+  
+  }
+
+  .currency-wrapper {
+    border: none !important;
+    background-color: transparent;
+  }
+}
+
+
+.naira-btn.clicked {
+  background: var(--main-color);
+  color: white;
+  padding: 11px 30px;
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.pounds-btn.clicked {
+  background: var(--main-color);
+  color: white;
+  padding: 11px 30px;
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.details-wrapper {
+  background-color: #fcfcfd;
+  border: 1px solid #f1f1f3;
+  border-radius: 7px;
+}
+
+.bank-btn {
+  border: 1px solid #d8c9ff;
+  width: 100%;
+  background-color: transparent;
+  padding: 10px 0;
+  border-radius: 4px;
+  color: #262626;
+}
+.text-color {
+  color: #262626;
+  font-weight: bold;
+}
+.acc-details {
+  background-color: white;
+  color: #262626;
+}
+
+.custom-file-upload {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #eee;
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 10px 15px;
+}
+
+.custom-upload-label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.file-name {
+  flex: 1;
+}
+
+.upload-text {
+  color: #0c76b4;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.custom-file-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  border: none;
+  color: var(--main-color);
+  background: #f7f7f8;
+  text-decoration: none;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 11px 54px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cancel-btn:hover {
+  color: var(--nav-bg);
+  background-color: var(--main-color);
+  transform: translateX(-2px);
+}
