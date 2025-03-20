@@ -1,0 +1,110 @@
+.student-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.student-card {
+  width: 20%; /* Ensures 3 per row */
+  max-width: 200px; /* Prevents large scaling on big screens */
+  text-align: center;
+  cursor: pointer;
+}
+
+.student-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.add-wrapper {
+  max-height: 170px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.add-icon {
+  font-size: 30px;
+  color: var(--main-color);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.avatar-wrapper a {
+  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+.avatar-wrapper a:hover {
+  transform: rotate(-3deg) scale(1.05); /* Slight tilt & zoom effect */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15); /* Soft shadow */
+}
+
+.add-wrapper a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+
+.add-wrapper:hover {
+  transform: rotate(-3deg) scale(1.05); /* Slight tilt & zoom effect */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  
+}
+
+.add-wrapper:hover .add-icon {
+  transform: rotate(10deg) scale(1.1); /* Tilt and enlarge icon */
+  color: #0056b3; /* Darker blue color on hover */
+}
+
+.add {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.add-wrapper:hover .add {
+  color: #244263; /* Change text color on hover */
+}
+
+@media (max-width: 1399px) {
+  .add-wrapper {
+    max-height: 150px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .add-wrapper {
+    max-height: 120px;
+  }
+}
+@media (max-width: 767px) {
+  .add-icon {
+    font-size: 25px;
+  }
+  .add {
+    font-size: 12px;
+  }
+  .add-wrapper {
+    max-height: 90px;
+  }
+}
+
+@media (max-width: 536px) {
+  .add-icon {
+    font-size: 20px;
+  }
+  .add {
+    font-size: 10px;
+  }
+  .add-wrapper {
+    max-height: 80px;
+  }
+  .avatar-text {
+    font-size: 14px;
+  }
+}
+
