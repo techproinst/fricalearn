@@ -1,0 +1,141 @@
+h3 div {
+  color: white;
+}
+
+.timer-btn {
+  border: none;
+  color: var(--main-color);
+  background: #f7f7f8;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.timer-btn:hover {
+  color: #ffffff;
+  background: var(--main-color);
+  transform: translateX(-2px);
+}
+.hero-wrapper {
+  background-color: #3b2a56;
+  border-radius: 10px;
+}
+.text-color {
+  color: #202020;
+}
+.personal {
+  color: #111827;
+}
+
+.edit-text {
+  color: #ca13ab !important;
+  font-size: 14px;
+}
+.join-btn {
+  color: #ffffff;
+  background: var(--main-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.join-btn:hover {
+  color: var(--main-color);
+  background: #f7f7f8;
+  transform: translateX(-2px);
+}
+
+.upcoming-course-img {
+  max-width: 200px;
+  max-height: 120px;
+}
+
+@media (max-width: 767px) {
+  .upcoming-course-img {
+    /* width: 100%; */
+    max-width: 200px;
+    display: block;
+    margin: auto;
+    height: auto;
+    /* object-fit: cover; */
+  }
+
+  .p-4.d-flex {
+    flex-direction: column;
+    align-items: center !important;
+    text-align: center;
+  }
+
+  .ms-3 {
+    margin-left: 0 !important;
+    margin-top: 10px;
+  }
+
+  .join-btn {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+  }
+}
+
+.level-btn {
+  border: none;
+  color: var(--main-color);
+  background: #f7f7f8;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 10px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.level-btn:hover {
+  color: #ffffff;
+  background: var(--main-color);
+  transform: translateX(-2px);
+}
+.start-text {
+  color: #ca13ab;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.card-radius {
+  border-radius: 14px;
+}
+
+.chat-btn {
+  border: none;
+  color: white;
+  background: #CA13AB;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 10px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: inline-block;
+
+}
+.chat-btn:hover {
+  color: var(--main-color);
+  background: white;
+  transform: translateX(-2px);
+
+}
