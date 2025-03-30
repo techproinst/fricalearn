@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('name');
             $table->date('birthdate');
             $table->enum('gender', ['male', 'female']);
-            $table->enum('registration_type', ['demo', 'full_time'])->default('demo');
             $table->string('profile_photo')->nullable();
             $table->boolean('terms')->default(false);
             $table->timestamps();

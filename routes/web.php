@@ -1,10 +1,23 @@
 <?php
 
+use App\Http\Controllers\DemoCourseController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
+});
+
+Route::get('/admin', function () {
+    return view('layouts.admin');
+});
+
+Route::get('/demo-class-application', function () {
+    return view('forms.demo_class_form');
+})->name('demo_class_application');
+
+Route::get('/demo-class', function () {
+    return view('pages.demo_class');
 });
 
 
@@ -25,12 +38,7 @@ Route::get('/hausa-courses', function () {
 Route::get('/contact', function () {
     return view('forms.contact_us');
 });
-Route::get('/demo-class-application', function () {
-    return view('forms.demo_class_form');
-});
-Route::get('/demo-class', function () {
-    return view('pages.demo_class');
-});
+
 Route::get('/register-parent', function () {
     return view('forms.parent_registration_form');
 });
@@ -65,11 +73,19 @@ Route::get('/student-dashboard', function () {
 
 
 
+Route::middleware(['auth', 'verified'])->group(function() {
 
+    Route::get('/dashboard', function() {
+        return view('admin.dashboard');
+    })->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/demo-course', [DemoCourseController::class, 'index'])->name('demo_course.index');
+    Route::post('/add-demo-course', [DemoCourseController::class, 'store'])->name('demo_course.store');
+    Route::patch('/update-demo-course/{demoCourse}', [DemoCourseController::class, 'update'])->name('demo_course.update');
+    Route::delete('/delete-demo-course/{demoCourse}', [DemoCourseController::class, 'destroy'])->name('demo_course.destroy');
+
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
