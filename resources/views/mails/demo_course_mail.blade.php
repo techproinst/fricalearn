@@ -31,7 +31,7 @@
                 🔗 Demo Class Links: 
                  <ul>
                   @foreach ($demoCourseLinks as $link )
-                  <li>{{ $link->demo_course_link }}</li>
+                  <li><a style="text-decoration: none" href="{{ $link->demo_course_link }}">{{ $link->demo_course_link }}</a> </li>
                     
                   @endforeach
 
