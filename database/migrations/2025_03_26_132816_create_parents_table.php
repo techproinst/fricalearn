@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->boolean('demo_course')->default(false);
             $table->foreignId('course_id')->nullable()->constrained('courses')->onDelete('cascade');
             $table->string('profile_photo')->nullable();
-            $table->boolean('terms')->default(false);
+            $table->string('terms');
             $table->timestamps();
         });
     }

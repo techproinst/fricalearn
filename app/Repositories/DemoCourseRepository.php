@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\DemoCourseInterface;
 use App\Models\DemoCourse;
+use App\Models\ParentModel;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -94,6 +95,13 @@ class DemoCourseRepository implements DemoCourseInterface
             return false;
 
         }
+    }
+
+
+    public function getParentDemoCourses($id)
+    {
+      return   ParentModel::with([ 'course', 'demoCourseLinks'])->find($id);
+      
     }
 
 

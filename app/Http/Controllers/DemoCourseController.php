@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DemoApplicationRequest;
 use App\Http\Requests\DemoCourseRequest;
 use App\Http\Requests\UpdateDemoCourseRequest;
 use App\Models\Course;
 use App\Models\DemoCourse;
+use App\Services\CourseService;
 use App\Services\DemoCourseService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Contracts\View\View;
@@ -15,7 +17,10 @@ use Illuminate\Http\Request;
 class DemoCourseController extends Controller
 {
 
-   public function __construct(public DemoCourseService $demoCourseService)
+   public function __construct(
+    public DemoCourseService $demoCourseService,
+    public CourseService $courseService,
+   )
    {
     
    }
@@ -26,7 +31,7 @@ class DemoCourseController extends Controller
     public function index():View
     {
         $demoCourses = $this->demoCourseService->getDemoCourse();
-        $courses = Course::all();
+        $courses =  $this->courseService->handleGetAllCourses();
 
         return view('admin.courses.demo_course.index', compact('courses', 'demoCourses'));
     }
@@ -36,6 +41,8 @@ class DemoCourseController extends Controller
      */
     public function create()
     {
+    
+       
         
     }
 
@@ -54,13 +61,9 @@ class DemoCourseController extends Controller
            ToastMagic::error('Unable to create demo course link');
           return back();
           
-
-
-
-
-
     }
 
+   
     /**
      * Display the specified resource.
      */

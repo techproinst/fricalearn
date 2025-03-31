@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DemoCourseController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,9 +13,6 @@ Route::get('/admin', function () {
     return view('layouts.admin');
 });
 
-Route::get('/demo-class-application', function () {
-    return view('forms.demo_class_form');
-})->name('demo_class_application');
 
 Route::get('/demo-class', function () {
     return view('pages.demo_class');
@@ -71,6 +69,11 @@ Route::get('/student-dashboard', function () {
 });
 
 
+Route::get('/demo-class', [ParentController::class, 'create'])->name('demo_class.create');
+Route::post('/demo-class-register', [ParentController::class, 'store'])->name('demo_class.store');
+Route::get('/demo-class/registration-success', function() {
+    return view('pages.demo_class');
+})->name('demo_class.success');
 
 
 Route::middleware(['auth', 'verified'])->group(function() {
