@@ -21,27 +21,37 @@
             <div style="word-spacing: 6px">Sign Up</div>
           </h1>
           <p class="text-muted">
-            Create an account for your kid to start learning.
+            Create an account for your  kid to start learning.
           </p>
         </div>
-        <form action="">
+        <form action="{{ route('parent.registration.store') }}" method="POST">
+          @csrf
+          <div class="mb-3">
+            <label for="full_name" class="form-label">Full Name</label>
+            <input type="text" class="form-control demo-input-height" id="fullname" placeholder="Enter your Name" name="name" />
+          </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control demo-input-height" id="fullname" placeholder="Enter your Email" />
+            <input type="email" class="form-control demo-input-height" id="email" placeholder="Enter your Email" name="email" />
           </div>
           <div class="mb-2">
             <label for="phone" class="form-label">Phone Number</label><br />
             <input type="tel" class="form-control demo-input-height w-100" id="phone"
-              placeholder="(234) 000 000 0000" />
+              placeholder="(234) 000 000 0000" name="phone" />
           </div>
 
           <div class="mb-2">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control demo-input-height" id="email"
-              placeholder="Enter your Password" />
+            <input type="password" class="form-control demo-input-height" id="password"
+              placeholder="Enter your Password" name="password" />
+          </div>
+          <div class="mb-2">
+            <label for="confirm_password" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control demo-input-height" id="confirm-password"
+              placeholder="Enter your Password" name="confirm_password" />
           </div>
           <div class="form-check my-3">
-            <input class="form-check-input d-block" type="checkbox" value="" id="flexCheckDefault" />
+            <input class="form-check-input d-block" type="checkbox"  id="terms" />
             <label class="form-check-label" for="flexCheckDefault">
               <span>I agree with </span><a href="">Terms of Use</a>
               <span>and</span>
@@ -54,13 +64,13 @@
           <div class="separator my-2">
             <span>OR</span>
           </div>
-          <a class="google-sign-btn my-2" href=""><img width="23" src="./images/google-icon.png" alt="" /> Sign
+          <a class="google-sign-btn my-2" href="{{ route('auth.google') }}"><img width="23" src="{{ asset('assets/images/google-icon.png') }}" alt="" /> Sign
             Up with Google</a>
           <div class="text-center mt-2">
             <p class="dont-text">
               Already have an account?
               <span><a href="">Login</a>
-                <img width="10" src="./images/up-arrow.png" alt="" /></span>
+                <img width="10" src="{{ asset('assets/images/up-arrow.png') }}" alt="" /></span>
             </p>
           </div>
         </form>

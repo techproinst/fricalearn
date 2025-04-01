@@ -3,6 +3,7 @@
 use App\Http\Controllers\DemoCourseController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -71,9 +72,20 @@ Route::get('/student-dashboard', function () {
 
 Route::get('/demo-class', [ParentController::class, 'create'])->name('demo_class.create');
 Route::post('/demo-class-register', [ParentController::class, 'store'])->name('demo_class.store');
-Route::get('/demo-class/registration-success', function() {
-    return view('pages.demo_class');
-})->name('demo_class.success');
+Route::get('/demo-class/registration-success', [DemoCourseController::class, 'loadSuccessPage'])->name('demo_class.success');
+
+Route::get('/parent/registration-form', [ParentController::class, 'showRegistrationForm'])->name('parent.registration.form');
+Route::post('/parent/registration', [ParentController::class, 'storeParentForm'])->name('parent.registration.store');
+
+/**
+ * Google login
+ */
+ Route::controller(SocialiteController::class)->group(function() {
+    Route::get('auth/google',  'googleLogin')->name('auth.google');
+Route::get('auth/google-callback', 'googleAuthentication')->name('auth.google_callback');
+
+ });
+
 
 
 Route::middleware(['auth', 'verified'])->group(function() {

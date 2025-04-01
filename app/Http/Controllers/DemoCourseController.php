@@ -46,6 +46,11 @@ class DemoCourseController extends Controller
         
     }
 
+    public function loadSuccessPage() 
+    {
+        return view('pages.demo_class_success');
+    }
+
     /**
      * Store a newly created resource in storage.
      */

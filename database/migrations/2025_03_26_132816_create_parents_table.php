@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('password')->nullable();
+            $table->string('google_id')->nullable();
             $table->foreignId('course_id')->nullable()->constrained('courses')->onDelete('cascade');
             $table->string('profile_photo')->nullable();
             $table->string('terms');

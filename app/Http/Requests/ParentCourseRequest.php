@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateParentModelRequest extends FormRequest
+class ParentCourseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class UpdateParentModelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'course_id' => ['required', 'integer', 'exists:courses,id'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email:rfc,dns','max:255', 'unique:parents,email'],
+            'phone' => ['required', 'string'],
+            'terms' => ['accepted'],
+            
         ];
     }
+
+
 }

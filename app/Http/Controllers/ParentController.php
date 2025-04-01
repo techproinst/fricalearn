@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ParentCourseRequest;
 use App\Http\Requests\ParentRegistrationRequest;
 use App\Models\ParentModel;
 use App\Http\Requests\StoreParentModelRequest;
@@ -37,15 +38,20 @@ class ParentController extends Controller
     public function create()
     {
         $courses =  $this->courseService->handleGetAllCourses();
-
         return  view('forms.demo_class_form', compact('courses'));
 
     }
 
+    public function showRegistrationForm()
+    {
+        return view('forms.parent_registration_form');
+    }
+
+
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ParentRegistrationRequest $request)
+    public function store(ParentCourseRequest $request)
     {
         
 
@@ -86,6 +92,14 @@ class ParentController extends Controller
 
     }
 
+
+    
+    public function storeParentForm(ParentRegistrationRequest $request)
+    {
+        
+    }
+
+
     /**
      * Display the specified resource.
      */
@@ -105,7 +119,7 @@ class ParentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateParentModelRequest $request, ParentModel $parentModel)
+    public function update( $request, ParentModel $parentModel)
     {
         //
     }

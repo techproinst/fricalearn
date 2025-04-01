@@ -18,11 +18,11 @@ class ParentRepository implements ParentInterface
     }
 
 
-    public function  saveParentDemoCourse($parentDemoDetails)
+    public function  saveParentDemoCourse($parentData)
     {
         try {
 
-            $parentDetails = ParentModel::create($parentDemoDetails);
+            $parentDetails = ParentModel::create($parentData);
 
             if($parentDetails) {
 
@@ -38,6 +38,11 @@ class ParentRepository implements ParentInterface
             return null;
 
         }
+    }
+
+    public function storeParent($parentData)
+    {
+        
     }
 
     

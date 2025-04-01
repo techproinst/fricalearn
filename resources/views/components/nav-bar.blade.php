@@ -5,7 +5,7 @@
         </div>
 
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="">Home</a></li>
             <li><a class="active" href="courses.html">Courses</a></li>
             <li><a href="contact-us.html">Contact</a></li>
         </ul>
@@ -37,8 +37,9 @@
         @endauth
 
         @guest
-        <a class="sign-up active me-2" href="#form-section">Sign Up</a>
-        <a class="login" href="login.html">Login</a>
+        <a class="sign-up me-2 {{ request()->routeIs('parent.registration.form') ? 'active' : ''}}"
+            href="{{ route('parent.registration.form') }}">Sign Up</a>
+        <a class="login  {{ request()->routeIs('parent.registration.form') ? '' : 'active'}}" href="login.html">Login</a>
 
         @endguest
 

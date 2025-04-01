@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\DataTransferObjects\ParentDemoCourseDTO;
+use App\DataTransferObjects\ParentDTO;
 use App\Events\ParentRegisteredForDemoCourse;
 use App\Interfaces\ParentInterface;
 use Exception;
@@ -47,7 +47,7 @@ class ParentService
     public function mapParentDemoCourseFormData($request) 
     {   
 
-        return ParentDemoCourseDTO::fromArray($request)->toArray();
+        return ParentDTO::fromArray($request)->toArray();
        
     }
 
