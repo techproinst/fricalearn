@@ -7,10 +7,12 @@ use App\Http\Requests\ParentRegistrationRequest;
 use App\Models\ParentModel;
 use App\Http\Requests\StoreParentModelRequest;
 use App\Http\Requests\UpdateParentModelRequest;
+use App\Http\Requests\VerifyOtpRequest;
 use App\Services\CourseService;
 use App\Services\ParentService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -29,7 +31,7 @@ class ParentController extends Controller
      */
     public function index()
     {
-        //
+        return 'parent authenticated';
     }
 
     /**
@@ -47,11 +49,16 @@ class ParentController extends Controller
         return view('forms.parent_registration_form');
     }
 
+    public function showOtpForm(ParentModel $parent)
+    {
+        return view('forms.verify_email', compact('parent'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ParentCourseRequest $request)
+    public function storeParentWithDemoCourse(ParentCourseRequest $request)
     {
         
 
@@ -59,7 +66,7 @@ class ParentController extends Controller
 
             DB::beginTransaction();
 
-            $parentDetails = $this->parentService->createParentWithDemoCourse($request);
+            $parentDetails = $this->parentService->createParent($request);
 
             if(!$parentDetails) {
                 DB::rollBack();
@@ -95,8 +102,134 @@ class ParentController extends Controller
 
     
     public function storeParentForm(ParentRegistrationRequest $request)
+    {    
+        try{  
+
+            DB::beginTransaction();
+
+            $parent = $this->parentService->createParent($request);
+
+            if(!$parent) {
+
+                DB::rollBack();
+                ToastMagic::error('An error occured while proccessing your registration');
+                return back();
+            }
+
+            if(!$this->parentService->sendVerificationPin($parent)) {
+  
+                DB::rollBack();
+                ToastMagic::error('An error occured while proccessing your mail notification');
+                return redirect()->back();
+
+            }
+
+            DB::commit();
+            ToastMagic::success('Kindly check your mail for your OTP');
+            return redirect()->route('parent.verify_otp',['parent' => $parent]);
+
+          
+
+         }catch(Exception $e) {
+            DB::rollBack();
+            Log::error('Error during registration: ' . $e->getMessage());
+            ToastMagic::error('An unexpected error occured');
+            return back();
+
+
+         }
+       
+    }
+ 
+    
+    public function verifyOtp(VerifyOtpRequest $request)
     {
-        
+
+        try {
+
+            $parentData = $this->parentService->verifyOtp($request);
+    
+
+            if(!$parentData){
+               ToastMagic::error('The provided OTP is invalid or expired');
+               return back();
+            }
+
+           
+
+            DB::beginTransaction();
+
+            
+
+              //update email verification timestamp
+            if(!$this->parentService->markEmailAsVerified($parentData->email)) {
+                DB::rollBack();
+                ToastMagic::error('An error occured while processing your verification');
+                return back();
+    
+            }
+
+            
+             
+            //Delete OTP entry
+            if(!$this->parentService->deleteOtpToken($parentData->email)) {
+                DB::rollBack();
+                ToastMagic::error('An error occured while processing your verification');
+                return back();
+    
+            }
+            
+            DB::commit();
+            ToastMagic::success('Your email has been verified successfully');
+            Auth::guard('parent')->loginUsingId($parentData->id);
+           // dd(Auth::guard('parent')->check());
+            return redirect()->route('parent.dashboard');
+    
+
+        }catch(Exception $e) {
+            DB::rollBack();
+            Log::error('OTP verification error : ' . $e->getMessage());
+            ToastMagic::error('unfortunately, your verification could not be completed');
+                return back();
+
+        }
+       
+
+
+
+    }
+
+    public function resendOtp(ParentModel $parent)
+    {
+
+        try {
+
+            DB::beginTransaction();
+
+            if(!$this->parentService->sendVerificationPin($parent)) {
+                 DB::rollBack();
+                ToastMagic::error('An error occured while proccessing your mail notification');
+                return redirect()->back();
+    
+            }
+
+            
+            DB::commit();
+            ToastMagic::success('Kindly check your mail for your OTP');
+            return redirect()->route('parent.verify_otp',['parent' => $parent]);
+
+          
+
+        }catch(Exception $e) {
+
+            DB::rollBack();
+            Log::error('Error during registration: ' . $e->getMessage());
+            ToastMagic::error('An unexpected error occured');
+            return back();
+
+        }
+       
+
     }
 
 

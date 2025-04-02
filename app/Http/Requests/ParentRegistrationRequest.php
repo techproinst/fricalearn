@@ -3,7 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rules\Password;
+
 
 class ParentRegistrationRequest extends FormRequest
 {
@@ -26,9 +27,10 @@ class ParentRegistrationRequest extends FormRequest
             'name' =>  ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email:rfc,dns','max:255', 'unique:parents,email'],
             'phone' => ['required', 'string'],
-            'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()],
+            'password' => ['required'],
+            //'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()],
             'confirm_password' => ['required','same:password'],
-            'terms' => ['accepted']
+            'terms' =>  ['accepted'],
 
         ];
     }

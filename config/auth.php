@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'parent' => [  // Custom guard for parents
+            'driver' => 'session',
+            'provider' => 'parents',
+        ],
     ],
 
     /*
@@ -63,6 +67,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+        'parents' => [  // Custom provider for parents
+            'driver' => 'eloquent',
+             'model' => App\Models\ParentModel::class, 
         ],
 
         // 'users' => [

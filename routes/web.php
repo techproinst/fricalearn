@@ -71,13 +71,20 @@ Route::get('/student-dashboard', function () {
 
 
 Route::get('/demo-class', [ParentController::class, 'create'])->name('demo_class.create');
-Route::post('/demo-class-register', [ParentController::class, 'store'])->name('demo_class.store');
+Route::post('/demo-class-register', [ParentController::class, 'storeParentWithDemoCourse'])->name('demo_class.store');
 Route::get('/demo-class/registration-success', [DemoCourseController::class, 'loadSuccessPage'])->name('demo_class.success');
 
 Route::get('/parent/registration-form', [ParentController::class, 'showRegistrationForm'])->name('parent.registration.form');
 Route::post('/parent/registration', [ParentController::class, 'storeParentForm'])->name('parent.registration.store');
+Route::get('/parent/verify-email/{parent}', [ParentController::class, 'showOtpForm'])->name('parent.verify_otp');
+Route::post('parent/verify-otp', [ParentController::class, 'verifyOtp' ])->name('otp.submit');
+Route::get('parent/resend-otp/{parent}', [ParentController::class, 'resendOtp'])->name('otp.resend');
 
-/**
+Route::middleware('auth:parent')->group(function () {
+    Route::get('/parent/dashboard', [ParentController::class, 'index'])->name('parent.dashboard');
+});
+
+/** 
  * Google login
  */
  Route::controller(SocialiteController::class)->group(function() {
