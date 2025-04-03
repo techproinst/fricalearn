@@ -84,6 +84,8 @@ Route::middleware('auth:parent')->group(function () {
     Route::get('/parent/dashboard', [ParentController::class, 'index'])->name('parent.dashboard');
 });
 
+
+
 /** 
  * Google login
  */

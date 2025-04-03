@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\ParentModel;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
@@ -29,19 +30,21 @@ class NewPasswordController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse
-    {
+    {    
         $request->validate([
             'token' => ['required'],
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $guard = $this->determineGuard($request->email);
+
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
         // database. Otherwise we will parse the error and return the response.
-        $status = Password::reset(
+        $status = Password::broker($guard)->reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
-            function (User $user) use ($request) {
+            function ($user) use ($request) {
                 $user->forceFill([
                     'password' => Hash::make($request->password),
                     'remember_token' => Str::random(60),
@@ -59,4 +62,32 @@ class NewPasswordController extends Controller
                     : back()->withInput($request->only('email'))
                         ->withErrors(['email' => __($status)]);
     }
+
+      /**
+     * Determine if the email belongs to a parent or user guard.
+     *
+     * @param  string  $email
+     * @return string
+     */
+    private function determineGuard($email)
+    {
+        // You can customize this logic to check the email against specific tables, etc.
+        if (ParentModel::where('email', $email)->exists()) {
+            return 'parents';  // This is for the 'parents' guard
+        }
+
+        return 'users';  // Default to 'users' guard
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

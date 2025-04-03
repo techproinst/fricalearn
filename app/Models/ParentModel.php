@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class ParentModel extends  Authenticatable
 {
     /** @use HasFactory<\Database\Factories\ParentModelFactory> */
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $table = 'parents';
 
