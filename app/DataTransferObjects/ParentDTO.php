@@ -35,7 +35,7 @@ readonly class ParentDTO
         $array['name'],
         $array['email'],
         $array['phone'],
-        $array['password'],
+        $array['password'] ?? null,
         $array['terms']
       );
    }
