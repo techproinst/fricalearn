@@ -31,7 +31,7 @@ class ParentController extends Controller
      */
     public function index()
     {
-        return 'parent authenticated';
+        return view('pages.parent_dashboard');
     }
 
     /**
@@ -44,6 +44,7 @@ class ParentController extends Controller
 
     }
 
+   
     public function showRegistrationForm()
     {
         return view('forms.parent_registration_form');
@@ -52,6 +53,22 @@ class ParentController extends Controller
     public function showOtpForm(ParentModel $parent)
     {
         return view('forms.verify_email', compact('parent'));
+    }
+
+
+    public function selectStudent()
+    {     
+        $parent = Auth::guard('parent')->user();
+
+        if(!$parent) {
+            ToastMagic::error('You must be logged in !!');
+            return redirect()->route('login');
+        }
+
+        $students =  $this->parentService->getStudents($parent);
+
+        return view('pages.select_student', compact('students'));
+
     }
 
 

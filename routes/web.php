@@ -1,18 +1,22 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ClassScheduleController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DemoCourseController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
-Route::get('/admin', function () {
-    return view('layouts.admin');
-});
+// Route::get('/admin', function () {
+//     return view('layouts.admin');
+// });
 
 
 Route::get('/demo-class', function () {
@@ -20,19 +24,8 @@ Route::get('/demo-class', function () {
 });
 
 
-Route::get('/courses', function () {
-    return view('pages.courses');
-});
 
-Route::get('/yoruba-courses', function () {
-    return view('pages.yoruba_courses');
-});
-Route::get('/igbo-courses', function () {
-    return view('pages.igbo_courses');
-});
-Route::get('/hausa-courses', function () {
-    return view('pages.hausa_courses');
-});
+
 
 Route::get('/contact', function () {
     return view('forms.contact_us');
@@ -80,9 +73,27 @@ Route::get('/parent/verify-email/{parent}', [ParentController::class, 'showOtpFo
 Route::post('parent/verify-otp', [ParentController::class, 'verifyOtp' ])->name('otp.submit');
 Route::get('parent/resend-otp/{parent}', [ParentController::class, 'resendOtp'])->name('otp.resend');
 
+
+Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+Route::get('/yoruba-courses', [CourseController::class, 'showYorubaCourses'])->name('courses.yoruba');
+Route::get('/igbo-courses', [CourseController::class, 'showIgboCourses'])->name('courses.igbo');
+Route::get('/hausa-courses', [CourseController::class, 'showHausaCourses'])->name('courses.hausa');
+
+
 Route::middleware('auth:parent')->group(function () {
+
     Route::get('/parent/dashboard', [ParentController::class, 'index'])->name('parent.dashboard');
+    Route::get('/parent/student-login', [ParentController::class, 'selectStudent'])->name('parent.student_login');
+    Route::get('/student/registration-form', [StudentController::class, 'create'])->name('student.create');
+    Route::post('/parent/logout', [AuthenticatedSessionController::class, 'destroyParent'])
+    ->name('parent.logout');
+   
 });
+
+
+    
+
+
 
 
 
@@ -90,8 +101,8 @@ Route::middleware('auth:parent')->group(function () {
  * Google login
  */
  Route::controller(SocialiteController::class)->group(function() {
-    Route::get('auth/google',  'googleLogin')->name('auth.google');
-Route::get('auth/google-callback', 'googleAuthentication')->name('auth.google_callback');
+    Route::get('/auth/google',  'googleLogin')->name('auth.google');
+Route::get('/auth/google-callback', 'googleAuthentication')->name('auth.google_callback');
 
  });
 
@@ -107,6 +118,11 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::post('/add-demo-course', [DemoCourseController::class, 'store'])->name('demo_course.store');
     Route::patch('/update-demo-course/{demoCourse}', [DemoCourseController::class, 'update'])->name('demo_course.update');
     Route::delete('/delete-demo-course/{demoCourse}', [DemoCourseController::class, 'destroy'])->name('demo_course.destroy');
+
+    Route::get('/class-schedule', [ClassScheduleController::class, 'index'])->name('class_schedule.index');
+    Route::post('/class-schedule/store', [ClassScheduleController::class, 'store'])->name('class_schedule.store');
+    Route::post('/update-schedule/{classSchedule}', [ClassScheduleController::class, 'update'])->name('schedule.update');
+    Route::delete('/delete-schedule/{classSchedule}', [ClassScheduleController::class, 'destroy'])->name('schedule.destroy');
 
 });
 

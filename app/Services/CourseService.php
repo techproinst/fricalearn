@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\ContinentSchedule;
 use App\Interfaces\CourseInterface;
 
 class CourseService
@@ -18,4 +19,14 @@ class CourseService
     {
         return $this->courseInterface->getAllCourses();
     }
+
+    public function getYorubaCourseLevels($course_id)
+    {
+        return $this->courseInterface->getcourseByLevel($course_id);
+    }
+
+  
+    
+
+
 }

@@ -95,7 +95,7 @@
               È kú àbẹ̀wò! This course introduces children to the Yoruba
               language (Ẹ̀dè).
             </p>
-            <a href="course-yoruba.html" class="explore-btn my-2">Explore Courses</a>
+            <a href="{{ route('courses.yoruba') }}" class="explore-btn my-2">Explore Courses</a>
           </div>
         </div>
       </div>
@@ -111,7 +111,7 @@
               Nnọọ! Welcome! This Interactive course introduces children to
               the language.
             </p>
-            <a href="course-igbo.html" class="explore-btn my-2">Explore Courses</a>
+            <a href="{{ route('courses.igbo') }}" class="explore-btn my-2">Explore Courses</a>
           </div>
         </div>
       </div>
@@ -127,7 +127,7 @@
               This course introduces children to the basics of the Hausa
               language.
             </p>
-            <a href="course-hausa.html" class="explore-btn my-2">Explore Courses</a>
+            <a href="{{ route('courses.hausa') }}" class="explore-btn my-2">Explore Courses</a>
           </div>
         </div>
       </div>

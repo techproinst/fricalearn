@@ -21,8 +21,9 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('forms.student_registration_form');
     }
+
 
     /**
      * Store a newly created resource in storage.

@@ -1,4 +1,5 @@
 <form action="{{ route('demo_course.update', ['demoCourse' => $demoCourse->id]) }}" method="POST">
+  
   @csrf
   <!--edit demo course modal -->
   <div id="edit-form{{ $demoCourse->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

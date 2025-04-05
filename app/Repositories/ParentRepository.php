@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\ParentInterface;
 use App\Models\ParentModel;
+use App\Models\Student;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -126,6 +127,12 @@ class ParentRepository implements ParentInterface
     public function fetchParentData($email)
     {   log::info('fetch parent  :' .$email);
        return  DB::table('parents')->where('email', $email)->first();
+    }
+
+
+    public function fetchStudentByParent($parent)
+    {
+        return Student::with('parent')->where('parent_id', $parent->id)->get();
     }
 
 

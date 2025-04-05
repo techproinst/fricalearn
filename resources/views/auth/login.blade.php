@@ -1,7 +1,7 @@
 @extends('layouts.application')
 
 @section('title')
-<x-title title="Admin :: Login" />
+<x-title title="Login" />
 @endsection
 
 @section('other_css')

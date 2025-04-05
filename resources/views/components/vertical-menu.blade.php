@@ -37,6 +37,12 @@
                         <li><a href="{{ route('demo_course.index') }}">Demo Courses</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="{{ route('class_schedule.index') }}" class="waves-effect">
+                        <i class="ri-dashboard-line"></i>
+                        <span>Schedule Classes</span>
+                    </a>
+                </li>
 
                 
 {{--                 

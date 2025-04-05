@@ -126,7 +126,7 @@
               Ẹ kú àbẹ́wò! This course introduces children to the Yorùbá
               language (èdè Yorùbá) and culture
             </p>
-            <a href="#" class="explore-btn my-2">Explore Courses</a>
+            <a href="{{ route('courses.yoruba') }}" class="explore-btn my-2">Explore Courses</a>
           </div>
         </div>
       </div>
@@ -144,7 +144,7 @@
               Nnọọ! Welcome! This interactive course introduces children to
               the Igbo language and culture through fun
             </p>
-            <a href="#" class="explore-btn my-2">Explore Courses</a>
+            <a href="{{ route('courses.igbo') }}" class="explore-btn my-2">Explore Courses</a>
           </div>
         </div>
       </div>

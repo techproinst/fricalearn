@@ -32,9 +32,11 @@
 <section id="sub-course-card-section">
   <div class="container-lg overflow-hidden">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 my-2">
+      @foreach ($courseLevels as $course)
       <div class="col">
         <div class="card">
-          <img src="{{ asset('assets/images/yourba-img-1.png') }}" class="card-img-top pt-4 px-4" alt="intro class image" />
+          <img src="{{ asset('assets/images/yourba-img-1.png') }}" class="card-img-top pt-4 px-4"
+            alt="intro class image" />
           <div class="card-body px-4">
             <h5 class="card-title">
               Learning Yorùbá for Children (Introductory Class)
@@ -45,17 +47,19 @@
             </p>
             <div class="py-2">
               <a class="level-btn me-1" href="">4 weeks</a>
-              <a class="level-btn" href="">Beginner</a>
+              <a class="level-btn" href="">{{ $course->level }}</a>
             </div>
 
             <a href="#" class="sub-course-explore-btn mt-3">Enroll Now</a>
           </div>
         </div>
       </div>
+      @endforeach
 
-      <div class="col">
+      {{-- <div class="col">
         <div class="card">
-          <img src="{{ asset('assets/images/yourba-img-2.png') }}" class="card-img-top pt-4 px-4" alt="beginner class image">
+          <img src="{{ asset('assets/images/yourba-img-2.png') }}" class="card-img-top pt-4 px-4"
+            alt="beginner class image">
           <div class="card-body px-4">
             <h5 class="card-title">
               Learning Yorùbá for Children (Beginner Class)
@@ -72,11 +76,12 @@
             <a href="#" class="sub-course-explore-btn mt-3">Enroll Now</a>
           </div>
         </div>
-      </div>
+      </div> --}}
 
-      <div class="col">
+      {{-- <div class="col">
         <div class="card">
-          <img src="{{ asset('assets/images/cropped.png') }}" class="card-img-top pt-4 px-4" alt="intermediate class image" />
+          <img src="{{ asset('assets/images/cropped.png') }}" class="card-img-top pt-4 px-4"
+            alt="intermediate class image" />
           <div class="card-body px-4">
             <h5 class="card-title">
               Learning Yorùbá for Children (Intermediate Class)
@@ -93,7 +98,7 @@
             <a href="#" class="sub-course-explore-btn mt-3">Enroll Now</a>
           </div>
         </div>
-      </div>
+      </div> --}}
     </div>
   </div>
 </section>
@@ -113,7 +118,8 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-5 my-2">
       <div class="col">
         <div class="card h-100">
-          <img src="{{ asset('assets/images/other-image-igbo.png') }}" class="card-img-top pt-4 px-4" alt="other igbo course image" />
+          <img src="{{ asset('assets/images/other-image-igbo.png') }}" class="card-img-top pt-4 px-4"
+            alt="other igbo course image" />
           <div class="card-body px-4">
             <h5 class="card-title">
               Ịmụ Asụsụ Igbo Maka Ndị Nwatakịrị" (Learning Igbo for
@@ -123,14 +129,15 @@
               Nnọọ! Welcome! This interactive course introduces children to
               the Igbo language and culture through fun
             </p>
-            <a href="#" class="explore-btn my-2">Explore Courses</a>
+            <a href="{{ route('courses.igbo') }}" class="explore-btn my-2">Explore Courses</a>
           </div>
         </div>
       </div>
 
       <div class="col">
         <div class="card h-100">
-          <img src="{{ asset('assets/images/other-image-hausa.png') }}" class="card-img-top pt-4 px-4" alt="other hausa course image" />
+          <img src="{{ asset('assets/images/other-image-hausa.png') }}" class="card-img-top pt-4 px-4"
+            alt="other hausa course image" />
           <div class="card-body px-4">
             <h5 class="card-title">
               Koyon Harshen Hausa fún Ọmọde (Learning Hausa for Children)
@@ -139,7 +146,7 @@
               This course introduces children to the basics of the Hausa
               language (Harshen Hausa) and culture.
             </p>
-            <a href="#" class="explore-btn my-2">Explore Courses</a>
+            <a href="{{ route('courses.hausa') }}" class="explore-btn my-2">Explore Courses</a>
           </div>
         </div>
       </div>
@@ -147,7 +154,7 @@
   </div>
 </section>
 
-<x-faq/>
+<x-faq />
 <x-native-section />
 
 @endsection

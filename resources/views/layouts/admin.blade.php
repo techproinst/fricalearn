@@ -43,7 +43,9 @@
 
   <x-script />
 
-     {!! ToastMagic::scripts() !!} 
+     {!! ToastMagic::scripts() !!}
+     
+   @yield('data_table_script')
 </body>
 
 </html>

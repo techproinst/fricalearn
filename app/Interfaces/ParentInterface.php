@@ -18,6 +18,8 @@ interface ParentInterface
 
     public function deleteOtpRecord($email);
 
+    public function fetchStudentByParent($parent);
+
    
 
     

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ParentModel;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,25 +40,42 @@ class SocialiteController extends Controller
             $parent = ParentModel::where('google_id', $googleUser->id)->first();
             
             if($parent) {
-               Auth::login($parent);
-               return redirect()->route('dashboard');
+               
+
+               Auth::guard('parent')->loginUsingId($parent->id);
+
+               return redirect()->route('parent.student_login');
+
+           
+               
             }else {
               $parentData = ParentModel::create([
                  'name'=> $googleUser->name,
                  'email' => $googleUser->email,
                  'password' => Hash::make('password@1234'),
                  'google_id' => $googleUser->id,
+                 'terms' => true,
      
                ]);
      
                if($parentData) {
-                 Auth::login($parentData);
-                  return redirect()->route('dashboard');
+                dd(Auth::guard('parent')->check());
+
+                Auth::guard('parent')->loginUsingId($parentData->id);
+                return redirect()->route('parent.student_login');
+          
+    
+                   
                }
+
+               
+        
             }
 
         }catch(Exception $e) {
             Log::error('Google login error: ' . $e->getMessage());
+            ToastMagic::error('Unable to login with google');
+            return back();
 
         }
       

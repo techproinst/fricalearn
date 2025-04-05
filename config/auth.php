@@ -39,10 +39,15 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+            'input_key' => 'web_email',
+            'storage_key' => 'web_id',
         ],
         'parent' => [  // Custom guard for parents
             'driver' => 'session',
             'provider' => 'parents',
+            'input_key' => 'parent_email',
+            'storage_key' => 'parent_id',
+    
         ],
     ],
 

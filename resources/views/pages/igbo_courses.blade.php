@@ -123,7 +123,7 @@
               Ẹ kú àbẹ́wò! This course introduces children to the Yorùbá
               language (èdè Yorùbá) and culture
             </p>
-            <a href="#" class="explore-btn my-2">Explore Courses</a>
+            <a href="{{ route('courses.yoruba') }}" class="explore-btn my-2">Explore Courses</a>
           </div>
         </div>
       </div>
@@ -139,7 +139,7 @@
               This course introduces children to the basics of the Hausa
               language (Harshen Hausa) and culture.
             </p>
-            <a href="#" class="explore-btn my-2">Explore Courses</a>
+            <a href="{{ route('courses.hausa') }}" class="explore-btn my-2">Explore Courses</a>
           </div>
         </div>
       </div>

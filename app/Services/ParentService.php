@@ -134,6 +134,12 @@ class ParentService
     }
 
 
+    public function getStudents($parent)
+    {
+       return $this->parentInterface->fetchStudentByParent($parent);
+    }
+
+
 
 
     

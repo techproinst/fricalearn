@@ -16,39 +16,37 @@
     <div class="row my-5">
       <div class="col-lg-9 mx-auto bg-white p-5 rounded">
         <div class="text-center">
-          <h1><div>Who’s Learning?</div></h1>
+          <h1>
+            <div>Who’s Learning?</div>
+          </h1>
           <p class="text-muted">Login to start learning🚀</p>
         </div>
 
         <div class="student-container">
+          @forelse ($students as $student )
           <div class="student-card avatar-wrapper">
-            <a href=""
-              ><img
-                class="student-img"
-                src="{{ asset('assets/images/student-learnin-2.png') }}"
-                alt="Student"
-            /></a>
+            <a href=""><img class="student-img" src="{{ asset('assets/images/student-learnin-2.png') }}"
+                alt="Student" /></a>
 
             <p class="card-title mt-2 avatar-text">Kelvin</p>
           </div>
+            
+          @empty
+            
+          @endforelse
+          
 
-          <div class="student-card avatar-wrapper">
+          {{-- <div class="student-card avatar-wrapper">
             <a href="">
-              <img
-                class="student-img"
-                src="{{ asset('assets/images/student-learnin-1.png') }}"
-                alt="Student"
-              />
+              <img class="student-img" src="{{ asset('assets/images/student-learnin-1.png') }}" alt="Student" />
             </a>
 
             <p class="card-title mt-2 avatar-text">Matilda</p>
-          </div>
+          </div> --}}
 
-          <div
-            class="student-card border d-flex justify-content-center align-items-center add-wrapper"
-          >
+          <div class="student-card border d-flex justify-content-center align-items-center add-wrapper">
             <div class="">
-              <a href="">
+              <a href="{{ route('student.create') }}">
                 <i class="bi bi-plus-circle-fill add-icon"></i>
 
                 <p class="card-title add">Add New Kid</p>
