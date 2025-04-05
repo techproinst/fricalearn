@@ -63,12 +63,13 @@
             <option value="3">Igbo</option>
           </select>
 
-          <button
+          {{-- <button
             type="submit"
             class="watch-btn text-center w-100 mt-1 my-2"
           >
             Proceed
-          </button>
+          </button> --}}
+          <a  class="watch-btn text-center w-100 mt-1 my-2" href="{{ url('/select-class-schedule') }}">Proceed</a>
 
           <a class="google-sign-btn my-2" href=""> Cancel</a>
         </form>

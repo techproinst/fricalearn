@@ -43,19 +43,19 @@ Route::get('/register-student', function () {
     return view('forms.student_registration_form');
 });
 
-Route::get('/class-schedule', function () {
-    return view('pages.class_schedule');
-});
+// Route::get('/class-schedule', function () {
+//     return view('pages.class_schedule');
+// });
 
-Route::get('/payment', function () {
-    return view('pages.payment');
-});
+// Route::get('/payment', function () {
+//     return view('pages.payment');
+// });
 Route::get('/payment-processing', function () {
     return view('pages.payment_processing');
 });
 
 Route::get('/student-login', function () {
-    return view('pages.student_login');
+    return view('pages.select_student');
 });
 
 Route::get('/student-dashboard', function () {
@@ -87,6 +87,14 @@ Route::middleware('auth:parent')->group(function () {
     Route::get('/student/registration-form', [StudentController::class, 'create'])->name('student.create');
     Route::post('/parent/logout', [AuthenticatedSessionController::class, 'destroyParent'])
     ->name('parent.logout');
+    Route::get('/select-class-schedule', function () {
+        return view('pages.class_schedules');
+    });
+    Route::get('/payment', function () {
+        return view('pages.payment');
+    });
+   
+    
    
 });
 

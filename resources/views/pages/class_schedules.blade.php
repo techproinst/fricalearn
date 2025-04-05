@@ -99,8 +99,10 @@
       </div>
 
       <div class="col-lg-9 text-center mx-auto mt-4 test">
-        <button class="proceed-btn" type="submit">Proceed</button>
+        {{-- <button class="proceed-btn" type="submit">Proceed</button> --}}
+        <a  class="proceed-btn" href="{{ url('payment') }}">Proceed</a>
       </div>
+   
     </form>
   </div>
 </section>

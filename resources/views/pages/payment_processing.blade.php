@@ -23,6 +23,7 @@
             an email with your child’s login details and class schedule.
             Thank you for choosing us!🚀
           </p>
+          <a class="watch-btn text-center w-100 mt-3" href="{{ url('/student-login') }}">Proceed</a>
         </div>
       </div>
     </div>

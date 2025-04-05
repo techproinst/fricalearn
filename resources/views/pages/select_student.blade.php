@@ -23,7 +23,7 @@
         </div>
 
         <div class="student-container">
-          @forelse ($students as $student )
+          {{-- @forelse ($students as $student )
           <div class="student-card avatar-wrapper">
             <a href=""><img class="student-img" src="{{ asset('assets/images/student-learnin-2.png') }}"
                 alt="Student" /></a>
@@ -33,16 +33,16 @@
             
           @empty
             
-          @endforelse
+          @endforelse --}}
           
 
-          {{-- <div class="student-card avatar-wrapper">
-            <a href="">
+          <div class="student-card avatar-wrapper">
+            <a href="{{ url('student-dashboard') }}">
               <img class="student-img" src="{{ asset('assets/images/student-learnin-1.png') }}" alt="Student" />
             </a>
 
             <p class="card-title mt-2 avatar-text">Matilda</p>
-          </div> --}}
+          </div>
 
           <div class="student-card border d-flex justify-content-center align-items-center add-wrapper">
             <div class="">

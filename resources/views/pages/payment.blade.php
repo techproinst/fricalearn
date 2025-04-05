@@ -56,9 +56,10 @@
             </label>
             <input type="file" id="receiptUpload" class="custom-file-input" />
           </div>
-          <button type="submit" class="watch-btn text-center w-100 mt-3">
+          {{-- <button type="submit" class="watch-btn text-center w-100 mt-3">
             Proceed
-          </button>
+          </button> --}}
+          <a class="watch-btn text-center w-100 mt-3" href="{{ url('/payment-processing') }}">Proceed</a>
 
           <a class="cancel-btn my-3" href=""> Cancel</a>
         </div>
