@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('parent_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->date('birthdate');
+            $table->date('birthday');
             $table->enum('gender', ['male', 'female']);
             $table->string('profile_photo')->nullable();
-            $table->boolean('terms')->default(false);
             $table->timestamps();
         });
     }

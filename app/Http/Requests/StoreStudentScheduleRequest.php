@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\CourseLevel;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StoreStudentRequest extends FormRequest
+class StoreStudentScheduleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +22,12 @@ class StoreStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'course_id' => ['required', 'integer', 'exists:courses,id'],
-            'name' => ['required', 'string', 'max:255'],
-            'birthday' => ['required', 'date',],
-            'gender' => ['required', 'string', 'in:male,female'],
-            'course_level' => ['required', 'string', Rule::in(array_column(CourseLevel::cases(), 'value'))]
+            'student_id' => ['required', 'integer', 'exists:students,id'],
+            'course_id' => ['required','integer', 'exists:courses,id'],
+            'class_schedule_id' => ['required', 'integer', 'exists:class_schedules,id'],
+            'schedule' => ['required', 'array'],
+            
         ];
+        
     }
 }

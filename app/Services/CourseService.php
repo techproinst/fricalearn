@@ -20,6 +20,11 @@ class CourseService
         return $this->courseInterface->getAllCourses();
     }
 
+    public function  handleGetCourseLevels()
+    {
+        return  $this->courseInterface->getCourseLevels();
+    }
+
     public function getYorubaCourseLevels($course_id)
     {
         return $this->courseInterface->getcourseByLevel($course_id);

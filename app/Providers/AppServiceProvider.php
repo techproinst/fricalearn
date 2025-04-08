@@ -7,11 +7,15 @@ use App\Interfaces\ClassScheduleInterface;
 use App\Interfaces\CourseInterface;
 use App\Interfaces\DemoCourseInterface;
 use App\Interfaces\ParentInterface;
+use App\Interfaces\StudentInterface;
+use App\Interfaces\StudentScheduleInterface;
 use App\Listeners\SendDemoCourseEmail;
 use App\Repositories\ClassScheduleRepository;
 use App\Repositories\CourseRepository;
 use App\Repositories\DemoCourseRepository;
 use App\Repositories\ParentRepository;
+use App\Repositories\StudentRepository;
+use App\Repositories\StudentScheduleRepository;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CourseInterface::class, CourseRepository::class);
         $this->app->bind(ParentInterface::class, ParentRepository::class);
         $this->app->bind(ClassScheduleInterface::class, ClassScheduleRepository::class);
+        $this->app->bind(StudentInterface::class, StudentRepository::class);
+        $this->app->bind(StudentScheduleInterface::class, StudentScheduleRepository::class);
     }
 
     /**

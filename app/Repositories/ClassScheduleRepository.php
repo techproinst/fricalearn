@@ -2,9 +2,14 @@
 
 namespace App\Repositories;
 
+use App\Enums\ContinentSchedule;
+use App\Enums\DayOfWeek;
+use App\Enums\FeeStatus;
 use App\Interfaces\ClassScheduleInterface;
 use App\Models\ClassSchedule;
+use App\Models\StudentCourseLevel;
 use Exception;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class ClassScheduleRepository implements ClassScheduleInterface
@@ -21,6 +26,17 @@ class ClassScheduleRepository implements ClassScheduleInterface
     {
         return ClassSchedule::with('course')->get();
     }
+
+    public function getContinents()
+    {
+        return ContinentSchedule::values();
+    }
+
+    public function getClassDays()
+    {
+        return DayOfWeek::values();
+    }
+
 
 
     public function storeClassSchedule($classScheduleData)
@@ -89,6 +105,33 @@ class ClassScheduleRepository implements ClassScheduleInterface
 
 
           }
+    }
+
+    public function getUserContinent()
+    {
+        $ip = app()->environment('local') ? config('services.location.test') : request()->ip(); 
+        
+        $response = Http::get("http://ipwho.is/{$ip}");
+
+        if($response->successful())
+        {
+            return $response->json();
+        }
+
+        return null;
+    }
+
+    public function getStudentCourseId($studentId)
+    {   
+        return  StudentCourseLevel::where('student_id', $studentId)->where('paid', FeeStatus::UNPAID->value)->first();
+    }
+
+    public function getContinentClassSchedule($continent, $courseId)
+    { 
+       
+       return ClassSchedule::where('course_id', $courseId)->where('continent', $continent)->get();
+       
+
     }
         
     

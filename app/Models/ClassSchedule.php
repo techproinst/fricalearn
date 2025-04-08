@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-
+use App\Enums\ContinentGroup;
 use Illuminate\Database\Eloquent\Model;
 
 class ClassSchedule extends Model
@@ -13,4 +13,6 @@ class ClassSchedule extends Model
    {
       return $this->belongsTo(Course::class);
    }
+
+   
 }

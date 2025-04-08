@@ -59,7 +59,7 @@ class SocialiteController extends Controller
                ]);
      
                if($parentData) {
-                dd(Auth::guard('parent')->check());
+              //  dd(Auth::guard('parent')->check());
 
                 Auth::guard('parent')->loginUsingId($parentData->id);
                 return redirect()->route('parent.student_login');

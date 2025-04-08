@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClassScheduleRequest;
 use App\Models\ClassSchedule;
+use App\Models\Student;
 use App\Services\ClassScheduleService;
 use App\Services\CourseService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ClassScheduleController extends Controller
 {   
@@ -24,9 +27,8 @@ class ClassScheduleController extends Controller
     public function index()
     {    
         $courses =  $this->courseService->handleGetAllCourses();
-        $continents = $this->classScheduleService->getContinents();
-        $days = $this->classScheduleService->getClassDays();
-
+        $continents = $this->classScheduleService->handleGetContinents();
+        $days = $this->classScheduleService->handleGetClassDays();
         $classSchedules = $this->classScheduleService->getClassSchedules();
     
         return view('admin.schedule.classes.index', compact('courses', 'continents', 'days', 'classSchedules'));
@@ -35,9 +37,44 @@ class ClassScheduleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        
+    public function create(Student $student)
+    {   
+        try{
+            $continent = $this->classScheduleService->handleGetContinent();
+
+    
+            if(!$continent) {
+                throw new Exception('User continent not found');
+
+            }
+
+            $studentCourseData = $this->classScheduleService->handleGetStudentCourseId($student->id);
+
+            if(!$studentCourseData){
+                throw new Exception('Student course data not found');
+
+            }
+
+            $classSchedules = $this->classScheduleService->handleGetClassScheduleByContinent($continent, $studentCourseData->course_id);
+            $schedule = $classSchedules->first();
+
+            return view('pages.class_schedules', compact('student', 'classSchedules', 'schedule'));
+
+
+        }catch(Exception $e) {
+
+            Log::error('Class schedule error: ' . $e->getMessage());
+
+            ToastMagic::error('Unable to create class schedule');
+            return redirect()->route('parent.dashboard');
+
+        }
+      
+
+         
+                    
+
+        return view('pages.class_schedules');
     }
 
     /**

@@ -22,27 +22,50 @@
         experience.
       </p>
     </div>
-    <form action="" method="">
-      <input type="hidden" name="monday_time" id="monday_time" />
-      <input type="hidden" name="wednesday_time" id="wednesday_time" />
-      <input type="hidden" name="friday_time" id="friday_time" />
+    <div class="row">
+      <div class="col-lg-6 mx-auto">
+        @if($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+
+            @endforeach
+          </ul>
+        </div>
+
+        @endif
+      </div>
+    </div>
+
+    <form action="{{ route('student.store_schedule') }}" method="POST">
+      @csrf
+      <input type="hidden" name="student_id" value="{{ $student->id }}" />
+      <input type="hidden" name="class_schedule_id" value="{{ $schedule->id }}" />
+      <input type="hidden" name="course_id" value="{{ $schedule->course_id }}" />
+
+      @forelse ($classSchedules->pluck('day')->unique() as $day)
+      <input type="hidden" name="schedule[{{ strtolower($day) }}][time]" id="{{ strtolower($day) }}_time" />
+      @empty
+      @endforelse
 
       <div class="row g-4 justify-content-center">
+        @forelse ($classSchedules as $schedule)
         <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-          <div class="card border-none" data-day="Monday">
+          <div class="card border-none" data-day="{{ $schedule->day }}">
             <div class="card-body p-5">
-              <h5 class="card-title custom-title">Monday</h5>
+              <h5 class="card-title custom-title">{{ $schedule->day }}</h5>
               <h6 class="py-3 avail-text">Available Time</h6>
-              <div class="time-wrapper p-3" data-day="Monday" data-time="12:00 WAT">
+              <div class="time-wrapper p-3" data-day="{{ $schedule->day }}" data-time="{{ $schedule->morning }}">
                 <h6 class="time-text">Time</h6>
-                <h6>12:00 WAT</h6>
+                <h6>{{ $schedule->morning }}</h6>
                 <button type="button" class="timer-btn">
                   <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45 Minutes
                 </button>
               </div>
-              <div class="time-wrapper p-3 mt-3" data-day="Monday" data-time="4:00 WAT">
+              <div class="time-wrapper p-3 mt-3" data-day="{{ $schedule->day }}" data-time="{{ $schedule->afternoon }}">
                 <h6 class="time-text">Time</h6>
-                <h6>4:00 WAT</h6>
+                <h6>{{ $schedule->afternoon }}</h6>
                 <button type="button" class="timer-btn">
                   <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45 Minutes
                 </button>
@@ -50,64 +73,19 @@
             </div>
           </div>
         </div>
-
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-          <div class="card border-none" data-day="Wednesday">
-            <div class="card-body p-5">
-              <h5 class="card-title custom-title">Wednesday</h5>
-              <h6 class="py-3 avail-text">Available Time</h6>
-              <div class="time-wrapper p-3" data-day="Wednesday" data-time="12:00 WAT">
-                <h6 class="time-text">Time</h6>
-                <h6>12:00 WAT</h6>
-                <button type="button" class="timer-btn">
-                  <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45 Minutes
-                </button>
-              </div>
-              <div class="time-wrapper p-3 mt-3" data-day="Wednesday" data-time="4:00 WAT">
-                <h6 class="time-text">Time</h6>
-                <h6>4:00 WAT</h6>
-                <button type="button" class="timer-btn">
-                  <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45 Minutes
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-          <div class="card border-none" data-day="Friday">
-            <div class="card-body p-5">
-              <h5 class="card-title custom-title">Friday</h5>
-              <h6 class="py-3 avail-text">Available Time</h6>
-              <div class="time-wrapper p-3" data-day="Friday" data-time="12:00 WAT">
-                <h6 class="time-text">Time</h6>
-                <h6>12:00 WAT</h6>
-                <button type="button" class="timer-btn">
-                  <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45 Minutes
-                </button>
-              </div>
-              <div class="time-wrapper p-3 mt-3" data-day="Friday" data-time="4:00 WAT">
-                <h6 class="time-text">Time</h6>
-                <h6>4:00 WAT</h6>
-                <button type="button" class="timer-btn">
-                  <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45 Minutes
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        @empty
+        @endforelse
       </div>
 
       <div class="col-lg-9 text-center mx-auto mt-4 test">
-        {{-- <button class="proceed-btn" type="submit">Proceed</button> --}}
-        <a  class="proceed-btn" href="{{ url('payment') }}">Proceed</a>
+        <button class="proceed-btn" type="submit">Proceed</button>
       </div>
-   
     </form>
+
   </div>
 </section>
 
 <script src="{{ asset('assets/scripts/schedule.js') }}"></script>
 
 
-@endsection 
+@endsection

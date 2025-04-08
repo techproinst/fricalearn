@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\FeeStatus;
 use App\Interfaces\ParentInterface;
 use App\Models\ParentModel;
 use App\Models\Student;
@@ -133,6 +134,20 @@ class ParentRepository implements ParentInterface
     public function fetchStudentByParent($parent)
     {
         return Student::with('parent')->where('parent_id', $parent->id)->get();
+    }
+
+ 
+    public function getUnpaidStudentEnrollments()
+    {
+        $parent = Auth::guard('parent')->user();
+        
+        $students = $parent->students()->withWhereHas('studentCourseLevels', function($query) {
+            $query->where('paid', FeeStatus::UNPAID->value);
+
+        })->get();
+
+
+        return $students;
     }
 
 

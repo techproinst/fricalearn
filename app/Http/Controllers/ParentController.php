@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ParentCourseRequest;
 use App\Http\Requests\ParentRegistrationRequest;
 use App\Models\ParentModel;
+use App\Models\Student;
 use App\Http\Requests\StoreParentModelRequest;
 use App\Http\Requests\UpdateParentModelRequest;
 use App\Http\Requests\VerifyOtpRequest;
@@ -247,6 +248,15 @@ class ParentController extends Controller
         }
        
 
+    }
+
+    public function getIncompleteEnrollment()
+    {   
+        $studentEnrollments = $this->parentService->handleGetParentEnrollments();
+
+       // dd($enrollments);
+        
+        return view('pages.enrollment', compact('studentEnrollments'));
     }
 
 

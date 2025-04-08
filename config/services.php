@@ -40,6 +40,11 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRETE'),
         'redirect' => env('GOOGLE_CALLBACK_REDIRECTS')
 
+    ],
+
+    'location' => [
+        'test' => env('TEST_IP_LOCATION'),
+         
     ]
 
 

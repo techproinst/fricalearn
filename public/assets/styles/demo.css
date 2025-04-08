@@ -70,4 +70,20 @@ label a {
   border: 1px solid #F1F1F3;
 } 
 
+.incomplete-btn {
+  border: none;
+  color: #ffffff;
+  background: var(--main-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 10px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: inline-block;
+
+}
+
 

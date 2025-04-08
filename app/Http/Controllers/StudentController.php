@@ -5,9 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Services\CourseService;
+use App\Services\StudentService;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class StudentController extends Controller
 {
+
+    public function __construct
+    (public CourseService $courseService,
+     public StudentService $studentService,
+    )
+    {
+
+    }
     /**
      * Display a listing of the resource.
      */
@@ -20,8 +34,11 @@ class StudentController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('forms.student_registration_form');
+    {     
+        $courses = $this->courseService->handleGetAllCourses();
+        $levels =  $this->courseService->handleGetCourseLevels();
+        
+        return view('forms.student_registration_form', compact('courses', 'levels'));
     }
 
 
@@ -29,8 +46,49 @@ class StudentController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreStudentRequest $request)
-    {
-        //
+    {  
+       try{
+        
+        $studentData = null;
+        DB::transaction(function() use ($request, &$studentData) {
+
+            $studentData = $this->studentService->handleCreateStudent($request);
+
+            if(!$studentData) {
+               throw new Exception('Failed to create student');
+              
+              }
+              
+            $courseLevel = $this->studentService->handleCreateStudentCourseLevel($studentData, $request->course_id, $request->course_level);
+ 
+            if(!$courseLevel) {
+             throw new Exception('Failed to assign course level');
+           
+            }
+
+
+        });
+
+        
+         if($studentData) {
+
+        
+            ToastMagic::success('Student registration completed successfully');
+            return redirect()->route('student.schedule', ['student' => $studentData->id]);
+         }
+
+
+       }catch(Exception $e){
+
+        Log::error('student registration error: ' .$e->getMessage());
+        ToastMagic::error('An error occurred during student registration');
+        return back();
+
+       }  
+      
+
+       
+    
     }
 
     /**

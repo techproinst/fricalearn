@@ -27,14 +27,13 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 2000);
 
 
-      // Update the hidden input field based on the selected day
-      if (selectedDay === "Monday") {
-        document.getElementById("monday_time").value = selectedTime;
-      } else if (selectedDay === "Wednesday") {
-        document.getElementById("wednesday_time").value = selectedTime;
-      } else if (selectedDay === "Friday") {
-        document.getElementById("friday_time").value = selectedTime;
-      }
+     
+       // Update the hidden input field dynamically
+       let inputId = `${selectedDay.toLowerCase()}_time`;
+       let hiddenInput = document.getElementById(inputId);
+       if (hiddenInput) {
+           hiddenInput.value = selectedTime;
+       }
     });
   });
 });

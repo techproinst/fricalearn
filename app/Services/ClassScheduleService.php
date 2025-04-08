@@ -3,9 +3,10 @@
 namespace App\Services;
 
 use App\DataTransferObjects\ClassScheduleDTO;
-use App\Enums\ContinentSchedule;
-use App\Enums\DayOfWeek;
+use App\Enums\ContinentGroup;
 use App\Interfaces\ClassScheduleInterface;
+use App\Models\ClassSchedule;
+use Illuminate\Support\Facades\Log;
 
 class ClassScheduleService  
 {  
@@ -15,14 +16,14 @@ class ClassScheduleService
   }
 
 
-  public function getContinents()
+  public function handleGetContinents()
   {
-      return ContinentSchedule::values();
+     return $this->classScheduleInterface->getContinents();
   }
 
-  public function getClassDays()
+  public function handleGetClassDays()
   {
-    return DayOfWeek::values();
+    return $this->classScheduleInterface->getClassDays();
   }
 
   public function createClassSchedule($request)
@@ -56,5 +57,35 @@ class ClassScheduleService
   {
       return ClassScheduleDTO::fromArray($request)->toArray();
   }
+
+
+  public function handleGetContinent()
+  {
+      $data = $this->classScheduleInterface->getUserContinent();
+
+      Log::info('User location : '. $data['continent']);
+   
+      $continent = ContinentGroup::tryFrom($data['continent']);
+
+           
+      return $data['success'] ?? false ? ContinentGroup::mapContinentToGroup($continent) : null;
+
+  } 
+
+
+  public function handleGetClassScheduleByContinent($continent, $courseId)
+  {
+      return $this->classScheduleInterface->getContinentClassSchedule($continent, $courseId);
+  }
+
+  public function handleGetStudentCourseId($studentId)
+  {
+    return $this->classScheduleInterface->getStudentCourseId($studentId);
+  }
+
+
+
+
+
 
 }

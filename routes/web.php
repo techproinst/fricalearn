@@ -5,10 +5,51 @@ use App\Http\Controllers\ClassScheduleController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DemoCourseController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentScheduleController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Stevebauman\Location\Facades\Location;
+
+
+Route::get('/location', function(Request $request)  {
+
+    // if ($position = Location::get()) {
+    //     // Successfully retrieved position.
+    //     dd($position);
+    // } else {
+    //     echo 'Failed retrieving position.';
+    // }
+
+    $ip = '8.8.4.4'; // get client IP address
+    $ch = curl_init('http://ipwho.is/' . $ip);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HEADER, false);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    $data = json_decode($response, true);
+
+    dd($data);
+
+    if ($data && $data['success']) {
+        $country = $data['country'];
+        $flag = $data['flag']['emoji'];
+        $continent = $data['continent'];
+
+        echo "Country: $country $flag | Continent: $continent";
+    } else {
+        // fallback in case API fails
+        echo "Unable to retrieve location information.";
+}
+
+
+
+});
 
 Route::get('/', function () {
     return view('index');
@@ -22,6 +63,9 @@ Route::get('/', function () {
 Route::get('/demo-class', function () {
     return view('pages.demo_class');
 });
+
+
+
 
 
 
@@ -43,13 +87,13 @@ Route::get('/register-student', function () {
     return view('forms.student_registration_form');
 });
 
-// Route::get('/class-schedule', function () {
-//     return view('pages.class_schedule');
+// Route::get('/select-class-schedule', function () {
+//     return view('pages.class_schedules');
 // });
-
 // Route::get('/payment', function () {
 //     return view('pages.payment');
 // });
+
 Route::get('/payment-processing', function () {
     return view('pages.payment_processing');
 });
@@ -83,16 +127,19 @@ Route::get('/hausa-courses', [CourseController::class, 'showHausaCourses'])->nam
 Route::middleware('auth:parent')->group(function () {
 
     Route::get('/parent/dashboard', [ParentController::class, 'index'])->name('parent.dashboard');
+    Route::get('/parent/enrollment', [ParentController::class, 'getIncompleteEnrollment'])->name('parent.enrollments');
     Route::get('/parent/student-login', [ParentController::class, 'selectStudent'])->name('parent.student_login');
     Route::get('/student/registration-form', [StudentController::class, 'create'])->name('student.create');
-    Route::post('/parent/logout', [AuthenticatedSessionController::class, 'destroyParent'])
-    ->name('parent.logout');
-    Route::get('/select-class-schedule', function () {
-        return view('pages.class_schedules');
-    });
-    Route::get('/payment', function () {
-        return view('pages.payment');
-    });
+    Route::post('/student/registration-form/store', [StudentController::class, 'store'])->name('student.store');
+    Route::get('/select-class-schedule/{student}', [ClassScheduleController::class, 'create'])->name('student.schedule');
+    Route::post('/student-class-schedule', [StudentScheduleController::class, 'store'])->name('student.store_schedule');
+    Route::get('/initialize-payment', [PaymentController::class, 'create'])->name('payment');
+
+
+    Route::post('/parent/logout', [AuthenticatedSessionController::class, 'destroyParent'])->name('parent.logout');
+
+
+
    
     
    

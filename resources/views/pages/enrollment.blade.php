@@ -1,7 +1,7 @@
 @extends('layouts.application')
 
 @section('title')
-<x-title title="Parent :: Dashboard" />
+<x-title title="Enrollments :: Dashboard" />
 @endsection
 
 @section('other_css')
@@ -18,43 +18,46 @@
     <div class="row">
       <div class="col-lg-9">
         <div class="rounded px-5 py-3 my-3 my-md-2 " style="background-color: #ffffff">
-          <div class="d-flex align-items-center justify-content-between">
-              <h4>
-                <div>Register Kids</div>
-              </h4>
-            <a href="{{ route('courses.index') }}"> <img src="{{ asset('assets/images/btn.png') }}" alt="" /></a>
-          </div>
+          <div class="">
+            <h4>
+              <div>Enrollments</div>
+            </h4>
 
+          </div>
           <hr />
           <div class="row py-3">
-            
-            <div class="col-12 col-md-6 col-lg-4 mb-4">
-              <div class="card shadow-sm border-0 card-radius">
-                <img src="{{ asset('assets/images/Frame 1618868856 (2).png') }}" class="card-img-top pt-3 px-3" alt="..." />
-                <div class="card-body text-center">
-                  <h6>Adeniji Matilda</h6>
-                  <p>Learning Yorùbá for Children (Intro Class)</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 mb-4">
-              <div class="card shadow-sm border-0 card-radius">
-                <img src="{{ asset('assets/images/Frame 1618868856 (2).png') }}" class="card-img-top pt-3 px-3" alt="..." />
-                <div class="card-body text-center">
-                  <h6>Adeniji Matilda</h6>
-                  <p>Learning Yorùbá for Children (Intro Class)</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 mb-4">
-              <div class="card shadow-sm border-0 card-radius">
-                <img src="{{ asset('assets/images/Frame 1618868856 (2).png') }}" class="card-img-top pt-3 px-3" alt="..." />
-                <div class="card-body text-center">
-                  <h6>Adeniji Matilda</h6>
-                  <p>Learning Yorùbá for Children (Intro Class)</p>
-                </div>
-              </div>
-            </div>
+            <table  class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">S/N</th>
+                  <th scope="col">Name</th>
+                  {{-- <th scope="col">Birthday</th> --}}
+                  <th scope="col">Gender</th>
+                  <th scope="col">Course Name</th>
+                  <th scope="col">Course Level</th>
+                  <th scope="col">Status</th> 
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($studentEnrollments as $student )
+                <tr>
+                  <td scope="row">{{ $loop->iteration }}</td>
+                  <td >{{ $student->name }}</td>
+                  {{-- <td >{{ $enrollment->birthday }}</td> --}}
+                  <td >{{ $student->gender }}</td>
+                  @foreach ($student->studentCourseLevels as $courseLevel )
+                  <td>{{ $courseLevel->course->name }}</td>
+                  <td>{{ $courseLevel->level->level }}</td>
+                  <td>{{ $courseLevel->paid ? 'paid' : 'unpaid' }}</td>
+                  <td><a href="{{ route('payment', ['student' => $student->id ]) }}">proceed to p ayment</a></td>
+                    
+                  @endforeach
+                </tr>
+                @endforeach
+               
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -81,27 +84,27 @@
               0000
             </p>
           </div>
-          <div class="d-flex align-items-center mb-3">
-            <a href="{{ route('parent.enrollments') }}"> <img src="{{ asset('assets/images/btn.png') }}" alt="" /></a>
-             <h6 class="mb-0 ms-2">Enrollments History</h6>
-        
-          </div>
-          
-          
+            <div class="d-flex align-items-center mb-3">
+              <a href="{{ route('courses.index') }}"> <img src="{{ asset('assets/images/btn.png') }}" alt="" /></a>
+              <h6 class="mb-0 ms-2">Enrollments History</h6>
+
+            </div>
+
+
         </div>
       </div>
     </div>
 
-  
-    <div class="row">
+
+    {{-- <div class="row">
       <div class="col-lg-9">
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="pt-3 text-color text-center text-lg-start">
             Billing History
           </h5>
-        
+
         </div>
-       
+
 
         <div class="p-4 bg-white rounded">
           <div class="border-bottom d-flex justify-content-between mb-3 ">
@@ -151,10 +154,10 @@
             <img src="{{ asset('assets/images/robot-img.png') }}" alt="" />
           </div>
         </div>
-      </div> 
-    </div>
+      </div>
+    </div> --}}
 
-    
+
   </div>
 </section>
 

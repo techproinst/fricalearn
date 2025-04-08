@@ -43,10 +43,10 @@ class ParentModel extends  Authenticatable
       ];
   }
 
-    public function course()
-    {
-        return $this->belongsTo(Course::class, 'course_id');
-    }
+  public function course()
+  {
+      return $this->belongsTo(Course::class, 'course_id');
+  }
 
   public function demoCourseLinks()
   {
@@ -54,9 +54,13 @@ class ParentModel extends  Authenticatable
 
   }
 
-  public function students()
+ /**
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Student[] $students
+ */
+
+  public  function students()
   {
-    return $this->hasMany(Student::class);
+    return $this->hasMany(Student::class, 'parent_id');
   }
 
   
