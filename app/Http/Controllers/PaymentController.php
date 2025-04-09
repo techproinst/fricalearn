@@ -2,13 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ContinentGroup;
 use App\Models\Payment;
 use App\Http\Requests\StorePaymentRequest;
 use App\Http\Requests\UpdatePaymentRequest;
+use App\Models\CourseLevel;
 use App\Models\Student;
+use App\Models\StudentCourseLevel;
+use App\Services\LocationService;
+use App\Services\StudentService;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 
 class PaymentController extends Controller
-{
+{  
+    public function __construct
+    (public LocationService $locationService,
+     public StudentService $studentService,
+    )
+    {
+        
+    }
     /**
      * Display a listing of the resource.
      */
@@ -20,9 +33,18 @@ class PaymentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Student $student)
+    public function showPaymentPage(Student $student)
     {   
-        return view('pages.payment');
+        
+        list($amount, $continent) = $this->studentService->getStudentPaymentAmount($student->id); 
+
+        if(is_null($amount) || is_null($continent)) {
+            
+            ToastMagic::error("Unable to determine payment amount");
+            return redirect()->route('parent.enrollments');
+        }
+        
+        return view('pages.payment', compact('amount','student', 'continent'));
     }
 
     /**

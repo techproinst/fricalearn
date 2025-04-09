@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\FeeStatus;
 use App\Interfaces\StudentInterface;
 use App\Models\CourseLevel;
 use App\Models\Student;
@@ -83,6 +84,20 @@ class StudentRepository implements StudentInterface
       return CourseLevel::where('course_id', $courseId)->where('level', $courseLevel)->first();
 
      
+    }
+
+    public function getStudentCourseLevel($student_id)
+    {
+        return  StudentCourseLevel::where('student_id', $student_id)
+                                  ->where('paid', FeeStatus::UNPAID->value)
+                                  ->first();
+    }
+
+    public function getCourseLevelDetails($studentLevel)
+    {
+       return   CourseLevel::where('course_id', $studentLevel->course_id)
+                    ->where('id', $studentLevel->course_level_id)
+                    ->first();
     }
 
 

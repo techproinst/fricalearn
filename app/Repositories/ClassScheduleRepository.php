@@ -8,6 +8,7 @@ use App\Enums\FeeStatus;
 use App\Interfaces\ClassScheduleInterface;
 use App\Models\ClassSchedule;
 use App\Models\StudentCourseLevel;
+use App\Services\LocationService;
 use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -17,7 +18,7 @@ class ClassScheduleRepository implements ClassScheduleInterface
     /**
      * Create a new class instance.
      */
-    public function __construct()
+    public function __construct(public LocationService $locationService)
     {
         //
     }
@@ -109,16 +110,7 @@ class ClassScheduleRepository implements ClassScheduleInterface
 
     public function getUserContinent()
     {
-        $ip = app()->environment('local') ? config('services.location.test') : request()->ip(); 
-        
-        $response = Http::get("http://ipwho.is/{$ip}");
-
-        if($response->successful())
-        {
-            return $response->json();
-        }
-
-        return null;
+        return $this->locationService->getUserContinent();
     }
 
     public function getStudentCourseId($studentId)

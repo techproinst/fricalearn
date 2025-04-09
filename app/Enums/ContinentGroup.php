@@ -27,4 +27,26 @@ enum ContinentGroup: string
             default => null,
         };
     }
+
+    public static function mapContinentToPaymentSchedule(ContinentGroup $continent): ?string
+    {
+      return match($continent) {
+         self::AFRICA => 'africa',
+         self::ASIA => 'other',
+         self::EUROPE => 'other',
+         self::NORTH_AMERICA => 'other',
+         self::SOUTH_AMERICA => 'other',
+         self::AUSTRALIA => 'other',
+         self::ANTARCTICA => 'other',
+         default => null,
+
+
+      };
+
+
+    }
+
+
+
+
 }

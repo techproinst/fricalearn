@@ -40,21 +40,23 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($studentEnrollments as $student )
-                <tr>
-                  <td scope="row">{{ $loop->iteration }}</td>
-                  <td >{{ $student->name }}</td>
-                  {{-- <td >{{ $enrollment->birthday }}</td> --}}
-                  <td >{{ $student->gender }}</td>
-                  @foreach ($student->studentCourseLevels as $courseLevel )
-                  <td>{{ $courseLevel->course->name }}</td>
-                  <td>{{ $courseLevel->level->level }}</td>
-                  <td>{{ $courseLevel->paid ? 'paid' : 'unpaid' }}</td>
-                  <td><a href="{{ route('payment', ['student' => $student->id ]) }}">proceed to p ayment</a></td>
-                    
-                  @endforeach
-                </tr>
-                @endforeach
+                @forelse ( $studentEnrollments as $student )
+                <td scope="row">{{ $loop->iteration }}</td>
+                <td >{{ $student->name }}</td>
+                {{-- <td >{{ $enrollment->birthday }}</td> --}}
+                <td >{{ $student->gender }}</td>
+                @forelse ($student->studentCourseLevels as $courseLevel )
+                <td>{{ $courseLevel->course->name }}</td>
+                <td>{{ $courseLevel->level->level }}</td>
+                <td>{{ $courseLevel->paid ? 'paid' : 'unpaid' }}</td>
+                <td><a href="{{ route('payment', ['student' => $student->id ]) }}">proceed to p ayment</a></td> 
+                @empty
+                @endforelse
+                @empty
+                <p>You have no outstanding enrollment yet!!</p>
+                  
+                @endforelse
+               
                
               </tbody>
             </table>

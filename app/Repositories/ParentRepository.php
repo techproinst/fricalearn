@@ -146,6 +146,8 @@ class ParentRepository implements ParentInterface
 
         })->get();
 
+     //   dd($students);
+
 
         return $students;
     }

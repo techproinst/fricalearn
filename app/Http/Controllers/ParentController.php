@@ -254,8 +254,6 @@ class ParentController extends Controller
     {   
         $studentEnrollments = $this->parentService->handleGetParentEnrollments();
 
-       // dd($enrollments);
-        
         return view('pages.enrollment', compact('studentEnrollments'));
     }
 

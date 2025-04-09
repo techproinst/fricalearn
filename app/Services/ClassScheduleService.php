@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Log;
 
 class ClassScheduleService  
 {  
-  public function __construct(public ClassScheduleInterface $classScheduleInterface)
+  public function __construct
+  (
+    public ClassScheduleInterface $classScheduleInterface,
+    public LocationService  $locationService
+  )
   {
     
   }
@@ -63,14 +67,10 @@ class ClassScheduleService
   {
       $data = $this->classScheduleInterface->getUserContinent();
 
-      Log::info('User location : '. $data['continent']);
-   
-      $continent = ContinentGroup::tryFrom($data['continent']);
+      return $this->locationService->handleGetContinent($data, [ContinentGroup::class, 'mapContinentToGroup']);
 
-           
-      return $data['success'] ?? false ? ContinentGroup::mapContinentToGroup($continent) : null;
-
-  } 
+  }
+  
 
 
   public function handleGetClassScheduleByContinent($continent, $courseId)

@@ -133,7 +133,7 @@ Route::middleware('auth:parent')->group(function () {
     Route::post('/student/registration-form/store', [StudentController::class, 'store'])->name('student.store');
     Route::get('/select-class-schedule/{student}', [ClassScheduleController::class, 'create'])->name('student.schedule');
     Route::post('/student-class-schedule', [StudentScheduleController::class, 'store'])->name('student.store_schedule');
-    Route::get('/initialize-payment', [PaymentController::class, 'create'])->name('payment');
+    Route::get('/initialize-payment/{student}', [PaymentController::class, 'showPaymentPage'])->name('payment');
 
 
     Route::post('/parent/logout', [AuthenticatedSessionController::class, 'destroyParent'])->name('parent.logout');

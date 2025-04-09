@@ -4,6 +4,6 @@ namespace App\Enums;
 
 enum Continent : string
 {
-    case AFRICA = 'Africa';
-    case OTHER = 'Other';
+    case AFRICA = 'africa';
+    case OTHER = 'other';
 }
