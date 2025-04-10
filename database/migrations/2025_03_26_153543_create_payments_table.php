@@ -14,9 +14,10 @@ return new class extends Migration
     {    
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained()->onDelete('cascade');
-            $table->foreignId('course_id')->constrained()->onDelete('cascade');
-            $table->foreignId('course_level_id')->constrained()->onDelete('cascade');
+            $table->foreignId('parent_id')->nullable()->constrained('parents')->onDelete('set null');
+            $table->foreignId('student_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('course_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('course_level_id')->nullable()->constrained()->onDelete('set null');
             $table->decimal('amount', 10, 2)->nullable();
             $table->decimal('amount_due', 10,2)->nullable();
             $table->string('payment_reference')->nullable();
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->string('payment_receipt')->nullable();
             $table->timestamps();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.

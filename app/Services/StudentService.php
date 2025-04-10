@@ -90,7 +90,7 @@ class StudentService
 
         $amounts = json_decode($courseLevelDetails->price, true);
 
-        return  [$amounts[$continent] ?? null, $continent];
+        return  [$amounts, $continent];
 
 
 

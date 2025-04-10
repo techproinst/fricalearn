@@ -134,6 +134,8 @@ Route::middleware('auth:parent')->group(function () {
     Route::get('/select-class-schedule/{student}', [ClassScheduleController::class, 'create'])->name('student.schedule');
     Route::post('/student-class-schedule', [StudentScheduleController::class, 'store'])->name('student.store_schedule');
     Route::get('/initialize-payment/{student}', [PaymentController::class, 'showPaymentPage'])->name('payment');
+    Route::post('/payment/store/{student}', [PaymentController::class, 'store'])->name('payment.store');
+    Route::get('/payment/processing', [PaymentController::class, 'loadProcessingPage'])->name('payment.processing');
 
 
     Route::post('/parent/logout', [AuthenticatedSessionController::class, 'destroyParent'])->name('parent.logout');
@@ -178,6 +180,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::post('/class-schedule/store', [ClassScheduleController::class, 'store'])->name('class_schedule.store');
     Route::post('/update-schedule/{classSchedule}', [ClassScheduleController::class, 'update'])->name('schedule.update');
     Route::delete('/delete-schedule/{classSchedule}', [ClassScheduleController::class, 'destroy'])->name('schedule.destroy');
+
+    Route::get('admin/payments', [PaymentController::class, 'getPayment'])->name('payments.show');
 
 });
 

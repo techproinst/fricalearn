@@ -23,24 +23,25 @@
             confirmation.🚀
           </p>
         </div>
+
         <div class="text-center currency-wrapper border py-2 mx-5">
-          <button class="naira-btn account">Naira Account</button>
-          <button class="pounds-btn account">Pounds Account</button>
+          <button class=" africa-btn account {{ $continent == 'africa' ? 'clicked' : ''}}">Naira Account</button>
+          <button class="other-btn account">Pounds Account</button>
         </div>
-        <div class="my-4 p-3 details-wrapper naira-details">
+        <div class="my-4 p-3 details-wrapper africa-details">
           <button class="bank-btn">Bank Name</button>
           <h1 class="text-center py-3 text-color">
-            <div>₦ 30,000</div>
+            <div>&#8358; {{number_format($amount['africa'])}}</div>
           </h1>
           <div class="text-center py-3 acc-details">
             <p>Account Number</p>
             <p>Account Name</p>
           </div>
         </div>
-        <div class="my-4 p-3 details-wrapper pounds-details">
+        <div class="my-4 p-3 details-wrapper other-details">
           <button class="bank-btn">Bank Name</button>
           <h1 class="text-center py-3 text-color">
-            <div>£ 15.50</div>
+            <div>$ {{number_format($amount['other']) }}</div>
           </h1>
           <div class="text-center py-3 acc-details">
             <p>Account Number</p>
@@ -48,20 +49,29 @@
           </div>
         </div>
         <div>
-          <label for="course" class="form-label">Upload receipt</label>
-          <div class="custom-file-upload">
-            <label for="receiptUpload" class="custom-upload-label">
-              <span class="file-name">File Name</span>
-              <span class="upload-text">Upload</span>
-            </label>
-            <input type="file" id="receiptUpload" class="custom-file-input" />
-          </div>
-          {{-- <button type="submit" class="watch-btn text-center w-100 mt-3">
-            Proceed
-          </button> --}}
-          <a class="watch-btn text-center w-100 mt-3" href="{{ url('/payment-processing') }}">Proceed</a>
-
-          <a class="cancel-btn my-3" href=""> Cancel</a>
+          <form action="{{ route('payment.store', ['student' => $student->id ]) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <label for="course" class="form-label">Upload receipt</label>
+            <div class="custom-file-upload">
+              <label for="receiptUpload" class="custom-upload-label">
+                <span class="file-name">File Name</span>
+                <span class="upload-text">Upload</span>
+              </label>
+              <input type="file" id="receiptUpload" class="custom-file-input" name="payment_receipt" required/>
+              <input type="text" name="student_id" value="{{ $student->id }}" hidden>
+              <input type="text" name="amount" value="{{ $amount[$continent] }}" hidden>
+              <input type="text" name="continent" value="{{ $continent }}" hidden>
+            </div>
+            @error('payment_receipt')
+            <span class="text-danger">
+              {{ $message}}
+            </span>
+            @enderror
+            <button type="submit" class="watch-btn text-center w-100 mt-3">
+              Proceed
+            </button>
+            <a class="cancel-btn my-3" href=""> Cancel</a>
+          </form>
         </div>
       </div>
     </div>

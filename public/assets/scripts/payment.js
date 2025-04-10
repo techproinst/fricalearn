@@ -7,30 +7,31 @@ document
   });
 
 const buttons = document.querySelectorAll(".account");
-const nairaBtn = document.querySelector(".naira-btn");
-const poundsBtn = document.querySelector(".pounds-btn");
-const nairaDetails = document.querySelector(".naira-details");
-const poundsDetails = document.querySelector(".pounds-details");
+const africaBtn = document.querySelector(".africa-btn");
+const otherBtn = document.querySelector(".other-btn");
+const africaDetails = document.querySelector(".africa-details");
+const otherDetails = document.querySelector(".other-details");
 
-nairaBtn.classList.add("clicked");
-nairaDetails.style.display = "block";
-poundsDetails.style.display = "none";
+//africaBtn.classList.add("clicked");
+africaDetails.style.display = "block";
+otherDetails.style.display = "none";
+
 
 buttons.forEach((btn, index) =>
   btn.addEventListener("click", () => {
     buttons.forEach((b) => b.classList.remove("clicked"));
 
     if (index === 1) {
-      nairaBtn.classList.remove("clicked");
-      nairaDetails.style.display = "none";
-      poundsDetails.style.display = "block";
-      poundsBtn.classList.add("clicked");
+      africaBtn.classList.remove("clicked");
+      africaDetails.style.display = "none";
+      otherDetails.style.display = "block";
+      otherBtn.classList.add("clicked");
     }
     if (index === 0) {
-      poundsBtn.classList.remove("clicked");
-      nairaDetails.style.display = "block";
-      poundsDetails.style.display = "none";
-      nairaBtn.classList.add("clicked");
+      otherBtn.classList.remove("clicked");
+      africaDetails.style.display = "block";
+      otherDetails.style.display = "none";
+      africaBtn.classList.add("clicked");
     }
 
     btn.classList.add("clicked");

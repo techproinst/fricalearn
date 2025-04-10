@@ -10,6 +10,7 @@ use App\Models\CourseLevel;
 use App\Models\Student;
 use App\Models\StudentCourseLevel;
 use App\Services\LocationService;
+use App\Services\PaymentService;
 use App\Services\StudentService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 
@@ -18,6 +19,7 @@ class PaymentController extends Controller
     public function __construct
     (public LocationService $locationService,
      public StudentService $studentService,
+     private PaymentService $paymentService,
     )
     {
         
@@ -51,8 +53,25 @@ class PaymentController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StorePaymentRequest $request)
-    {
-        //
+    {  
+
+      $payment  = $this->paymentService->handleStudentPayment($request);
+
+       if(!$payment) {
+        
+        ToastMagic::error('An error occured during payment processing');
+        return redirect()->route('payment.enrollments');
+ 
+       }
+            
+        ToastMagic::success('Payment receipt uploaded successfully');
+        return redirect()->route('payment.processing');
+
+    }
+
+    public function loadProcessingPage(){
+        
+        return view('pages.payment_processing');
     }
 
     /**

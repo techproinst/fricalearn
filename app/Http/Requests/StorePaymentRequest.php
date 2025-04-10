@@ -11,7 +11,7 @@ class StorePaymentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StorePaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'student_id' => ['required', 'integer', 'exists:students,id'],
+            'amount' => ['required', 'string'],
+            'continent' => ['required', 'string'],
+            'payment_receipt' => ['required', 'file','mimes:jpg,jpeg,png,pdf','max:1024'],
         ];
+
     }
 }

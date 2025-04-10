@@ -26,7 +26,7 @@
           </div>
           <hr />
           <div class="row py-3">
-            <table  class="table table-striped">
+            <table class="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">S/N</th>
@@ -35,29 +35,29 @@
                   <th scope="col">Gender</th>
                   <th scope="col">Course Name</th>
                   <th scope="col">Course Level</th>
-                  <th scope="col">Status</th> 
+                  <th scope="col">Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 @forelse ( $studentEnrollments as $student )
                 <td scope="row">{{ $loop->iteration }}</td>
-                <td >{{ $student->name }}</td>
-                {{-- <td >{{ $enrollment->birthday }}</td> --}}
-                <td >{{ $student->gender }}</td>
+                <td>{{ $student->name }}</td>
+                {{-- <td>{{ $enrollment->birthday }}</td> --}}
+                <td>{{ $student->gender }}</td>
                 @forelse ($student->studentCourseLevels as $courseLevel )
                 <td>{{ $courseLevel->course->name }}</td>
                 <td>{{ $courseLevel->level->level }}</td>
                 <td>{{ $courseLevel->paid ? 'paid' : 'unpaid' }}</td>
-                <td><a href="{{ route('payment', ['student' => $student->id ]) }}">proceed to p ayment</a></td> 
+                <td><a href="{{ route('payment', ['student' => $student->id ]) }}">proceed to p ayment</a></td>
                 @empty
                 @endforelse
                 @empty
                 <p>You have no outstanding enrollment yet!!</p>
-                  
+
                 @endforelse
-               
-               
+
+
               </tbody>
             </table>
           </div>
@@ -86,11 +86,11 @@
               0000
             </p>
           </div>
-            <div class="d-flex align-items-center mb-3">
-              <a href="{{ route('courses.index') }}"> <img src="{{ asset('assets/images/btn.png') }}" alt="" /></a>
-              <h6 class="mb-0 ms-2">Enrollments History</h6>
+          <div class="d-flex align-items-center mb-3">
+            <a href="{{ route('courses.index') }}"> <img src="{{ asset('assets/images/btn.png') }}" alt="" /></a>
+            <h6 class="mb-0 ms-2">Enrollments History</h6>
 
-            </div>
+          </div>
 
 
         </div>
