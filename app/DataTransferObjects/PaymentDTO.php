@@ -20,9 +20,8 @@ readonly class PaymentDTO
      public readonly ?string $status,
      public readonly ?string $purpose,
      public readonly string $currency,
-     
-
-
+     public readonly string $payment_receipt,
+    
     )
     {
    
@@ -43,6 +42,7 @@ readonly class PaymentDTO
             $array['status'] ?? null,
             $array['purpose'] ?? null,
             $array['currency'],
+            $array['payment_receipt'],
          ); 
     }
 
@@ -61,6 +61,7 @@ readonly class PaymentDTO
             'status' => $this->status,
             'purpose' => $this->purpose,
             'currency' => $this->currency,
+            'payment_receipt' => $this->payment_receipt,    
         ];
 
 

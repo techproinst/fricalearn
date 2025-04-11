@@ -74,6 +74,15 @@ class PaymentController extends Controller
         return view('pages.payment_processing');
     }
 
+    public function getPayments()
+    {   
+        $pendingPayments =  $this->paymentService->handlePendingPayments();
+
+     //   return $pendingPayments;
+      
+        return view('admin.payments.index', compact('pendingPayments'));
+    }
+
     /**
      * Display the specified resource.
      */

@@ -63,6 +63,11 @@ class ParentModel extends  Authenticatable
     return $this->hasMany(Student::class, 'parent_id');
   }
 
+  public function payments()
+  {
+    return $this->hasMany(Payment::class);
+  }
+
   
 
 }

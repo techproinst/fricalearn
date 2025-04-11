@@ -97,6 +97,8 @@ class PaymentService
         if(!$paymentReceipt) {
          return null;
         }
+
+      //  dd($paymentReceipt);
  
         $parentId = Auth::guard('parent')->user()->id;
         $student = $this->studentService->getStudentCourseLevel($request->student_id);
@@ -125,7 +127,7 @@ class PaymentService
         $paymentReceipt = $request->file('payment_receipt');
         $rad = mt_rand(1000, 9999);
 
-        $paymentReceiptName = md5($paymentReceipt->getClientOriginalName()) . $rad . ' .' . $paymentReceipt->getClientOriginalExtension();
+        $paymentReceiptName = md5($paymentReceipt->getClientOriginalName()). $rad .'.'.$paymentReceipt->getClientOriginalExtension();
 
         $filePath =  $paymentReceipt->storeAs('uploads',$paymentReceiptName);
 
@@ -134,8 +136,7 @@ class PaymentService
             return null;
         }
 
-
-        return 'uploads/'. $filePath;
+        return  $paymentReceiptName;
     }
 
     public function  genUniqueTransactionNumber(string $prefix): string
@@ -185,6 +186,13 @@ class PaymentService
     public function mapDataToPaymentDTO(array $data):array
     {
         return PaymentDTO::fromArray($data)->toArray();
+    }
+
+
+
+    public function handlePendingPayments()
+    {
+       return  $this->paymentInterface->getPendingPayments();
     }
 
 

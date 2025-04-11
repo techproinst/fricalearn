@@ -147,13 +147,6 @@ Route::middleware('auth:parent')->group(function () {
    
 });
 
-
-    
-
-
-
-
-
 /** 
  * Google login
  */
@@ -181,7 +174,13 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::post('/update-schedule/{classSchedule}', [ClassScheduleController::class, 'update'])->name('schedule.update');
     Route::delete('/delete-schedule/{classSchedule}', [ClassScheduleController::class, 'destroy'])->name('schedule.destroy');
 
-    Route::get('admin/payments', [PaymentController::class, 'getPayment'])->name('payments.show');
+    Route::get('admin/payments', [PaymentController::class, 'getPayments'])->name('payments.show');
+    Route::post('/approve-payment/{payment}', [PaymentController::class, 'approvePayment'])->name('payment.approve');
+    Route::post('/decline-payment/{payment}', [PaymentController::class, 'approvePayment'])->name('payment.decline');
+
+    Route::get('/student-info/{student}', [StudentController::class, 'show'])->name('student.show');
+
+
 
 });
 

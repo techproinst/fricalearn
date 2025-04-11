@@ -98,6 +98,19 @@ class StudentService
     }
 
 
+    public  function getStudentInfo($student) 
+    {
+       $studentInfo = $this->studentInterface->getStudentInfo($student);
+
+       if(!$studentInfo){
+          Log::info(message:"No student Data found for student with this id: $student->id");
+          return null;
+       }
+
+       return $studentInfo;
+    }
+
+
 
 
 

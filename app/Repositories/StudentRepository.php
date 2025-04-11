@@ -100,6 +100,11 @@ class StudentRepository implements StudentInterface
                     ->first();
     }
 
+    public function getStudentInfo($student)
+    {
+        return Student::with(['parent','studentCourseLevels.level.course'])->find($student->id);
+    }
+
 
 
 

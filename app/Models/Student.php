@@ -18,15 +18,19 @@ class Student extends Model
         return $this->belongsTo(ParentModel::class);
     }
 
-    // public function courseRegistrations()
-    // {
-    //     return $this->hasMany(StudentCourseLevel::class);
-    // }
+    
 
     public function studentCourseLevels()
     {
         return $this->hasMany(StudentCourseLevel::class);
     }
+
+
+
+
+
+   
+    
 
     
 

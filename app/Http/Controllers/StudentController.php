@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Models\Course;
 use App\Services\CourseService;
 use App\Services\StudentService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
@@ -96,7 +97,20 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        $studentInfo =   $this->studentService->getStudentInfo($student);
+         
+        if(!$studentInfo) {
+            ToastMagic::error('Student information not available');
+            return back();
+        }
+
+
+        return view('admin.student.info', compact('studentInfo'));
+
+       
+
+    
+    
     }
 
     /**

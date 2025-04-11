@@ -25,9 +25,6 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-
-               
-    
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-book-open"></i>
@@ -39,9 +36,16 @@
                 </li>
                 <li>
                     <a href="{{ route('class_schedule.index') }}" class="waves-effect">
-                        <i class="ri-dashboard-line"></i>
+                        <i class=" fas fa-calendar-alt"></i>
                         <span>Schedule Classes</span>
                     </a>
+                </li>
+                <li>
+                    <a href="{{ route('payments.show') }}" class="waves-effect">
+                        <i class=" fas fa-money-check-alt"></i>
+                        <span>Payments Menu</span>
+                    </a>
+                    
                 </li>
 
                 

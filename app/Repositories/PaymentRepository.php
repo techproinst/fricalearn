@@ -45,6 +45,16 @@ class PaymentRepository implements PaymentInterface
         
     }
 
+    public function getPendingPayments()
+    {
+       return Payment::with([
+        'student:id,name',
+        'parent:id,name',
+        'course:id,name',
+        'courseLevel:id,level'
+        ])->pending()->get();
+    }
+
 
 
 

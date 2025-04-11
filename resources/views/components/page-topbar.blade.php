@@ -8,7 +8,7 @@
                         <img src="{{ asset('assets/admin/images/logo-sm.png') }}" alt="logo-sm" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/admin/images/logo-dark.png') }}" alt="logo-dark" height="20">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo-dark" height="20">
                     </span>
                 </a>
 
@@ -17,7 +17,7 @@
                         <img src="{{ asset('assets/admin/images/logo-sm.png') }}" alt="logo-sm-light" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/admin/images/logo-light.png') }}" alt="logo-light" height="20">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo-light" height="20"> <span class="text-white">Frika Learn</span>
                     </span>
                 </a>
             </div>

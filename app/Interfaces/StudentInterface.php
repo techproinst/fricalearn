@@ -11,4 +11,6 @@ interface StudentInterface
    public function getStudentCourseLevel($studentId);
 
    public function getCourseLevelDetails($studentLevel);
+
+   public function getStudentInfo($student);
 }
