@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ContinentGroup;
+use App\Http\Requests\StorePaymentApprovalRequest;
 use App\Models\Payment;
 use App\Http\Requests\StorePaymentRequest;
 use App\Http\Requests\UpdatePaymentRequest;
@@ -77,10 +78,30 @@ class PaymentController extends Controller
     public function getPayments()
     {   
         $pendingPayments =  $this->paymentService->handlePendingPayments();
-
-     //   return $pendingPayments;
       
         return view('admin.payments.index', compact('pendingPayments'));
+    }
+
+    public function approvePayment(StorePaymentApprovalRequest $request, Payment $payment)
+    {
+        //  $isVerified = $this->paymentService->verifyAmountPaid($request);
+
+        //  if(!$isVerified){
+        //     ToastMagic::error('Amount paid is greater or less than the amount due!!');
+        //     return back();
+        //  }
+         
+         $isApproved = $this->paymentService->handlePaymentApproval($request, $payment);
+
+         if(!$isApproved){
+            ToastMagic::error('An error occured during payment approval!!');
+            return back();
+         }
+
+        // $isMarkedAsPaid = $this->paymentService->markPaymentAsPaid($request->student_id);
+
+
+
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\FeeStatus;
 use App\Interfaces\PaymentInterface;
 use App\Models\Payment;
 use Exception;
@@ -53,6 +54,20 @@ class PaymentRepository implements PaymentInterface
         'course:id,name',
         'courseLevel:id,level'
         ])->pending()->get();
+    }
+
+    public function approvePayment($data, $payment)
+    {
+      // return Payment::where('id', $payment->id)->update($data);
+
+      return true;
+    }
+
+    public function markPaymentAsPaid($studentLevel)
+    {
+             $studentLevel->paid = FeeStatus::PAID->value;
+
+             return  $studentLevel->save();
     }
 
 

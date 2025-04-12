@@ -87,8 +87,9 @@ class StudentRepository implements StudentInterface
     }
 
     public function getStudentCourseLevel($student_id)
-    {
-        return  StudentCourseLevel::where('student_id', $student_id)
+    {     
+    
+        return    StudentCourseLevel::where('student_id', $student_id)
                                   ->where('paid', FeeStatus::UNPAID->value)
                                   ->first();
     }
