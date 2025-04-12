@@ -49,7 +49,7 @@
               <a class="level-btn" href="">Beginner</a>
             </div>
 
-            <a href="#" class="sub-course-explore-btn mt-3">Enroll Now</a>
+            <a href="{{ url('/register-student') }}" class="sub-course-explore-btn mt-3">Enroll Now</a>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@
               <a class="level-btn" href="">Beginner</a>
             </div>
 
-            <a href="#" class="sub-course-explore-btn mt-3">Enroll Now</a>
+            <a href="{{ url('/register-student') }}" class="sub-course-explore-btn mt-3">Enroll Now</a>
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@
               <a class="level-btn" href="">Beginner</a>
             </div>
 
-            <a href="#" class="sub-course-explore-btn mt-3">Enroll Now</a>
+            <a href="{{ url('/register-student') }}" class="sub-course-explore-btn mt-3">Enroll Now</a>
           </div>
         </div>
       </div>

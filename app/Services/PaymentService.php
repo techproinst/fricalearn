@@ -6,6 +6,7 @@ use App\DataTransferObjects\PaymentApprovalDTO;
 use App\DataTransferObjects\PaymentDTO;
 use App\Enums\Continent;
 use App\Enums\PaymentStatus;
+use App\Events\PaymentApproved;
 use App\Events\PaymentInitiated;
 use App\Helpers\RepositoryHelper;
 use App\Interfaces\PaymentInterface;
@@ -74,6 +75,10 @@ class PaymentService
             throw $e;
         }
     }
+
+
+
+
 
     public function handlePayment($request)
     {
@@ -185,9 +190,9 @@ class PaymentService
     {
         try {
 
-            $isApproved = $this->PaymentApproval($request, $payment);
+            $paymentData = $this->PaymentApproval($request, $payment);
 
-            if (!$isApproved) {
+            if (!$paymentData) {
                 throw new Exception("Payment could not be approved");
             }
 
@@ -196,6 +201,8 @@ class PaymentService
 
 
         }
+
+
     }
 
 
@@ -265,4 +272,28 @@ class PaymentService
 
         return $this->paymentInterface->markPaymentAsPaid($studentLevel);
     }
+
+    public function sendPaymentApprovalNotifcation($paymentData)
+    {  
+        try {
+
+           $parent = Auth::guard('web')->user();
+
+            if (event(new PaymentApproved($parent, $paymentData))) {
+                return true;
+            }
+
+            return false;
+            
+        } catch (Exception $e) {
+
+            Log::error(message: "Error sending email : {$e->getMessage()}");
+
+            throw $e;
+        }
+        
+    }
+
+
+
 }

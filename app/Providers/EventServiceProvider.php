@@ -4,10 +4,12 @@ namespace App\Providers;
 
 use App\Events\ParentRegistered;
 use App\Events\ParentRegisteredForDemoCourse;
+use App\Events\PaymentApproved;
 use App\Events\PaymentInitiated;
 use App\Listeners\SendAdminPaymentNotification;
 use App\Listeners\SendDemoCourseEmail;
 use App\Listeners\SendParentEmailVerificationOtp;
+use App\Listeners\SendPaymentApprovalNotification;
 use Illuminate\Support\ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -25,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
         PaymentInitiated::class => [
             SendAdminPaymentNotification::class,
 
+        ],
+        PaymentApproved::class => [
+            SendPaymentApprovalNotification::class,
         ]
 
     ];
