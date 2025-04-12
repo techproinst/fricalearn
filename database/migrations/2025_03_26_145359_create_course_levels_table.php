@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('course_levels', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
-            $table->string('level_name'); //basic, intermediate, advance;
+            $table->string('level'); //basic, intermediate, advance;
             $table->json('price',10,2);
             $table->string('purpose');
             $table->string('description');

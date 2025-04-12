@@ -204,6 +204,8 @@ class PaymentService
         $isVerified =  $this->verifyAmountPaid($request);
 
         if (!$isVerified) {
+            Log::error(message: "Course level details not found for student with id: $request->student_id");
+
             return false;
         }
 
