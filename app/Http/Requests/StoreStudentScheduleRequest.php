@@ -25,7 +25,7 @@ class StoreStudentScheduleRequest extends FormRequest
             'student_id' => ['required', 'integer', 'exists:students,id'],
             'course_id' => ['required','integer', 'exists:courses,id'],
             'class_schedule_id' => ['required', 'integer', 'exists:class_schedules,id'],
-            'schedule' => ['required', 'array'],
+            'schedule' => ['required',],
             
         ];
         

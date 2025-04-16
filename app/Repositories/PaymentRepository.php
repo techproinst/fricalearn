@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Enums\FeeStatus;
 use App\Interfaces\PaymentInterface;
 use App\Models\Payment;
+use App\Models\Subscription;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -21,58 +22,54 @@ class PaymentRepository implements PaymentInterface
 
     public function createPayment($data)
     {
-        try{
+        try {
 
-           $payment = Payment::create($data);
+            $payment = Payment::create($data);
 
-           if(!$payment) {
-            Log::error(message:"Payment could not be created");
-            return null;
-           }
+            if (!$payment) {
+                Log::error(message: "Payment could not be created");
+                return null;
+            }
 
-           return $payment->refresh();
-    
+            return $payment->refresh();
+        } catch (Exception $e) {
 
-        }catch(Exception $e) {
-            
-            Log::error(message:"Payment error: ". $e->getMessage());
-            
+            Log::error(message: "Payment error: " . $e->getMessage());
+
             throw $e;
-
-
-
         }
-        
-        
     }
 
     public function getPendingPayments()
     {
-       return Payment::with([
-        'student:id,name',
-        'parent:id,name',
-        'course:id,name',
-        'courseLevel:id,level'
+        return Payment::with([
+            'student:id,name',
+            'parent:id,name',
+            'course:id,name',
+            'courseLevel:id,level_name'
         ])->pending()->get();
     }
 
     public function approvePayment($data, $payment)
     {
-      // return Payment::where('id', $payment->id)->update($data);
+        $payment = Payment::find($payment->id);
 
-      return true;
+        $payment->update($data);
+
+        $payment->refresh();
+
+        return $payment;
     }
 
     public function markPaymentAsPaid($studentLevel)
     {
-             $studentLevel->paid = FeeStatus::PAID->value;
+        $studentLevel->is_paid = FeeStatus::PAID->value;
 
-             return  $studentLevel->save();
+        return  $studentLevel->save();
     }
 
-
-
-
-
-
+    public function createSubscription($subscriptionData)
+    {
+        return Subscription::create($subscriptionData);
+    }
 }

@@ -14,94 +14,93 @@ use App\Services\LocationService;
 use App\Services\PaymentService;
 use App\Services\StudentService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
-{  
-    public function __construct
-    (public LocationService $locationService,
-     public StudentService $studentService,
-     private PaymentService $paymentService,
-    )
-    {
-        
-    }
+{
+    public function __construct(
+        public LocationService $locationService,
+        public StudentService $studentService,
+        private PaymentService $paymentService,
+    ) {}
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        
-    }
+    public function index() {}
 
     /**
      * Show the form for creating a new resource.
      */
     public function showPaymentPage(Student $student)
-    {   
-        
-        list($amount, $continent) = $this->studentService->getStudentPaymentAmount($student->id); 
+    {
+        $studentSchedule = $this->studentService->handleCheckStudentSchedule($student->id);
 
-        if(is_null($amount) || is_null($continent)) {
-            
+        if (!$studentSchedule) {
+            return redirect()->route('student.schedule', ['student' => $student->id]);
+        }
+
+        list($amount, $continent) = $this->studentService->getStudentPaymentAmount($student->id);
+
+        if (is_null($amount) || is_null($continent)) {
+
             ToastMagic::error("Unable to determine payment amount");
             return redirect()->route('parent.enrollments');
         }
-        
-        return view('pages.payment', compact('amount','student', 'continent'));
+
+        return view('pages.payment', compact('amount', 'student', 'continent'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StorePaymentRequest $request)
-    {  
+    {
 
-      $payment  = $this->paymentService->handleStudentPayment($request);
+        $payment  = $this->paymentService->handleStudentPayment($request);
 
-       if(!$payment) {
-        
-        ToastMagic::error('An error occured during payment processing');
-        return redirect()->route('payment.enrollments');
- 
-       }
-            
+        if (!$payment) {
+
+            ToastMagic::error('An error occured during payment processing');
+            return redirect()->route('payment.enrollments');
+        }
+
         ToastMagic::success('Payment receipt uploaded successfully');
         return redirect()->route('payment.processing');
-
     }
 
-    public function loadProcessingPage(){
-        
+    public function loadProcessingPage()
+    {
+
         return view('pages.payment_processing');
     }
 
     public function getPayments()
-    {   
+    {
         $pendingPayments =  $this->paymentService->handlePendingPayments();
-      
+
         return view('admin.payments.index', compact('pendingPayments'));
     }
 
     public function approvePayment(StorePaymentApprovalRequest $request, Payment $payment)
     {
-        //  $isVerified = $this->paymentService->verifyAmountPaid($request);
+        $isVerified =  $this->paymentService->verifyAmountPaid($request);
 
-        //  if(!$isVerified){
-        //     ToastMagic::error('Amount paid is greater or less than the amount due!!');
-        //     return back();
-        //  }
-         
-         $isApproved = $this->paymentService->handlePaymentApproval($request, $payment);
+        if (!$isVerified) {
+            Log::error(message: "Wrong amount paid for student with ID: $request->student_id");
+            ToastMagic::error('Wrong amount entered!!');
+            return back();
+        }
 
-         if(!$isApproved){
+        $isApproved = $this->paymentService->handlePaymentApproval($request, $payment);
+
+        if (!$isApproved) {
             ToastMagic::error('An error occured during payment approval!!');
             return back();
-         }
-
-        // $isMarkedAsPaid = $this->paymentService->markPaymentAsPaid($request->student_id);
+        }
 
 
-
+        ToastMagic::success('Payment Approved successfully');
+        return back();
     }
 
     /**

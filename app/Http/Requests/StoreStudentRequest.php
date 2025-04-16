@@ -25,8 +25,10 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             'course_id' => ['required', 'integer', 'exists:courses,id'],
+            'timezone_group_id' => ['required', 'integer', 'exists:timezone_groups,id'],
             'name' => ['required', 'string', 'max:255'],
-            'birthday' => ['required', 'date',],
+            'birthday' => ['required', 'date_format:F-d'],
+           // 'age_range' => ['required', Rule::in(['0-5','5-10','10-15'])],
             'gender' => ['required', 'string', 'in:male,female'],
             'course_level' => ['required', 'string', Rule::in(array_column(CourseLevel::cases(), 'value'))]
         ];

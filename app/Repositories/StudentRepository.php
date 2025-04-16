@@ -31,12 +31,7 @@ class StudentRepository implements StudentInterface
                 throw new Exception('User unauthorized to perform this action');
              }
 
-            $studentData = Student::create([
-                'parent_id' => $parent->id,
-                'name' => $student->name,
-                'birthday' => $student->birthday,
-                'gender' => $student->gender,
-            ]);
+            $studentData = Student::create($student);
 
             if($studentData) {
                 return $studentData->refresh();
@@ -81,7 +76,7 @@ class StudentRepository implements StudentInterface
     public function getCourseLevel($student, $courseId, $courseLevel)
     {   
         //dd($student);
-      return CourseLevel::where('course_id', $courseId)->where('level', $courseLevel)->first();
+      return CourseLevel::where('course_id', $courseId)->where('level_name', $courseLevel)->first();
 
      
     }
@@ -90,12 +85,13 @@ class StudentRepository implements StudentInterface
     {     
     
         return    StudentCourseLevel::where('student_id', $student_id)
-                                  ->where('paid', FeeStatus::UNPAID->value)
+                                  ->where('is_paid', FeeStatus::UNPAID->value)
                                   ->first();
     }
 
     public function getCourseLevelDetails($studentLevel)
     {
+
        return   CourseLevel::where('course_id', $studentLevel->course_id)
                     ->where('id', $studentLevel->course_level_id)
                     ->first();
@@ -104,6 +100,12 @@ class StudentRepository implements StudentInterface
     public function getStudentInfo($student)
     {
         return Student::with(['parent','studentCourseLevels.level.course'])->find($student->id);
+    }
+
+
+    public function getStudentByParent($studentId, $parentId)
+    {
+        return Student::with('parent')->where('parent_id', $parentId)->where('id', $studentId)->first();
     }
 
 

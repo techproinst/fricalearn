@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DataTransferObjects\StudentScheduleDTO;
 use App\Interfaces\StudentScheduleInterface;
 
 class StudentScheduleService
@@ -15,7 +16,16 @@ class StudentScheduleService
     }
 
     public function handleCreateStudentSchedule($request)
-    {
-       return $this->studentScheduleInterface->storeStudentClassSchedule($request);
+    {  
+       
+
+        $mappedStudentScheduleData = $this->mapStudentSchedule($request);
+
+        return $this->studentScheduleInterface->storeStudentClassSchedule($mappedStudentScheduleData);
+    }
+
+    public function mapStudentSchedule($request)
+    {     
+        return   StudentScheduleDTO::fromArray($request)->toArray();
     }
 }

@@ -39,7 +39,7 @@
             alt="intro class image" />
           <div class="card-body px-4">
             <h5 class="card-title">
-              Learning Yorùbá for Children (Introductory Class)
+              Learning Yorùbá for Children ({{ $course->level_name }})
             </h5>
             <p class="card-text text-muted">
               Ẹ kú àbẹ́wò! This course introduces children to the Yorùbá
@@ -47,7 +47,7 @@
             </p>
             <div class="py-2">
               <a class="level-btn me-1" href="">4 weeks</a>
-              <a class="level-btn" href="">{{ $course->level }}</a>
+              <a class="level-btn" href="">{{ $course->level_name }}</a>
             </div>
 
             <a href="{{ route('student.create') }}" class="sub-course-explore-btn mt-3">Enroll Now</a>

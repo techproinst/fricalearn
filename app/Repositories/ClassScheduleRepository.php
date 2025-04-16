@@ -8,6 +8,7 @@ use App\Enums\FeeStatus;
 use App\Interfaces\ClassScheduleInterface;
 use App\Models\ClassSchedule;
 use App\Models\StudentCourseLevel;
+use App\Models\TimezoneGroup;
 use App\Services\LocationService;
 use Exception;
 use Illuminate\Support\Facades\Http;
@@ -25,7 +26,7 @@ class ClassScheduleRepository implements ClassScheduleInterface
 
     public function getAllClassSchedules()
     {
-        return ClassSchedule::with('course')->get();
+        return ClassSchedule::with(['course', 'timezoneGroup'])->get();
     }
 
     public function getContinents()
@@ -43,69 +44,57 @@ class ClassScheduleRepository implements ClassScheduleInterface
     public function storeClassSchedule($classScheduleData)
     {
 
-        try{
+        try {
             $classScheduleDetails = ClassSchedule::create($classScheduleData);
-       
-            if($classScheduleDetails) {
-            return $classScheduleDetails->refresh();
-        }
 
-        return null;
+            if ($classScheduleDetails) {
+                return $classScheduleDetails->refresh();
+            }
 
-        }catch(Exception $e){
+            return null;
+        } catch (Exception $e) {
 
             Log::error("Error saving class schedules: " . $e->getMessage());
 
             return null;
-
         }
-       
-       
-       
     }
 
     public function  updateClassSchedule($mappedData, $classSchedule)
     {
 
-        try{
+        try {
 
-            if($classSchedule->update($mappedData)) {
+            if ($classSchedule->update($mappedData)) {
                 return $classSchedule->refresh();
             }
 
 
             return null;
-        }catch(Exception $e) {
+        } catch (Exception $e) {
 
-            Log::error('Error updating class Schedule: '. $e->getMessage());
+            Log::error('Error updating class Schedule: ' . $e->getMessage());
 
             return null;
-    
-    
-           }
-    
-
+        }
     }
 
     public function deleteClassSchedule($classSchedule)
     {
-          try {
+        try {
 
-            if($classSchedule->delete()) {
+            if ($classSchedule->delete()) {
 
                 return true;
             }
 
             return false;
-
-          }catch(Exception $e) {
+        } catch (Exception $e) {
 
             Log::error('Error deleting  classSchedule: ' . $e->getMessage());
 
             return false;
-
-
-          }
+        }
     }
 
     public function getUserContinent()
@@ -114,27 +103,24 @@ class ClassScheduleRepository implements ClassScheduleInterface
     }
 
     public function getStudentCourseId($studentId)
-    {   
-        return  StudentCourseLevel::where('student_id', $studentId)->where('paid', FeeStatus::UNPAID->value)->first();
+    {
+        return  StudentCourseLevel::where('student_id', $studentId)->where('is_paid', FeeStatus::UNPAID->value)->first();
     }
-
+    
+    /*
     public function getContinentClassSchedule($continent, $courseId)
-    { 
-       
-       return ClassSchedule::where('course_id', $courseId)->where('continent', $continent)->get();
-       
-
+    {
+        return ClassSchedule::where('course_id', $courseId)->where('continent', $continent)->get();
     }
-        
+    */
     
+    public function getTimezoneClassSchedules($timezoneGroupId, $courseId)
+    {
+        return ClassSchedule::where('course_id', $courseId)->where('timezone_group_id', $timezoneGroupId)->get();
+    }
 
-    
-
-
-
-
-
-
-
-
+    public function getTimeZones()
+    {
+        return TimezoneGroup::all();
+    }
 }

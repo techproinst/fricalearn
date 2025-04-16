@@ -20,9 +20,13 @@ interface ClassScheduleInterface
 
     public function getUserContinent();
 
-    public function getContinentClassSchedule($continent, $courseId);
+   // public function getContinentClassSchedule($continent, $courseId);
+
+    public function getTimezoneClassSchedules($timezoneGroupId, $courseId);
 
     public function getStudentCourseId($studentId);
+
+    public function getTimeZones();
 
 
 }

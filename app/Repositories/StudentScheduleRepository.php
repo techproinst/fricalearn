@@ -17,35 +17,16 @@ class StudentScheduleRepository implements StudentScheduleInterface
         //
     }
 
-    public function storeStudentClassSchedule($request)
+    public function storeStudentClassSchedule($studentScheduleData)
     {   
-
-        $schedules = [];
-
-        foreach($request->input('schedule') as $day => $data) {
-
-        $schedules[] = [
-                'student_id' => $request->student_id,
-                'course_id' => $request->course_id,
-                'class_schedule_id' => $request->class_schedule_id,
-                'day' => $day,
-                'slot' => 'morning_afternoon',
-                'class_time' => $data['time'],
-                'created_at' => now(),
-                'updated_at' => now(),
-
-            ];
-        }
-
-
-        if(!empty($schedules)){
-            StudentSchedule::insert($schedules);
-        }
-
-        return $schedules;
-
         
+        return StudentSchedule::create($studentScheduleData);
 
-    
+    }
+
+
+    public function getStudentSchedule($studentId)
+    {
+        return StudentSchedule::where('student_id', $studentId)->first();
     }
 }

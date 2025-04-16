@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('parent_id')->constrained()->onDelete('cascade');
+            $table->foreignId('parent_id')->constrained('parents')->onDelete('cascade');
+            $table->foreignId('timezone_group_id')->constrained('timezone_groups')->cascadeOnDelete();
             $table->string('name');
-            $table->date('birthday');
+            $table->string('birthday');
+          //  $table->string('age_range');
             $table->enum('gender', ['male', 'female']);
             $table->string('profile_photo')->nullable();
             $table->timestamps();

@@ -13,33 +13,33 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class ClassScheduleController extends Controller
-{   
+{
     public function __construct(
         public CourseService $courseService,
         public ClassScheduleService $classScheduleService
-    )
-    {
-        
-    }
+    ) {}
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {    
+    {
         $courses =  $this->courseService->handleGetAllCourses();
-        $continents = $this->classScheduleService->handleGetContinents();
+        // $continents = $this->classScheduleService->handleGetContinents();
         $days = $this->classScheduleService->handleGetClassDays();
         $classSchedules = $this->classScheduleService->getClassSchedules();
-    
-        return view('admin.schedule.classes.index', compact('courses', 'continents', 'days', 'classSchedules'));
+        $timeZones = $this->classScheduleService->handleGetTimeZones();
+
+        return view('admin.schedule.classes.index', compact('courses', 'days', 'classSchedules', 'timeZones'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create(Student $student)
-    {   
-        try{
+    {
+        try {
+
+            /*
             $continent = $this->classScheduleService->handleGetContinent();
 
     
@@ -48,33 +48,38 @@ class ClassScheduleController extends Controller
 
             }
 
+            */
+
             $studentCourseData = $this->classScheduleService->handleGetStudentCourseId($student->id);
 
-            if(!$studentCourseData){
-                throw new Exception('Student course data not found');
 
+            if (!$studentCourseData) {
+                throw new Exception('Student course data not found');
             }
 
+            /*
             $classSchedules = $this->classScheduleService->handleGetClassScheduleByContinent($continent, $studentCourseData->course_id);
+            $schedule = $classSchedules->first(); */
+
+            $classSchedules = $this->classScheduleService->handleGetClassScheduleByTimezone($student->timezone_group_id, $studentCourseData->course_id);
             $schedule = $classSchedules->first();
+
 
             return view('pages.class_schedules', compact('student', 'classSchedules', 'schedule'));
 
-
-        }catch(Exception $e) {
+        } catch (Exception $e) {
 
             Log::error('Class schedule error: ' . $e->getMessage());
 
-            ToastMagic::error('Unable to create class schedule');
+            ToastMagic::error('Unable to fetch class schedule');
             return redirect()->route('parent.dashboard');
-
         }
-      
 
-         
-                    
 
-        return view('pages.class_schedules');
+
+
+
+       // return view('pages.class_schedules');
     }
 
     /**
@@ -82,17 +87,15 @@ class ClassScheduleController extends Controller
      */
     public function store(StoreClassScheduleRequest $request)
     {
-          $classSchedule = $this->classScheduleService->createClassSchedule($request);
+        $classSchedule = $this->classScheduleService->createClassSchedule($request);
 
-          if(!$classSchedule) {
+        if (!$classSchedule) {
             ToastMagic::error('An error occured while creating class schedule');
             return back();
-
         }
 
-        ToastMagic::success('Class schedule created successfully');  
+        ToastMagic::success('Class schedule created successfully');
         return back();
-
     }
 
     /**
@@ -116,20 +119,16 @@ class ClassScheduleController extends Controller
      */
     public function update(StoreClassScheduleRequest $request, ClassSchedule $classSchedule)
     {
-          $classSchedule = $this->classScheduleService->handleUpdateClassSchedule($request, $classSchedule);
+        $classSchedule = $this->classScheduleService->handleUpdateClassSchedule($request, $classSchedule);
 
-          if(!$classSchedule) {
+        if (!$classSchedule) {
 
             ToastMagic::error('Unable to update class schedule');
             return back();
-            
-            
-            }
+        }
 
         ToastMagic::success('class schedule updated successfully');
         return back();
-         
-
     }
 
     /**
@@ -137,15 +136,14 @@ class ClassScheduleController extends Controller
      */
     public function destroy(ClassSchedule $classSchedule)
     {
-       $isDeleted = $this->classScheduleService->handleDeleteClassSchedule($classSchedule);
+        $isDeleted = $this->classScheduleService->handleDeleteClassSchedule($classSchedule);
 
-       if(!$isDeleted) {
-        ToastMagic::error('Unable to delete class schedule');
+        if (!$isDeleted) {
+            ToastMagic::error('Unable to delete class schedule');
+            return back();
+        }
+
+        ToastMagic::success('Class schedule deleted successfully');
         return back();
-
-       }
-
-       ToastMagic::success('Class schedule deleted successfully');
-       return back();
     }
 }

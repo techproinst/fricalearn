@@ -12,5 +12,7 @@ interface PaymentInterface
 
     public function markPaymentAsPaid($studentLevel);
 
+    public function createSubscription($subscriptionData);
+
     
 }

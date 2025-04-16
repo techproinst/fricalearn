@@ -24,7 +24,8 @@ class StoreClassScheduleRequest extends FormRequest
     {
         $rules = [
             'course_id' => ['required', 'exists:courses,id'],
-            'continent' => ['required', 'string', 'in:africa_europe,australia_asia,usa_canada'],
+           // 'continent' => ['required', 'string', 'in:africa_europe,australia_asia,usa_canada'],
+            'timezone_group_id' => ['required', 'exists:timezone_groups,id'],
             'day' => ['required', 'string', 'in:monday,wednessday,friday'],
             'morning' => ['required', 'string', 'date_format:H:i'],
             'afternoon' => ['required', 'string','date_format:H:i', 'after:morning'],
@@ -33,25 +34,23 @@ class StoreClassScheduleRequest extends FormRequest
         if($this->getMethod() == 'POST') {
             $rules['course_id'] = ['required', Rule::unique('class_schedules')
                                                    ->where(
-                                                    fn($query) => $query->where('continent',$this->continent)
+                                                    fn($query) => $query->where('timezone_group_id',$this->timezone_group_id)
                                                                         ->where('day', $this->day)
                                                      )];
 
         }elseif(in_array($this->getMethod(), ['PUT', 'PATCH'])){
             $scheduleId = $this->route('schedule');
-            
-            $rules['course_id'] = ['required', Rule::unique('class_schedules')->where(
-                                                                              fn($query) => $query->where('continent', $this->continent)
-                                                                              ->where('day', $this->day)
-                                                                              )->ignore($scheduleId)
-                                                                            ];
 
+            $rules['course_id'] = ['required', Rule::unique('class_schedules')->where(
+                fn($query) =>
+                 $query->where('timezone_group_id', $this->timezone_group_id)->where('day', $this->day)
+                )->ignore($scheduleId)
+              ];
+            
+         
         }
 
-
-
-
-
+        
 
         return $rules;
     }   

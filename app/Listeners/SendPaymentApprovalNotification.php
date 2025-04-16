@@ -2,6 +2,8 @@
 
 namespace App\Listeners;
 
+use App\Events\PaymentApproved;
+use App\Notifications\PaymentApprovedNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -18,8 +20,8 @@ class SendPaymentApprovalNotification
     /**
      * Handle the event.
      */
-    public function handle(object $event): void
+    public function handle(PaymentApproved $event): void
     {
-        //
+          $event->parent->notify(new PaymentApprovedNotification($event->parent, $event->paymentData));
     }
 }

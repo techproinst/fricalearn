@@ -35,7 +35,7 @@ class AdminPaymentNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                ->subject('New Payment Uploaded')
+                ->subject('New Payment Notification')
                 ->markdown('mails.admin.paymentNotification', [
                     'admin' => $this->admin,
                     'url' => url('admin/payments'),

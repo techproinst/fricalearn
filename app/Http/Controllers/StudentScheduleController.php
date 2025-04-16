@@ -8,13 +8,11 @@ use App\Services\StudentScheduleService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class StudentScheduleController extends Controller
 {
-    public function __construct(public StudentScheduleService $studentScheduleService)
-    {
-        
-    }
+    public function __construct(public StudentScheduleService $studentScheduleService) {}
 
     /**
      * Display a listing of the resource.
@@ -36,29 +34,28 @@ class StudentScheduleController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreStudentScheduleRequest $request)
-    {  
+    {
         try {
 
-        $studentSchedules = $this->studentScheduleService->handleCreateStudentSchedule($request);
-       
-        if(!$studentSchedules) {
-         ToastMagic::error('An error occured during student schedule creation process');
-         return back();
+           // dd($request->validated());
+
+            $studentSchedules = $this->studentScheduleService->handleCreateStudentSchedule($request->validated());
+
+            
+            if (!$studentSchedules) {
+                ToastMagic::error('An error occured during student schedule creation process');
+                return back();
+            }
+
+            ToastMagic::success('Student class schedule created successfully');
+            return redirect()->route('payment', ['student' => $request->student_id]);
+
+        } catch (Exception $e) {
+
+            Log::error("Student schedule error for student ID: $request->student_id {$e->getMessage()}");
+            ToastMagic::error('An error occurred during student schedule creation');
+            return back();
         }
-
-        ToastMagic::success('Student class schedule created successfully');
-        return redirect()->route('payment',['student' => $request->student_id]);
-
-        }catch(Exception $e) {
-
-            ToastMagic::error('An error occurred during student schedule creation: ' . $e->getMessage());
-            return back()->withInput();
-
-        }
-      
-
-
-       
     }
 
     /**

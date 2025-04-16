@@ -2,11 +2,14 @@
 
 namespace App\DataTransferObjects;
 
+use App\Helpers\AppHelper;
+
 readonly class ClassScheduleDTO
 {
    public function __construct
    (public readonly int $course_id,
-    public readonly string $continent,
+  //  public readonly string $continent,
+    public readonly int $timezone_group_id,
     public readonly string $day,
     public readonly string $morning,
     public readonly string $afternoon,
@@ -20,10 +23,11 @@ readonly class ClassScheduleDTO
    {
     return [
       'course_id' => $this->course_id,
-      'continent' => $this->continent,
+     // 'continent' => $this->continent,
+      'timezone_group_id' => $this->timezone_group_id,
       'day' => $this->day,
-      'morning' => $this->morning,
-      'afternoon' => $this->afternoon,
+      'morning' => AppHelper::convertToUTC($this->morning), 
+      'afternoon' => AppHelper::convertToUTC($this->afternoon),
 
     ];
    }
@@ -33,7 +37,8 @@ readonly class ClassScheduleDTO
    {
       return new self(
         $array['course_id'],
-        $array['continent'],
+       // $array['continent'],
+        $array['timezone_group_id'],
         $array['day'],
         $array['morning'],
         $array['afternoon'],

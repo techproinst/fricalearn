@@ -14,7 +14,7 @@ class PaymentApprovedNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(protected $parent, protected $paymentData)
     {
         //
     }
@@ -33,11 +33,17 @@ class PaymentApprovedNotification extends Notification
      * Get the mail representation of the notification.
      */
     public function toMail(object $notifiable): MailMessage
-    {
+    {   
+         $currencySymbol = $this->paymentData->currency == 'ngn' ? '&#8358;' : '$';
+
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject('Payment Approval Notification')
+            ->markdown('mails.paymentApproval', [
+                'parent' => $this->parent,
+                'currencySymbol' => $currencySymbol,
+                'payment' => $this->paymentData,
+                'url' => url('admin/payments'),
+            ]); 
     }
 
     /**

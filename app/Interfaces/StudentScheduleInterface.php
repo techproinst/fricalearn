@@ -4,5 +4,7 @@ namespace App\Interfaces;
 
 interface StudentScheduleInterface
 {
-   public function storeStudentClassSchedule($request);
+   public function storeStudentClassSchedule($studentScheduleData);
+
+   public function getStudentSchedule($studentId);
 }

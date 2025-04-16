@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
             $table->foreignId('course_level_id')->constrained()->onDelete('cascade');
-            $table->boolean('paid')->default(false);
+            $table->boolean('is_paid')->default(false);
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });
     }

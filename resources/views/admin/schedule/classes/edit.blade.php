@@ -28,7 +28,7 @@
                 </span>
             </div>
         </div>
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label for="continents">Continents</label>
             <div class="mb-3">
                 <select class="form-select" aria-label="continents" name="continent" required>
@@ -44,6 +44,20 @@
                     @enderror
                 </span>
             </div>
+        </div> --}}
+        <div class="mb-3">
+            <label for="timezone">Timezone</label>
+            <select class="form-select mb-3" aria-label="timezone" name="timezone_group_id" required>
+                <option value="">--select timezone</option>
+                @foreach ($timeZones as $timezone)
+                    <option value="{{ $timezone->id }}" {{ old('timezone_group_id',$timezone->id ) == $timezone->id ? 'selected' : '' }}>
+                        {{ $timezone->name }}
+                    </option>
+                @endforeach
+            </select>
+            @error('timezone_group_id')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="class_days">Class Days</label>

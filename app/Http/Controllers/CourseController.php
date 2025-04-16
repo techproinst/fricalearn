@@ -25,6 +25,7 @@ class CourseController extends Controller
     {   
          $course_id = 1;
          $courseLevels =  $this->courseService->getYorubaCourseLevels($course_id);
+        
         return view('pages.yoruba_courses', compact('courseLevels'));
     }
 

@@ -38,14 +38,15 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title mb-3">Class Schedules</h4>
-               
+
 
                 <table id="state-saving-datatable" class="table activate-select dt-responsive nowrap w-100">
                     <thead>
                         <tr>
                             <th>S/N</th>
                             <th>Course</th>
-                            <th>Continent</th>
+                            <th>Timezone</th>
+                            {{-- <th>Continent</th> --}}
                             <th>Day</th>
                             <th>Morning Schedule</th>
                             <th>Afternoon Schedule</th>
@@ -54,29 +55,32 @@
                     </thead>
 
                     <tbody>
-                        @forelse ($classSchedules as  $schedule)
+                        @forelse ($classSchedules as $schedule)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $schedule->course->name }}</td>
-                            <td>{{ $schedule->continent }}</td>
-                            <td>{{ $schedule->day }}</td>
-                            <td>{{date('h:i:A', strtotime($schedule->morning))  }}</td>
-                            <td>{{date('h:i:A',strtotime($schedule->afternoon))  }}</td>
+                            {{-- <td>{{ $schedule->continent }}</td> --}}
+                            <td>{{ $schedule->timezoneGroup->name }}</td>
+                            <td>{{ $schedule->day }}</td> 
+                            <td>{{$schedule->morning->setTimezone('UTC')->format('H:i:A') }}</td>
+                            <td>{{$schedule->afternoon->setTimezone('UTC')->format('H:i:A') }}</td>
                             <td>
                                 @include('admin.schedule.classes.edit')
                                 @include('admin.schedule.classes.delete')
                                 <span class="badge bg-primary" data-bs-toggle="modal"
-                                data-bs-target="#edit-form{{ $schedule->id }}"> <i class=" fas fa-edit"></i> Edit</span>
+                                    data-bs-target="#edit-form{{ $schedule->id }}"> <i class=" fas fa-edit"></i>
+                                    Edit</span>
                                 <span class="badge bg-danger" data-bs-toggle="modal"
-                                data-bs-target="#delete-form{{ $schedule->id }}"> <i class=" fas fa-trash"></i> Delete</span> 
-                                
+                                    data-bs-target="#delete-form{{ $schedule->id }}"> <i class=" fas fa-trash"></i>
+                                    Delete</span>
+
                             </td>
-                        </tr>    
+                        </tr>
                         @empty
                         <p class="text-danger">No Class Schedules Available yet!!</p>
-                            
+
                         @endforelse
-                        
+
                     </tbody>
                 </table>
 
@@ -112,7 +116,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="continents">Continents</label>
                         <div class="mb-3">
                             <select class="form-select" aria-label="continents" name="continent" required>
@@ -128,7 +132,22 @@
                                 @enderror
                             </span>
                         </div>
+                    </div> --}}
+                    <div class="mb-3">
+                        <label for="timezone">Timezone</label>
+                        <select class="form-select mb-3" aria-label="timezone" name="timezone_group_id" required>
+                            <option value="">--select timezone</option>
+                            @foreach ($timeZones as $timezone)
+                                <option value="{{ $timezone->id }}" {{ old('timezone_group_id') == $timezone->id ? 'selected' : '' }}>
+                                    {{ $timezone->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('timezone_group_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+                    
                     <div class="mb-3">
                         <label for="class_days">Class Days</label>
                         <div class="mb-3">
@@ -171,7 +190,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    
+
                     <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary waves-effect waves-light">Add</button>
                 </div>

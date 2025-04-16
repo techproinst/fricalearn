@@ -12,11 +12,11 @@
   @yield('content')
 
 
-
   <x-footer />
 
   <script src="{{ asset('assets/scripts/index.js') }}"></script>
   {!! ToastMagic::scripts() !!}
+  @yield('other_scripts')
 
 </body>
 

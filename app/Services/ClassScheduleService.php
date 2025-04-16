@@ -72,16 +72,30 @@ class ClassScheduleService
   }
   
 
-
+  /*
   public function handleGetClassScheduleByContinent($continent, $courseId)
   {
       return $this->classScheduleInterface->getContinentClassSchedule($continent, $courseId);
+  }
+   */
+  
+  public function handleGetClassScheduleByTimezone($timezoneGroupId, $courseId)
+  {
+     return $this->classScheduleInterface->getTimezoneClassSchedules($timezoneGroupId, $courseId);
   }
 
   public function handleGetStudentCourseId($studentId)
   {
     return $this->classScheduleInterface->getStudentCourseId($studentId);
   }
+
+
+  public function handleGetTimeZones()
+  {
+    return $this->classScheduleInterface->getTimeZones();
+  }
+
+  
 
 
 

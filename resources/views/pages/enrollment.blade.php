@@ -26,6 +26,7 @@
           </div>
           <hr />
           <div class="row py-3">
+           
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -40,26 +41,35 @@
                 </tr>
               </thead>
               <tbody>
-                @forelse ( $studentEnrollments as $student )
-                <td scope="row">{{ $loop->iteration }}</td>
-                <td>{{ $student->name }}</td>
-                {{-- <td>{{ $enrollment->birthday }}</td> --}}
-                <td>{{ $student->gender }}</td>
-                @forelse ($student->studentCourseLevels as $courseLevel )
-                <td>{{ $courseLevel->course->name }}</td>
-                <td>{{ $courseLevel->level->level }}</td>
-                <td>{{ $courseLevel->paid ? 'paid' : 'unpaid' }}</td>
-                <td><a href="{{ route('payment', ['student' => $student->id ]) }}">proceed to p ayment</a></td>
+                @forelse($studentEnrollments as $student)
+                  @forelse($student->studentCourseLevels as $courseLevel)
+                    <tr>
+                      <td scope="row">{{ $loop->parent->iteration }}</td>
+                      <td>{{ $student->name }}</td>
+                      {{-- <td>{{ $student->birthday }}</td> --}}
+                      <td>{{ $student->gender }}</td>
+                      <td>{{ $courseLevel->course->name }}</td>
+                      <td>{{ $courseLevel->level->level_name }}</td>
+                      <td>{{ $courseLevel->paid ? 'Paid' : 'Pending' }}</td>
+                      <td>
+                        <a href="{{ route('payment', ['student' => $student->id]) }}">
+                          Proceed to Payment
+                        </a>
+                      </td>
+                    </tr>
+                  @empty
+                    <tr>
+                      <td colspan="7">No course levels found for {{ $student->name }}</td>
+                    </tr>
+                  @endforelse
                 @empty
+                  <tr>
+                    <td colspan="7">You have no outstanding enrollment yet!!</td>
+                  </tr>
                 @endforelse
-                @empty
-                <p>You have no outstanding enrollment yet!!</p>
-
-                @endforelse
-
-
               </tbody>
             </table>
+            
           </div>
         </div>
       </div>

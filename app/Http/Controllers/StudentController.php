@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\RepositoryHelper;
 use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
@@ -19,6 +20,7 @@ class StudentController extends Controller
     public function __construct
     (public CourseService $courseService,
      public StudentService $studentService,
+     public RepositoryHelper $repositoryHelper,
     )
     {
 
@@ -38,8 +40,9 @@ class StudentController extends Controller
     {     
         $courses = $this->courseService->handleGetAllCourses();
         $levels =  $this->courseService->handleGetCourseLevels();
+        $timezones = $this->repositoryHelper->getTimeZones();
         
-        return view('forms.student_registration_form', compact('courses', 'levels'));
+        return view('forms.student_registration_form', compact('courses', 'levels', 'timezones'));
     }
 
 
@@ -48,6 +51,8 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {  
+
+
        try{
         
         $studentData = null;
@@ -59,7 +64,9 @@ class StudentController extends Controller
                throw new Exception('Failed to create student');
               
               }
-              
+
+    
+  
             $courseLevel = $this->studentService->handleCreateStudentCourseLevel($studentData, $request->course_id, $request->course_level);
  
             if(!$courseLevel) {

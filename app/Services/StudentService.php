@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\DataTransferObjects\StudentDTO;
 use App\Enums\ContinentGroup;
+use App\Helpers\RepositoryHelper;
 use App\Interfaces\StudentInterface;
 use Illuminate\Support\Facades\Log;
 
@@ -15,7 +16,8 @@ class StudentService
     public function __construct
     (
     public StudentInterface $studentInterface,
-    public LocationService $locationService
+    public LocationService $locationService,
+    public RepositoryHelper $repositoryHelper
     )
     {
         
@@ -24,8 +26,8 @@ class StudentService
 
     public function handleCreateStudent($request)
     {
-      $studentData = $this->mapStudentFormData($request->validated());
-    
+       $studentData = $this->mapStudentFormData($request->validated());
+
        return $this->studentInterface->storeStudent($studentData);
       
 
@@ -39,7 +41,7 @@ class StudentService
 
     public function mapStudentFormData($request)
     {
-        return StudentDTO::fromArray($request);
+        return StudentDTO::fromArray($request)->toArray();
     }
 
     public function getStudentPaymentAmount($studentId)
@@ -108,6 +110,11 @@ class StudentService
        }
 
        return $studentInfo;
+    }
+
+    public function handleCheckStudentSchedule($studentId)
+    {
+          return $this->repositoryHelper->getStudentSchedule($studentId);
     }
 
 

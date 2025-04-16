@@ -17,7 +17,7 @@ class PaymentApproved
     /**
      * Create a new event instance.
      */
-    public function __construct(protected $parent, protected $paymentData)
+    public function __construct(public $parent, public $paymentData)
     {
         //
     }

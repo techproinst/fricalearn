@@ -17,7 +17,7 @@ class CourseLevelSeeder extends Seeder
         DB::table('course_levels')->insert([
             [
                 'course_id' => 1,
-                'level' => 'introductory',
+                'level_name' => 'introductory',
                 'price' => json_encode([
                     Continent::AFRICA->value => 120000.00,
                     Continent::OTHER->value  => 1200,
@@ -27,7 +27,7 @@ class CourseLevelSeeder extends Seeder
             ],
             [
                 'course_id' => 1,
-                'level' => 'beginner',
+                'level_name' => 'beginner',
                 'price' => json_encode([
                     Continent::AFRICA->value => 130000.00,
                     Continent::OTHER->value  => 1300,
@@ -37,7 +37,7 @@ class CourseLevelSeeder extends Seeder
              ],
              [
                 'course_id' => 1,
-                'level' => 'intermediate',
+                'level_name' => 'intermediate',
                 'price' => json_encode([
                     Continent::AFRICA->value => 140000.00,
                     Continent::OTHER->value  => 1400,
@@ -47,7 +47,7 @@ class CourseLevelSeeder extends Seeder
              ],
              [
                 'course_id' => 2,
-                'level' => 'introductory',
+                'level_name' => 'introductory',
                 'price' => json_encode([
                     Continent::AFRICA->value => 120000.00,
                     Continent::OTHER->value  => 1200,
@@ -57,7 +57,7 @@ class CourseLevelSeeder extends Seeder
             ],
             [
                 'course_id' => 2,
-                'level' => 'beginner',
+                'level_name' => 'beginner',
                 'price' => json_encode([
                     Continent::AFRICA->value => 130000.00,
                     Continent::OTHER->value  => 1300,
@@ -67,7 +67,7 @@ class CourseLevelSeeder extends Seeder
              ],
              [
                 'course_id' => 2,
-                'level' => 'intermediate',
+                'level_name' => 'intermediate',
                 'price' => json_encode([
                     Continent::AFRICA->value => 140000.00,
                     Continent::OTHER->value  => 1400,
@@ -77,7 +77,7 @@ class CourseLevelSeeder extends Seeder
              ],
              [
                 'course_id' => 3,
-                'level' => 'introductory',
+                'level_name' => 'introductory',
                 'price' => json_encode([
                     Continent::AFRICA->value => 120000.00,
                     Continent::OTHER->value  => 1200,
@@ -87,7 +87,7 @@ class CourseLevelSeeder extends Seeder
             ],
             [
                 'course_id' => 3,
-                'level' => 'beginner',
+                'level_name' => 'beginner',
                 'price' => json_encode([
                     Continent::AFRICA->value => 130000.00,
                     Continent::OTHER->value  => 1300,
@@ -97,7 +97,7 @@ class CourseLevelSeeder extends Seeder
              ],
              [
                 'course_id' => 3,
-                'level' => 'intermediate',
+                'level_name' => 'intermediate',
                 'price' => json_encode([
                     Continent::AFRICA->value => 140000.00,
                     Continent::OTHER->value  => 1400,

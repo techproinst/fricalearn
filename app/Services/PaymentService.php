@@ -4,12 +4,15 @@ namespace App\Services;
 
 use App\DataTransferObjects\PaymentApprovalDTO;
 use App\DataTransferObjects\PaymentDTO;
+use App\DataTransferObjects\SubscriptionDTO;
 use App\Enums\Continent;
 use App\Enums\PaymentStatus;
 use App\Events\PaymentApproved;
 use App\Events\PaymentInitiated;
+use App\Helpers\AppHelper;
 use App\Helpers\RepositoryHelper;
 use App\Interfaces\PaymentInterface;
+use Carbon\CarbonImmutable;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -190,32 +193,48 @@ class PaymentService
     {
         try {
 
-            $paymentData = $this->PaymentApproval($request, $payment);
+            return  DB::transaction(function () use ($request, $payment) {
 
-            if (!$paymentData) {
-                throw new Exception("Payment could not be approved");
-            }
+                $paymentData = $this->PaymentApproval($request, $payment);
+
+                if (!$paymentData) {
+                    throw new Exception("Payment could not be approved");
+                }
+
+                $isMarked = $this->markPaymentAsPaid($request->student_id);
+
+                if(!$isMarked) {
+                    throw new Exception("Payment could not be marked as paid");
+                }
 
 
+                $subscription =  $this->handleSubscription($paymentData);
+
+                if (!$subscription) {
+                    Log::error('creating subscription failed');
+                }
+
+
+                $notification = $this->sendPaymentApprovalNotifcation($paymentData);
+
+                if (!$notification) {
+                    throw new Exception("Payment Approval email could not be approved");
+                }
+
+                return true;
+            });
         } catch (Exception $e) {
 
+            Log::error(message: "Payment approval error:" . $e->getMessage());
 
+            return null;
         }
-
-
     }
 
 
     public function PaymentApproval($request, $payment)
     {
-        $isVerified =  $this->verifyAmountPaid($request);
-
-        if (!$isVerified) {
-            Log::error(message: "Course level details not found for student with id: $request->student_id");
-
-            return false;
-        }
-
+       
         $levelDetails = $this->getCourseLevelDetails($request);
 
         if (!$levelDetails) {
@@ -236,9 +255,7 @@ class PaymentService
     {
         $studentLevel = $this->repositoryHelper->getStudentCourseLevel($request->student_id);
 
-        $courseLevelDetails = $this->repositoryHelper->getCourseLevelDetails($studentLevel);
-
-        return $courseLevelDetails;
+        return $this->repositoryHelper->getCourseLevelDetails($studentLevel);
     }
 
     public function mapPaymentApprovalData($request, $levelDetails): array
@@ -268,32 +285,74 @@ class PaymentService
     {
         $studentLevel = $this->repositoryHelper->getStudentCourseLevel($studentId);
 
-        //dd($studentLevel);
-
         return $this->paymentInterface->markPaymentAsPaid($studentLevel);
     }
 
     public function sendPaymentApprovalNotifcation($paymentData)
-    {  
+    {
         try {
 
-           $parent = Auth::guard('web')->user();
+            $student = $this->repositoryHelper->getStudentByParent($paymentData->student_id, $paymentData->parent_id);
+            $parent = $student->parent;
 
             if (event(new PaymentApproved($parent, $paymentData))) {
                 return true;
             }
 
             return false;
-            
         } catch (Exception $e) {
 
             Log::error(message: "Error sending email : {$e->getMessage()}");
 
             throw $e;
         }
-        
     }
 
+    public function handleSubscription($paymentData)
+    {
+        try {
+            
+
+            $data = $this->mapSubscriptionPaymentData($paymentData);
+
+            $subscriptionData = $this->mapPaymentDataToSubscriptionDTO($data);
+
+            return $this->paymentInterface->createSubscription($subscriptionData);
+        } catch (Exception $e) {
+
+            Log::error(message: 'creating subscription error' . $e->getMessage());
+
+            throw $e;
+        }
+    }
+
+
+    public function mapSubscriptionPaymentData($paymentData): array
+    {   
+        
+        $startDate =  CarbonImmutable::now();
+        $endDate = AppHelper::calculateMonthlySubscriptionEndDate($startDate);
+
+        $data = [];
+
+        $data['parent_id'] = $paymentData->parent_id;
+        $data['student_id'] = $paymentData->student_id;
+        $data['course_level_id'] = $paymentData->course_level_id;
+        $data['payment_id'] = $paymentData->id;
+        $data['start_date'] = $startDate;
+        $data['end_date'] = $endDate;
+        $data['is_active'] = true;
+
+
+        return $data;
+    }
+
+
+
+    public function mapPaymentDataToSubscriptionDTO(array $data)
+    {
+        return SubscriptionDTO::fromArray($data)->toArray();
+    }
 
 
 }

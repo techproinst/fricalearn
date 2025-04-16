@@ -142,7 +142,7 @@ class ParentRepository implements ParentInterface
         $parent = Auth::guard('parent')->user();
         
         $students = $parent->students()->withWhereHas('studentCourseLevels', function($query) {
-            $query->where('paid', FeeStatus::UNPAID->value);
+            $query->where('is_paid', FeeStatus::UNPAID->value);
 
         })->get();
 
@@ -151,6 +151,8 @@ class ParentRepository implements ParentInterface
 
         return $students;
     }
+
+    
 
 
    
