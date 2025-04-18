@@ -68,6 +68,11 @@ class ParentModel extends  Authenticatable
     return $this->hasMany(Payment::class);
   }
 
+  public function subscriptions()
+  {
+    return $this->hasMany(Subscription::class);
+  }
+
   
 
 }

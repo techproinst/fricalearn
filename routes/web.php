@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentScheduleController;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Stevebauman\Location\Facades\Location;
@@ -137,6 +138,7 @@ Route::middleware('auth:parent')->group(function () {
     Route::post('/payment/store/{student}', [PaymentController::class, 'store'])->name('payment.store');
     Route::get('/payment/processing', [PaymentController::class, 'loadProcessingPage'])->name('payment.processing');
     Route::get('/parent/payment', [ParentController::class, 'getParentPayments'])->name('parent.payments');
+    Route::get('/parent/subscription', [SubscriptionController::class, 'getParentSubscriptions'])->name('parent.subscriptions');
 
 
     Route::post('/parent/logout', [AuthenticatedSessionController::class, 'destroyParent'])->name('parent.logout');
@@ -178,6 +180,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('admin/payments', [PaymentController::class, 'getPayments'])->name('payments.show');
     Route::post('/approve-payment/{payment}', [PaymentController::class, 'approvePayment'])->name('payment.approve');
     Route::post('/decline-payment/{payment}', [PaymentController::class, 'declinePayment'])->name('payment.decline');
+
+    Route::get('/admin/subscription', [SubscriptionController::class, 'index'])->name('subscriptions.show');
 
     Route::get('/student-info/{student}', [StudentController::class, 'show'])->name('student.show');
 

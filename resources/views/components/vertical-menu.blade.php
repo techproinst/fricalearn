@@ -5,11 +5,13 @@
         <!-- User details -->
         <div class="user-profile text-center mt-3">
             <div class="">
-                <img src="{{ asset('assets/admin/images/users/avatar-1.jpg') }}" alt="" class="avatar-md rounded-circle">
+                <img src="{{ asset('assets/admin/images/users/avatar-1.jpg') }}" alt=""
+                    class="avatar-md rounded-circle">
             </div>
             <div class="mt-3">
                 <h4 class="font-size-16 mb-1">Julia Hudda</h4>
-                <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i> Online</span>
+                <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
+                    Online</span>
             </div>
         </div>
 
@@ -45,11 +47,18 @@
                         <i class=" fas fa-money-check-alt"></i>
                         <span>Payments Menu</span>
                     </a>
-                    
+
+                </li>
+                <li>
+                    <a href="{{ route('subscriptions.show') }}" class="waves-effect">
+                        <i class="fas fa-redo-alt"></i>
+                        <span>Subscriptions Menu</span>
+                    </a>
+
                 </li>
 
-                
-{{--                 
+
+                {{--
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -135,7 +144,7 @@
                         <li><a href="ui-typography.html">Typography</a></li>
                         <li><a href="ui-video.html">Video</a></li>
                         <li><a href="ui-general.html">General</a></li>
-            
+
                     </ul>
                 </li>
 

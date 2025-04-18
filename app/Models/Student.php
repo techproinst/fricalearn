@@ -32,6 +32,12 @@ class Student extends Model
     }
 
 
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+
     
 
 

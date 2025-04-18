@@ -118,7 +118,7 @@
     <div class="col-lg-9">
       <div class="d-flex justify-content-between align-items-center">
         <h5 class="pt-3 text-color text-center text-lg-start">
-          Billing History
+          Billing Menu
         </h5>
 
       </div>
@@ -127,9 +127,13 @@
           <div class="d-flex align-items-center mb-3">
             <a href="{{ route('parent.payments') }}"> <img src="{{ asset('assets/images/btn.png') }}" alt="" /></a>
             <h6 class="mb-0 ms-2">Payments</h6>
-    
-          </div>
-         
+          </div>   
+        </div>
+        <div class="border-bottom  mb-3 ">
+          <div class="d-flex align-items-center mb-3">
+            <a href="{{ route('parent.subscriptions') }}"> <img src="{{ asset('assets/images/btn.png') }}" alt="" /></a>
+            <h6 class="mb-0 ms-2">Subscriptions</h6>
+          </div>   
         </div>
        
 
