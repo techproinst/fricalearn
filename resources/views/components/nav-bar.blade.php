@@ -22,7 +22,7 @@
             <div class="user-dropdown d-flex align-items-center" data-bs-toggle="dropdown">
                 <img src="{{ asset('assets/images/avatar.png') }}" alt="User" />
                 <div>
-                    <strong>John Doe</strong>
+                    <strong>Parent</strong>
                     <p class="text-muted m-0">{{ Auth::guard('parent')->user()->name }}</p>
                 </div>  
                 <i class="bi bi-chevron-down ms-2"></i>

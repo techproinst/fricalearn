@@ -31,8 +31,10 @@ class ParentController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('pages.parent_dashboard');
+    {   
+        $students =  $this->parentService->handleGetParentKids();
+
+        return view('pages.parent_dashboard', compact('students'));
     }
 
     /**
@@ -59,14 +61,14 @@ class ParentController extends Controller
 
     public function selectStudent()
     {     
-        $parent = Auth::guard('parent')->user();
+       // $parent = Auth::guard('parent')->user();
 
-        if(!$parent) {
-            ToastMagic::error('You must be logged in !!');
-            return redirect()->route('login');
-        }
+        // if(!$parent) {
+        //     ToastMagic::error('You must be logged in !!');
+        //     return redirect()->route('login');
+        // }
 
-        $students =  $this->parentService->getStudents($parent);
+        $students =  $this->parentService->handleGetParentKids();
 
         return view('pages.select_student', compact('students'));
 

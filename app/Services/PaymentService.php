@@ -3,11 +3,13 @@
 namespace App\Services;
 
 use App\DataTransferObjects\PaymentApprovalDTO;
+use App\DataTransferObjects\PaymentDeclineDTO;
 use App\DataTransferObjects\PaymentDTO;
 use App\DataTransferObjects\SubscriptionDTO;
 use App\Enums\Continent;
 use App\Enums\PaymentStatus;
 use App\Events\PaymentApproved;
+use App\Events\PaymentDeclined;
 use App\Events\PaymentInitiated;
 use App\Helpers\AppHelper;
 use App\Helpers\RepositoryHelper;
@@ -78,10 +80,6 @@ class PaymentService
             throw $e;
         }
     }
-
-
-
-
 
     public function handlePayment($request)
     {
@@ -174,7 +172,6 @@ class PaymentService
     }
 
 
-
     public function handlePendingPayments()
     {
         return  $this->paymentInterface->getPendingPayments();
@@ -203,7 +200,7 @@ class PaymentService
 
                 $isMarked = $this->markPaymentAsPaid($request->student_id);
 
-                if(!$isMarked) {
+                if (!$isMarked) {
                     throw new Exception("Payment could not be marked as paid");
                 }
 
@@ -215,11 +212,8 @@ class PaymentService
                 }
 
 
-                $notification = $this->sendPaymentApprovalNotifcation($paymentData);
+                $this->sendPaymentApprovalNotifcation($paymentData);
 
-                if (!$notification) {
-                    throw new Exception("Payment Approval email could not be approved");
-                }
 
                 return true;
             });
@@ -234,7 +228,7 @@ class PaymentService
 
     public function PaymentApproval($request, $payment)
     {
-       
+
         $levelDetails = $this->getCourseLevelDetails($request);
 
         if (!$levelDetails) {
@@ -290,28 +284,15 @@ class PaymentService
 
     public function sendPaymentApprovalNotifcation($paymentData)
     {
-        try {
+        $parent = $this->getStudentByParent($paymentData);
 
-            $student = $this->repositoryHelper->getStudentByParent($paymentData->student_id, $paymentData->parent_id);
-            $parent = $student->parent;
-
-            if (event(new PaymentApproved($parent, $paymentData))) {
-                return true;
-            }
-
-            return false;
-        } catch (Exception $e) {
-
-            Log::error(message: "Error sending email : {$e->getMessage()}");
-
-            throw $e;
-        }
+        event(new PaymentApproved($parent, $paymentData));
     }
 
     public function handleSubscription($paymentData)
     {
         try {
-            
+
 
             $data = $this->mapSubscriptionPaymentData($paymentData);
 
@@ -328,8 +309,8 @@ class PaymentService
 
 
     public function mapSubscriptionPaymentData($paymentData): array
-    {   
-        
+    {
+
         $startDate =  CarbonImmutable::now();
         $endDate = AppHelper::calculateMonthlySubscriptionEndDate($startDate);
 
@@ -353,6 +334,108 @@ class PaymentService
     {
         return SubscriptionDTO::fromArray($data)->toArray();
     }
+
+    /**
+     * This function will get all payment approved by an admin
+     */
+    public function handleApprovedPayments()
+    {
+        return $this->paymentInterface->getApprovedPayments();
+    }
+
+    public function processDeclinedPayment($request,  $payment)
+    {
+        try {
+
+            return  DB::transaction(function () use ($request, $payment) {
+
+                $declineData = $this->handleDeclinePayment($request);
+
+                $isMarked = $this->markPaymentAsDeclined($payment->id);
+
+                if (!$isMarked) {
+                    return false;
+                }
+
+                $this->sendPaymentDeclinedNotification($declineData, $payment);
+
+                return true;
+            });
+        } catch (Exception $e) {
+
+            Log::error(message: "error while processing payment decline: {$e->getMessage()}");
+            return null;
+        }
+    }
+
+
+    public function handleDeclinePayment($request)
+    {
+        try {
+
+            $mappedData = $this->mapDeclineRequestData($request);
+
+            $dto = $this->mapRequestDataToPaymentDeclineDTO($mappedData);
+
+            return $this->paymentInterface->createPaymentDecline($dto);
+        } catch (Exception $e) {
+            Log::error(message: "error occured while processing payment decline for payment with id {$request->payment->id}");
+            throw $e;
+        }
+    }
+
+
+    public function mapDeclineRequestData($request): array
+    {
+        $admin = AppHelper::getAuthAdmin();
+
+        return [
+            'payment_id' => $request['payment_id'],
+            'admin_id' => $admin->id,
+            'decline_reason' => $request['decline_reason'],
+        ];
+    }
+
+    public function mapRequestDataToPaymentDeclineDTO(array $data)
+    {
+        return PaymentDeclineDTO::fromArray($data)->toArray();
+    }
+
+    public function markPaymentAsDeclined($payment)
+    {
+        return $this->paymentInterface->markPaymentAsDeclined($payment);
+    }
+
+    public function sendPaymentDeclinedNotification($data, $paymentData)
+    {
+
+        $parent = $this->getStudentByParent($paymentData);
+
+        event(new PaymentDeclined($data, $parent, $paymentData));
+    }
+
+
+    public function getStudentByParent($paymentData)
+    {
+        $student = $this->repositoryHelper->getStudentByParent($paymentData->student_id, $paymentData->parent_id);
+        $parent = $student->parent;
+
+        return $parent;
+    }
+
+
+    public function handleGetDeclinePayment()
+    {
+        return $this->paymentInterface->getDeclinedPayments();
+    }
+
+
+
+
+
+
+
+
 
 
 }

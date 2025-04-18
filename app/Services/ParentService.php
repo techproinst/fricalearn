@@ -5,6 +5,7 @@ namespace App\Services;
 use App\DataTransferObjects\ParentDTO;
 use App\Events\ParentRegistered;
 use App\Events\ParentRegisteredForDemoCourse;
+use App\Helpers\AppHelper;
 use App\Interfaces\ParentInterface;
 use Carbon\Carbon;
 use Exception;
@@ -17,7 +18,10 @@ class ParentService
     /**
      * Create a new class instance.
      */
-    public function __construct(public ParentInterface $parentInterface,)
+    public function __construct
+    (public ParentInterface $parentInterface,
+     public AppHelper $appHelper
+    )
     {
         
     }
@@ -143,6 +147,15 @@ class ParentService
     public function handleGetParentEnrollments()
     {
        return $this->parentInterface->getUnpaidStudentEnrollments();
+    }
+
+
+    public function handleGetParentKids()
+    {
+        $parent = $this->appHelper->getAuthParent();
+    
+        return $this->parentInterface->getEnrolledStudents($parent->id);
+
     }
 
 

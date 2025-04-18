@@ -176,7 +176,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
     Route::get('admin/payments', [PaymentController::class, 'getPayments'])->name('payments.show');
     Route::post('/approve-payment/{payment}', [PaymentController::class, 'approvePayment'])->name('payment.approve');
-    Route::post('/decline-payment/{payment}', [PaymentController::class, 'approvePayment'])->name('payment.decline');
+    Route::post('/decline-payment/{payment}', [PaymentController::class, 'declinePayment'])->name('payment.decline');
 
     Route::get('/student-info/{student}', [StudentController::class, 'show'])->name('student.show');
 

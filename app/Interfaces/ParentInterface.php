@@ -22,6 +22,10 @@ interface ParentInterface
 
     public function getUnpaidStudentEnrollments();
 
+    public function getEnrolledStudents($parentId);
+
+
+
     
 
    

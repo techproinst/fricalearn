@@ -25,6 +25,15 @@ class Student extends Model
         return $this->hasMany(StudentCourseLevel::class);
     }
 
+    
+    public function paidCourseLevels()
+    {
+        return $this->hasMany(StudentCourseLevel::class)->where('is_paid', true);
+    }
+
+
+    
+
 
 
 

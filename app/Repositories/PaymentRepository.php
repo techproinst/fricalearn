@@ -3,8 +3,10 @@
 namespace App\Repositories;
 
 use App\Enums\FeeStatus;
+use App\Enums\PaymentStatus;
 use App\Interfaces\PaymentInterface;
 use App\Models\Payment;
+use App\Models\PaymentDecline;
 use App\Models\Subscription;
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -71,5 +73,43 @@ class PaymentRepository implements PaymentInterface
     public function createSubscription($subscriptionData)
     {
         return Subscription::create($subscriptionData);
+    }
+
+
+    public function getApprovedPayments()
+    {
+        return Payment::with([
+            'student:id,name',
+            'parent:id,name',
+            'course:id,name',
+            'courseLevel:id,level_name'
+        ])->approved()->get();
+    }
+
+
+    public function createPaymentDecline($mappedRequestDataDTO)
+    {
+        return PaymentDecline::create($mappedRequestDataDTO);
+    }
+
+    public function markPaymentAsDeclined($paymentId)
+    {
+
+        $payment = Payment::find($paymentId);
+
+        $payment->status = PaymentStatus::Declined->value;
+
+        return $payment->save();
+    }
+
+
+    public function getDeclinedPayments()
+    {
+        return Payment::with([
+            'student:id,name',
+            'parent:id,name',
+            'course:id,name',
+            'courseLevel:id,level_name',
+        ])->declined()->get();
     }
 }

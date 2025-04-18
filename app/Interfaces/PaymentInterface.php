@@ -14,5 +14,13 @@ interface PaymentInterface
 
     public function createSubscription($subscriptionData);
 
+    public function getApprovedPayments();
+
+    public function createPaymentDecline($mappedRequestDataDTO);
+
+    public function markPaymentAsDeclined($paymentId);
+
+    public function getDeclinedPayments();
+
     
 }

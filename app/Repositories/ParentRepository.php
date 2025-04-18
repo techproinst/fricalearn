@@ -30,104 +30,86 @@ class ParentRepository implements ParentInterface
 
             $parentDetails = ParentModel::create($parentData);
 
-            if($parentDetails) {
+            if ($parentDetails) {
 
                 return $parentDetails->refresh();
             }
 
             return null;
-
-        }catch(Exception $e) {
+        } catch (Exception $e) {
 
             Log::error("Error saving parent demo course details: " . $e->getMessage());
 
             return null;
-  
         }
     }
 
 
     public function checkPasswordReset($parentData)
     {
-          $verify = DB::table('password_reset_tokens')->where('email', $parentData->email);
+        $verify = DB::table('password_reset_tokens')->where('email', $parentData->email);
 
-          if($verify->exists()) {
+        if ($verify->exists()) {
             $verify->delete();
-          }
-
-
+        }
     }
 
     public function storeOtp($parentData, $pin)
-    {   
+    {
         try {
 
-         $otpData = DB::table('password_reset_tokens')->insert([
+            $otpData = DB::table('password_reset_tokens')->insert([
                 'email' => $parentData->email,
                 'token' => Hash::make($pin),
                 'created_at' => now(),
-    
+
             ]);
 
-        if($otpData){
+            if ($otpData) {
 
-            return $pin;
-        }
+                return $pin;
+            }
 
-        return null;
-
-        }catch(Exception $e) {
+            return null;
+        } catch (Exception $e) {
 
             Log::error("Error saving otp data: " . $e->getMessage());
 
             return null;
-
-
         }
-      
     }
 
     public function getOtpRecord($email)
-    {    
+    {
         return  DB::table('password_reset_tokens')->where('email', $email)->first();
-
-                                         
     }
 
 
     public function getParentByEmail($email)
-    {          
-        log::info('get parentEmail :' .$email);
-            return $this->fetchParentData($email);
-
-        
+    {
+        log::info('get parentEmail :' . $email);
+        return $this->fetchParentData($email);
     }
 
     public function updateEmailVerification($email)
     {
-    
-         return DB::table('parents')->where('email', $email)->update([
-                'email_verified_at' => now(),
-                
-               ]);
 
+        return DB::table('parents')->where('email', $email)->update([
+            'email_verified_at' => now(),
 
-
-
+        ]);
     }
 
     public function deleteOtpRecord($email)
-    {   
-        
+    {
+
         return  DB::table('password_reset_tokens')->where('email', $email)->delete();
-
-
-       
     }
 
     public function fetchParentData($email)
-    {   log::info('fetch parent  :' .$email);
-       return  DB::table('parents')->where('email', $email)->first();
+    {
+        log::info('fetch parent  :' . $email);
+        return  DB::table('parents')->where('email', $email)->first();
     }
 
 
@@ -136,30 +118,27 @@ class ParentRepository implements ParentInterface
         return Student::with('parent')->where('parent_id', $parent->id)->get();
     }
 
- 
+
     public function getUnpaidStudentEnrollments()
     {
         $parent = Auth::guard('parent')->user();
-        
-        $students = $parent->students()->withWhereHas('studentCourseLevels', function($query) {
-            $query->where('is_paid', FeeStatus::UNPAID->value);
 
+        $students = $parent->students()->withWhereHas('studentCourseLevels', function ($query) {
+            $query->where('is_paid', FeeStatus::UNPAID->value);
         })->get();
 
-     //   dd($students);
+        //   dd($students);
 
 
         return $students;
     }
 
-    
 
-
-   
-
-    
-
-   
-
-    
+    public function getEnrolledStudents($parentId)
+    {
+        return Student::with(['parent', 'paidCourseLevels.course'])
+            ->where('parent_id', $parentId)
+            ->has('paidCourseLevels')
+            ->get();
+    }
 }

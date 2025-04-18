@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ContinentGroup;
+use App\Http\Requests\StoreDeclinePaymentRequest;
 use App\Http\Requests\StorePaymentApprovalRequest;
 use App\Models\Payment;
 use App\Http\Requests\StorePaymentRequest;
@@ -77,8 +78,10 @@ class PaymentController extends Controller
     public function getPayments()
     {
         $pendingPayments =  $this->paymentService->handlePendingPayments();
+        $approvedPayments = $this->paymentService->handleApprovedPayments();
+        $declinedPayments = $this->paymentService->handleGetDeclinePayment();
 
-        return view('admin.payments.index', compact('pendingPayments'));
+        return view('admin.payments.index', compact('pendingPayments', 'approvedPayments', 'declinedPayments'));
     }
 
     public function approvePayment(StorePaymentApprovalRequest $request, Payment $payment)
@@ -100,6 +103,22 @@ class PaymentController extends Controller
 
 
         ToastMagic::success('Payment Approved successfully');
+        return back();
+    }
+
+    /**
+     * This function  decline payment made by a parent
+     */
+    public function declinePayment(StoreDeclinePaymentRequest $request, Payment $payment)
+    {
+        $isDeclined = $this->paymentService->processDeclinedPayment($request->validated(), $payment);
+
+        if (!$isDeclined) {
+            ToastMagic::error("Payment decline could not not be processed!!");
+            return back();
+        }
+
+        ToastMagic::success("Payment declined successfully");
         return back();
     }
 

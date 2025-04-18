@@ -35,5 +35,17 @@ class AppHelper
 
     }
 
+
+    public function getAuthParent()
+    {
+      return  Auth::guard('parent')->user();
+
+    }
+
+    public static function getAuthAdmin()
+    {
+        return Auth::guard('web')->user();
+    }
+
     
 }

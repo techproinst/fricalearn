@@ -34,4 +34,15 @@ class Payment extends Model
        return $query->where('status', PaymentStatus::Pending->value);
     }
 
+
+    public function scopeApproved($query)
+    {
+        return $query->where('status', PaymentStatus::Success->value);
+    }
+
+    public function scopeDeclined($query)
+    {
+        return $query->where('status', PaymentStatus::Declined->value);
+    }
+
 }

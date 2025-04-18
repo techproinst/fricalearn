@@ -35,11 +35,10 @@
               <a class="nav-link mb-2 active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home"
                 role="tab" aria-controls="v-pills-home" aria-selected="true">Pending Payments</a>
               <a class="nav-link mb-2" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab"
-                aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                aria-controls="v-pills-profile" aria-selected="false">Approved Payments</a>
               <a class="nav-link mb-2" id="v-pills-messages-tab" data-bs-toggle="pill" href="#v-pills-messages"
-                role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-              <a class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" href="#v-pills-settings" role="tab"
-                aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                role="tab" aria-controls="v-pills-messages" aria-selected="false">Declined Payments</a>
+            
             </div>
           </div>
           <div class="col-md-9">
@@ -51,7 +50,7 @@
                   <thead>
                       <tr>
                           <th>S/N</th>
-                          <th>Name</th>
+                          <th>Parent Name</th>
                           <th>Amount Due</th>
                           <th>Status</th>
                           <th>Currency</th>
@@ -66,10 +65,13 @@
                       <tr>
                           <td>{{ $loop->iteration }}</td>
                           <td>{{ $payment->parent->name }}</td>
-                          <td>{{ $payment->amount_due }}</td>
+                          @php
+                              $currencySymbol = $payment->currency == 'ngn' ? '&#8358;' : '$';
+                          @endphp
+                          <td>{!!$currencySymbol!!}{{ $payment->amount_due }}</td>
                           <td>{{ $payment->status}}</td>
-                          <td>{{ $payment->currency}}</td>
-                          <td><img class="rounded me-2" alt="payment-receipt" width="200" src="{{ asset('storage/uploads/'.$payment->payment_receipt) }}" data-holder-rendered="true"></td>
+                          <td>{{$payment->currency}}</td>
+                          <td><img class="rounded me-2"  alt="payment-receipt" width="200" src="{{ asset('storage/uploads/'.$payment->payment_receipt) }}" data-holder-rendered="true"></td>
                           <td><a href="{{ route('student.show', ['student' => $payment->student->id]) }}">view Student Details</a></td>
                           <td>
                               @include('admin.payments.approve')
@@ -90,44 +92,83 @@
                
               </div>
               <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                <p>
-                  Food truck fixie locavore, accusamus mcsweeney's marfa nulla
-                  single-origin coffee squid. Exercitation +1 labore velit, blog
-                  sartorial PBR leggings next level wes anderson artisan four loko
-                  farm-to-table craft beer twee. Qui photo booth letterpress,
-                  commodo enim craft beer mlkshk.
-                </p>
-                <p class="mb-0"> Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco
-                  ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna 8-bit</p>
+                <table id="state-saving-datatable" class="table activate-select dt-responsive nowrap w-100">
+                  <thead>
+                      <tr>
+                          <th>S/N</th>
+                          <th>Parent Name</th>
+                          <th>Amount Paid</th>
+                          <th>Status</th>
+                          <th>Transaction Reference</th>
+                          <th>Currency</th>
+                          <th>Payment Receipt</th>
+                          <th>Student Info</th>       
+                      </tr>
+                  </thead>
+
+                  <tbody>
+                       @forelse ($approvedPayments as  $payment)
+                      <tr>
+                          <td>{{ $loop->iteration }}</td>
+                          <td>{{ $payment->parent->name }}</td>
+                          @php
+                              $currencySymbol = $payment->currency == 'ngn' ? '&#8358;' : '$';
+                          @endphp
+                          <td>{!!$currencySymbol!!}{{$payment->amount_due}}</td>
+                          <td class="text-success">{{ $payment->status}}</td>
+                          <td>{{ $payment->transaction_reference }}</td>
+                          <td>{{ $payment->currency}}</td>
+                          <td><a href="{{ asset('storage/uploads/'.$payment->payment_receipt) }}"  target="_blank" ><img class="rounded me-2" alt="payment-receipt" width="200" src="{{ asset('storage/uploads/'.$payment->payment_receipt) }}" data-holder-rendered="true"></a></td>
+                          <td><a href="{{ route('student.show', ['student' => $payment->student->id]) }}">view Student Details</a></td>
+                      </tr>    
+                      @empty
+                      <p class="text-danger">No Approved Payments Available yet!!</p>
+                          
+                      @endforelse 
+                      
+                  </tbody>
+                </table>
               </div>
               <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                <p>
-                  Etsy mixtape wayfarers, ethical wes anderson tofu before they
-                  sold out mcsweeney's organic lomo retro fanny pack lo-fi
-                  farm-to-table readymade. Messenger bag gentrify pitchfork
-                  tattooed craft beer, iphone skateboard locavore carles etsy
-                  salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
-                  Leggings gentrify squid 8-bit cred.
-                </p>
-                <p class="mb-0">DIY synth PBR banksy irony.
-                  Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh
-                  mi whatever gluten-free.</p>
+                <table id="state-saving-datatable" class="table activate-select dt-responsive nowrap w-100">
+                  <thead>
+                      <tr>
+                          <th>S/N</th>
+                          <th>Parent Name</th>
+                          <th>Amount Paid</th>
+                          <th>Status</th>
+                          <th>Transaction Reference</th>
+                          <th>Currency</th>
+                          <th>Payment Receipt</th>
+                          <th>Student Info</th>       
+                      </tr>
+                  </thead>
+
+                  <tbody>
+                       @forelse ($declinedPayments as  $payment)
+                      <tr>
+                          <td>{{ $loop->iteration }}</td>
+                          <td>{{ $payment->parent->name }}</td>
+                          @php
+                              $currencySymbol = $payment->currency == 'ngn' ? '&#8358;' : '$';
+                          @endphp
+                          <td>{!!$currencySymbol!!}{{$payment->amount_due}}</td>
+                          <td class="text-danger">{{ $payment->status}}</td>
+                          <td>{{ $payment->transaction_reference }}</td>
+                          <td>{{ $payment->currency}}</td>
+                          <td><a href="{{ asset('storage/uploads/'.$payment->payment_receipt) }}"  target="_blank" ><img class="rounded me-2" alt="payment-receipt" width="200" src="{{ asset('storage/uploads/'.$payment->payment_receipt) }}" data-holder-rendered="true"></a></td>
+                          <td><a href="{{ route('student.show', ['student' => $payment->student->id]) }}">view Student Details</a></td>
+                      </tr>    
+                      @empty
+                      <p class="text-danger">No Approved Payments Available yet!!</p>
+                          
+                      @endforelse 
+                      
+                  </tbody>
+                </table>
+               
               </div>
-              <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                <p>
-                  Trust fund seitan letterpress, keytar raw denim keffiyeh etsy
-                  art party before they sold out master cleanse gluten-free squid
-                  scenester freegan cosby sweater. Fanny pack portland seitan DIY,
-                  art party locavore wolf cliche high life echo park Austin. Cred
-                  vinyl keffiyeh DIY salvia PBR, banh mi before they sold out
-                  farm-to-table.
-                </p>
-                <p class="mb-0">Fanny pack portland seitan DIY,
-                  art party locavore wolf cliche high life echo park Austin. Cred
-                  vinyl keffiyeh DIY salvia PBR, banh mi before they sold out
-                  farm-to-table.
-                </p>
-              </div>
+              
             </div>
           </div>
         </div>

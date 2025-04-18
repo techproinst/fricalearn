@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('transaction_reference')->nullable();
             $table->enum('status', array_column(PaymentStatus::cases(), 'value'))->default(PaymentStatus::Pending->value);
             $table->string('purpose')->nullable();
+            $table->text('description')->nullable();
             $table->string('currency')->nullable();
             $table->string('payment_receipt')->nullable();
             $table->timestamps();
