@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Repositories\ClassScheduleRepository;
+use App\Repositories\PaymentRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\StudentScheduleRepository;
 
@@ -14,7 +15,8 @@ class RepositoryHelper
     public function __construct 
     ( public StudentRepository $studentRepository,
       public ClassScheduleRepository $classScheduleRepository,
-      public StudentScheduleRepository $studentScheduleRepository
+      public StudentScheduleRepository $studentScheduleRepository,
+      public PaymentRepository $paymentRepository,
     )
     {
        
@@ -49,6 +51,22 @@ class RepositoryHelper
         return $this->studentRepository->getStudentByParent($studentId, $parentId);
 
     }
+
+    public function getApprovedPaymentsForParent($parentId)
+    {
+       return  $this->paymentRepository->getApprovedPaymentsForParent($parentId);
+    }
+
+    public function getPendingPaymentsForParent($parentId)
+    {
+        return  $this->paymentRepository->getPendingPaymentsForParent($parentId);
+    }
+
+    public function getDeclinedPaymentsForParent($parentId)
+    {
+        return  $this->paymentRepository->getDeclinedPaymentsForParent($parentId);
+    }
+
 
    
 

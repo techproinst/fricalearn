@@ -38,7 +38,7 @@ class AdminPaymentNotification extends Notification
                 ->subject('New Payment Notification')
                 ->markdown('mails.admin.paymentNotification', [
                     'admin' => $this->admin,
-                    'url' => url('admin/payments'),
+                    'url' => route('payments.show'),
                 ]); 
                 
                 

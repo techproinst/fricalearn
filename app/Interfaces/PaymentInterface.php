@@ -22,5 +22,11 @@ interface PaymentInterface
 
     public function getDeclinedPayments();
 
+    public function getApprovedPaymentsForParent($parentId);
+
+    public function getPendingPaymentsForParent($parentId);
+
+    public function getDeclinedPaymentsForParent($parentId);
+
     
 }

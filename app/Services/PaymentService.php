@@ -153,7 +153,7 @@ class PaymentService
         $data['student_id'] = $request->student_id;
         $data['course_id']  = $student->course_id;
         $data['course_level_id'] = $student->course_level_id;
-        $data['amount'] = $request->amount;
+     //   $data['amount'] = $request->amount;
         $data['amount_due'] = $request->amount;
         $data['invoice_no'] = $this->genUniqueTransactionNumber(prefix: 'INV');
         $data['transaction_reference'] = $this->genUniqueTransactionNumber(prefix: 'TRX');

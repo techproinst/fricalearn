@@ -30,12 +30,12 @@ h1 div {
   h1 div {
     font-size: 1.8rem !important;
   }
-  
+
   #form-section {
     padding: 30px 0;
   }
 
- 
+
 }
 
 label a {
@@ -68,7 +68,7 @@ label a {
   height: 50px;
   background-color: #FCFCFD;
   border: 1px solid #F1F1F3;
-} 
+}
 
 .incomplete-btn {
   border: none;
@@ -85,5 +85,3 @@ label a {
   display: inline-block;
 
 }
-
-

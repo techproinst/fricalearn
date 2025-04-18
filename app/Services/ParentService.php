@@ -6,6 +6,7 @@ use App\DataTransferObjects\ParentDTO;
 use App\Events\ParentRegistered;
 use App\Events\ParentRegisteredForDemoCourse;
 use App\Helpers\AppHelper;
+use App\Helpers\RepositoryHelper;
 use App\Interfaces\ParentInterface;
 use Carbon\Carbon;
 use Exception;
@@ -20,7 +21,8 @@ class ParentService
      */
     public function __construct
     (public ParentInterface $parentInterface,
-     public AppHelper $appHelper
+     public AppHelper $appHelper,
+     public RepositoryHelper $repositoryHelper,
     )
     {
         
@@ -155,6 +157,33 @@ class ParentService
         $parent = $this->appHelper->getAuthParent();
     
         return $this->parentInterface->getEnrolledStudents($parent->id);
+
+    }
+
+
+    public function processApprovedPayments()
+    {
+        $parent = $this->appHelper->getAuthParent();
+
+        return $this->repositoryHelper->getApprovedPaymentsForParent($parent->id);
+
+
+    }
+
+
+    public function processPendingPayments()
+    {
+        $parent = $this->appHelper->getAuthParent();
+
+        return $this->repositoryHelper->getPendingPaymentsForParent($parent->id);
+
+    }
+
+    public function processDeclinedPayments()
+    {
+        $parent = $this->appHelper->getAuthParent();
+
+        return $this->repositoryHelper->getDeclinedPaymentsForParent($parent->id);
 
     }
 

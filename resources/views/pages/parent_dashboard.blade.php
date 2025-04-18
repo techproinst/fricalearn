@@ -26,7 +26,7 @@
           </div>
 
           <hr />
-          <div class="row py-3">
+          <div class="row ">
 
             @forelse ($students as $student)
             <div class="col-12 col-md-6 col-lg-4 mb-4">
@@ -122,9 +122,21 @@
         </h5>
 
       </div>
-
-
       <div class="p-4 bg-white rounded">
+        <div class="border-bottom  mb-3 ">
+          <div class="d-flex align-items-center mb-3">
+            <a href="{{ route('parent.payments') }}"> <img src="{{ asset('assets/images/btn.png') }}" alt="" /></a>
+            <h6 class="mb-0 ms-2">Payments</h6>
+    
+          </div>
+         
+        </div>
+       
+
+      </div>
+
+
+      {{-- <div class="p-4 bg-white rounded">
         <div class="border-bottom d-flex justify-content-between mb-3 ">
           <div>
             <p class="mb-2">Learning Yorùbá for Children (Intro Class) </p>
@@ -159,7 +171,7 @@
 
         </div>
 
-      </div>
+      </div> --}}
     </div>
 
     <div class="col-lg-3 my-4 my-md-2">

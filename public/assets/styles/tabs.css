@@ -1,0 +1,64 @@
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.tab-btn {
+  border: none;
+  color: var(--main-color);
+  background-color: var(--nav-bg);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab-btn:hover {
+  background-color: var(--main-color-dark);
+}
+
+.tab-btn.active {
+  color: #ffffff;
+  background-color: var(--main-color);
+  transform: translateX(-2px);
+}
+
+.tab-content {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+ @media(max-width:424px) {
+  .tab-btn {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+} 
+@media(max-width:373px) {
+  .tab-btn {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+} 

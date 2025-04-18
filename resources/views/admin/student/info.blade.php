@@ -72,7 +72,7 @@
             </tr>
             <tr>
               <th>Course Level</th>
-              <td>{{ $studentLevel->level->level}}</td>
+              <td>{{ $studentLevel->level->level_name}}</td>
             </tr>
             @empty
             <p class="text-danger">Student Course Details Not Available!!</p>

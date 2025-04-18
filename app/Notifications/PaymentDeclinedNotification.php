@@ -43,7 +43,7 @@ class PaymentDeclinedNotification extends Notification
             'currencySymbol' => $currencySymbol,
             'payment' => $this->paymentData,
             'data' =>$this->data,
-            'url' => url('admin/payments'),
+            'url' => route('parent.payments'),
         ]);
     }
 

@@ -36,7 +36,7 @@ class AppHelper
     }
 
 
-    public function getAuthParent()
+    public  function getAuthParent()
     {
       return  Auth::guard('parent')->user();
 
@@ -46,6 +46,9 @@ class AppHelper
     {
         return Auth::guard('web')->user();
     }
+
+
+   
 
     
 }

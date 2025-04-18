@@ -32,11 +32,10 @@
                 <tr>
                   <th scope="col">S/N</th>
                   <th scope="col">Name</th>
-                  {{-- <th scope="col">Birthday</th> --}}
                   <th scope="col">Gender</th>
                   <th scope="col">Course Name</th>
                   <th scope="col">Course Level</th>
-                  <th scope="col">Status</th>
+                  <th scope="col">Enrollment Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -46,11 +45,10 @@
                     <tr>
                       <td scope="row">{{ $loop->parent->iteration }}</td>
                       <td>{{ $student->name }}</td>
-                      {{-- <td>{{ $student->birthday }}</td> --}}
                       <td>{{ $student->gender }}</td>
                       <td>{{ $courseLevel->course->name }}</td>
                       <td>{{ $courseLevel->level->level_name }}</td>
-                      <td>{{ $courseLevel->paid ? 'Paid' : 'Pending' }}</td>
+                      <td>{{ $courseLevel->paid ? 'Paid' : 'Incomplete' }}</td>
                       <td>
                         <a href="{{ route('payment', ['student' => $student->id]) }}">
                           Proceed to Payment

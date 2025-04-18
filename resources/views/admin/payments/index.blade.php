@@ -97,7 +97,7 @@
                       <tr>
                           <th>S/N</th>
                           <th>Parent Name</th>
-                          <th>Amount Paid</th>
+                          <th>Amount Due</th>
                           <th>Status</th>
                           <th>Transaction Reference</th>
                           <th>Currency</th>

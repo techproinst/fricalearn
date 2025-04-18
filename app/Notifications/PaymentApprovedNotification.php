@@ -42,7 +42,7 @@ class PaymentApprovedNotification extends Notification
                 'parent' => $this->parent,
                 'currencySymbol' => $currencySymbol,
                 'payment' => $this->paymentData,
-                'url' => url('admin/payments'),
+                'url' => route('parent.payments'),
             ]); 
     }
 

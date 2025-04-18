@@ -112,4 +112,60 @@ class PaymentRepository implements PaymentInterface
             'courseLevel:id,level_name',
         ])->declined()->get();
     }
+    
+
+    public function getApprovedPaymentsForParent($parentId)
+    {
+        return  Payment::with(['student', 'course', 'courseLevel'])
+                       ->where('parent_id', $parentId)
+                       ->approved()
+                       ->paginate(1);
+    }
+
+    public function getPendingPaymentsForParent($parentId)
+    {
+        
+        return  Payment::with(['student', 'course', 'courseLevel'])
+                       ->where('parent_id', $parentId)
+                       ->pending()
+                       ->paginate(10);
+
+    }
+
+
+    public function getDeclinedPaymentsForParent($parentId)
+    {
+        return  Payment::with(['student', 'course', 'courseLevel'])
+                       ->where('parent_id', $parentId)
+                       ->declined()
+                       ->paginate(10);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

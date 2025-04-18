@@ -136,6 +136,7 @@ Route::middleware('auth:parent')->group(function () {
     Route::get('/initialize-payment/{student}', [PaymentController::class, 'showPaymentPage'])->name('payment');
     Route::post('/payment/store/{student}', [PaymentController::class, 'store'])->name('payment.store');
     Route::get('/payment/processing', [PaymentController::class, 'loadProcessingPage'])->name('payment.processing');
+    Route::get('/parent/payment', [ParentController::class, 'getParentPayments'])->name('parent.payments');
 
 
     Route::post('/parent/logout', [AuthenticatedSessionController::class, 'destroyParent'])->name('parent.logout');
