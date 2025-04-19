@@ -9,7 +9,10 @@
 @endsection
 
 @if(session('error'))
-    <script>alert("{{ session('error') }}")</script> {{-- Temporary debug --}}
+<script>
+  alert("{{ session('error') }}")
+
+</script> {{-- Temporary debug --}}
 @endif
 
 
@@ -28,8 +31,7 @@
           @csrf
           <div class="mb-3">
             <label for="fullname" class="form-label">Full Name</label>
-            <input type="text" class="form-control demo-input-height" id="fullname" placeholder="Enter your Name"
-              value="{{ old('name') }}" name="name" />
+            <input type="text" class="form-control demo-input-height" id="fullname" placeholder="Enter your Name" value="{{ old('name') }}" name="name" />
             <span class="text-danger">
               @error('name')
               {{ $message }}
@@ -39,8 +41,7 @@
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control demo-input-height" id="email" placeholder="Enter your Email"
-              name="email"  value="{{ old('email') }}" />
+            <input type="email" class="form-control demo-input-height" id="email" placeholder="Enter your Email" name="email" value="{{ old('email') }}" />
             <span class="text-danger">
               @error('email')
               {{ $message }}
@@ -49,13 +50,35 @@
           </div>
           <div class="mb-3">
             <label for="mobile-number" class="form-label">Mobile Number</label>
-            <input type="text" class="form-control demo-input-height" id="mobile-number"
-              placeholder="Enter your Mobile Number" name="phone"  value="{{ old('phone') }}" />
+            <input type="text" class="form-control demo-input-height" id="mobile-number" placeholder="Enter your Mobile Number" name="phone" value="{{ old('phone') }}" />
             <span class="text-danger">
               @error('phone')
               {{ $message }}
               @enderror
             </span>
+          </div>
+          <div class="mb-2">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control demo-input-height" id="password" placeholder="Enter your Password" name="password" value="{{ old('password') }}" />
+            <span class="text-danger">
+              @error('password')
+              {{ $message }}
+
+              @enderror
+
+            </span>
+          </div>
+          <div class="mb-2">
+            <label for="confirm_password" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control demo-input-height" id="confirm-password" placeholder="Enter your Password" name="confirm_password" value="{{ old('password') }}" />
+            <span class="text-danger">
+              @error('confirm_password')
+              {{ $message }}
+
+              @enderror
+
+            </span>
+
           </div>
           <label for="courses" class="form-label">Select Course</label>
           <select class="form-select demo-input-height mb-3" aria-label="courses" name="course_id">

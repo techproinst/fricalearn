@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Password;
 
 class ParentCourseRequest extends FormRequest
 {
@@ -26,6 +27,9 @@ class ParentCourseRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email:rfc,dns','max:255', 'unique:parents,email'],
             'phone' => ['required', 'string'],
+            'password' => ['required'],
+           // 'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()],
+            'confirm_password' => ['required','same:password'],
             'terms' => ['accepted'],
             
         ];
