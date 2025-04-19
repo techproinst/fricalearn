@@ -125,6 +125,7 @@ Route::get('/igbo-courses', [CourseController::class, 'showIgboCourses'])->name(
 Route::get('/hausa-courses', [CourseController::class, 'showHausaCourses'])->name('courses.hausa');
 
 
+
 Route::middleware('auth:parent')->group(function () {
 
     Route::get('/parent/dashboard', [ParentController::class, 'index'])->name('parent.dashboard');

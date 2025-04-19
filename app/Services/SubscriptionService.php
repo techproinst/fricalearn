@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Enums\SubscriptionStatus;
 use App\Helpers\AppHelper;
 use App\Interfaces\SubscriptionInterface;
+use App\Models\Subscription;
 
 class SubscriptionService
 {
@@ -43,6 +45,18 @@ class SubscriptionService
         $parent = $this->appHelper->getAuthParent();
 
         return $this->subscriptionInterface->getParentInActiveSubscriptions($parent->id);
+    }
+
+
+    public function processSubsription()
+    {
+        $subscriptions = Subscription::where('end_date', '<=', now())->get();
+
+     return     $subscriptions->update([
+            'is_active' => SubscriptionStatus::Inactive->value,
+
+        ]);
+
     }
 
     

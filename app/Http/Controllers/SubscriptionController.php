@@ -33,6 +33,14 @@ class SubscriptionController extends Controller
         return view('pages.parents.subscriptions', compact('activeSubscriptions', 'inActiveSubscriptions'));
     }
 
+
+    public function checkSubscriptions()
+    {
+      $expired =  $this->subscriptionService->processSubsription();
+
+      return $expired;
+    }
+
     /**
      * Show the form for creating a new resource.
      */

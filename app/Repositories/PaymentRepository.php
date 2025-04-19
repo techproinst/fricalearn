@@ -119,7 +119,7 @@ class PaymentRepository implements PaymentInterface
         return  Payment::with(['student', 'course', 'courseLevel'])
                        ->where('parent_id', $parentId)
                        ->approved()
-                       ->paginate(10);
+                       ->paginate(2);
     }
 
     public function getPendingPaymentsForParent($parentId)
@@ -128,7 +128,7 @@ class PaymentRepository implements PaymentInterface
         return  Payment::with(['student', 'course', 'courseLevel'])
                        ->where('parent_id', $parentId)
                        ->pending()
-                       ->paginate(10);
+                       ->paginate(2);
 
     }
 
@@ -138,7 +138,7 @@ class PaymentRepository implements PaymentInterface
         return  Payment::with(['student', 'course', 'courseLevel'])
                        ->where('parent_id', $parentId)
                        ->declined()
-                       ->paginate(10);
+                       ->paginate(2);
     }
 
 

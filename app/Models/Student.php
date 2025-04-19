@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ContinentGroup;
+use App\Enums\SubscriptionStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,6 +36,13 @@ class Student extends Model
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class);
+    }
+
+    public function activeSubscriptions()
+    {
+        return $this->hasMany(Subscription::class)
+                     ->where('is_active', SubscriptionStatus::Active->value)
+                     ->where('end_date', '>=', now());
     }
 
 

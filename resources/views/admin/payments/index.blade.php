@@ -71,7 +71,7 @@
                           <td>{!!$currencySymbol!!}{{ $payment->amount_due }}</td>
                           <td>{{ $payment->status}}</td>
                           <td>{{$payment->currency}}</td>
-                          <td><img class="rounded me-2"  alt="payment-receipt" width="200" src="{{ asset('storage/uploads/'.$payment->payment_receipt) }}" data-holder-rendered="true"></td>
+                          <td><img class="rounded me-2"  alt="payment-receipt" width="80" src="{{ asset('storage/uploads/'.$payment->payment_receipt) }}" data-holder-rendered="true"></td>
                           <td><a href="{{ route('student.show', ['student' => $payment->student->id]) }}">view Student Details</a></td>
                           <td>
                               @include('admin.payments.approve')
@@ -118,7 +118,7 @@
                           <td class="text-success">{{ $payment->status}}</td>
                           <td>{{ $payment->transaction_reference }}</td>
                           <td>{{ $payment->currency}}</td>
-                          <td><a href="{{ asset('storage/uploads/'.$payment->payment_receipt) }}"  target="_blank" ><img class="rounded me-2" alt="payment-receipt" width="200" src="{{ asset('storage/uploads/'.$payment->payment_receipt) }}" data-holder-rendered="true"></a></td>
+                          <td><a href="{{ asset('storage/uploads/'.$payment->payment_receipt) }}"  target="_blank" ><img class="rounded me-2" alt="payment-receipt" width="80" src="{{ asset('storage/uploads/'.$payment->payment_receipt) }}" data-holder-rendered="true"></a></td>
                           <td><a href="{{ route('student.show', ['student' => $payment->student->id]) }}">view Student Details</a></td>
                       </tr>    
                       @empty
@@ -156,7 +156,7 @@
                           <td class="text-danger">{{ $payment->status}}</td>
                           <td>{{ $payment->transaction_reference }}</td>
                           <td>{{ $payment->currency}}</td>
-                          <td><a href="{{ asset('storage/uploads/'.$payment->payment_receipt) }}"  target="_blank" ><img class="rounded me-2" alt="payment-receipt" width="200" src="{{ asset('storage/uploads/'.$payment->payment_receipt) }}" data-holder-rendered="true"></a></td>
+                          <td><a href="{{ asset('storage/uploads/'.$payment->payment_receipt) }}"  target="_blank" ><img class="rounded me-2" alt="payment-receipt" width="80" src="{{ asset('storage/uploads/'.$payment->payment_receipt) }}" data-holder-rendered="true"></a></td>
                           <td><a href="{{ route('student.show', ['student' => $payment->student->id]) }}">view Student Details</a></td>
                       </tr>    
                       @empty

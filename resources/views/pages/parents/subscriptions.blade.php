@@ -88,7 +88,7 @@
                           <th>Started On </th>
                           <th>Expired On</th>
                           <th>Status</th>
-                          <th>Action</th>
+                        
 
                         </tr>
                         </tr>
@@ -108,14 +108,14 @@
                             {{ $inActiveSubscription->is_active ? 'Active' : 'Expired' }}</td>
                         </tr>
                         @empty
-    
+
                         <p class="text-danger">No Expired subscriptions Available yet!!</p>
                         @endforelse
                       </tbody>
                     </table>
                     {!! $inActiveSubscriptions->withQueryString()->links('pagination::bootstrap-5') !!}
 
-                  </div> 
+                  </div>
 
                 </div>
 

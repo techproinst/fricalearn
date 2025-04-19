@@ -6,6 +6,7 @@ use App\Repositories\ClassScheduleRepository;
 use App\Repositories\PaymentRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\StudentScheduleRepository;
+use App\Repositories\SubscriptionRepository;
 
 class RepositoryHelper
 {
@@ -17,6 +18,7 @@ class RepositoryHelper
       public ClassScheduleRepository $classScheduleRepository,
       public StudentScheduleRepository $studentScheduleRepository,
       public PaymentRepository $paymentRepository,
+      public SubscriptionRepository $subscriptionRepository,
     )
     {
        
@@ -65,6 +67,11 @@ class RepositoryHelper
     public function getDeclinedPaymentsForParent($parentId)
     {
         return  $this->paymentRepository->getDeclinedPaymentsForParent($parentId);
+    }
+
+    public function markSubscriptionAsInactive()
+    {
+        return $this->subscriptionRepository->markSubscriptionAsInactive();
     }
 
 
