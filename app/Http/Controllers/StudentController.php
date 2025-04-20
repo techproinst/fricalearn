@@ -99,7 +99,6 @@ class StudentController extends Controller
             return back();
         }
 
-
         return view('admin.student.info', compact('studentInfo'));
     }
 

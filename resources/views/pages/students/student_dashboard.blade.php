@@ -56,8 +56,14 @@
                     <div class="card p-4 border-0">
                         <div class="text-center border-bottom">
                             <h5 class="pt-2 text-color">Your Profile</h5>
-                            <img src="{{ asset('assets/images/profile-img.png') }}" alt="" />
-                            <h5 class="pt-2 text-color">{{ Str::ucfirst($student->name) }}</h5>
+                            @if ($student->profile_photo)
+                                <img width="108" height="108" class="rounded-circle border border-5"
+                                    src="{{ asset('storage/uploads/' . $student->profile_photo) }}" alt="user">
+                            @else
+                                <img src="{{ asset('assets/images/profile-img.png') }}" alt="student" />
+                            @endif
+
+                            <h5 class="pt-3 text-color">{{ Str::ucfirst($student->name) }}</h5>
                             @forelse ($student->studentCourseLevels as $courseLevel)
                                 <p class="text-color">
                                     Learning {{ $courseLevel->level->course->name }} for Children
@@ -67,13 +73,14 @@
                                 <p class="text-danger">Error: No Course Details!!</p>
                             @endforelse
                         </div>
-                        <div class="d-flex justify-content-between pt-3">
+                        <div class="d-flex justify-content-between pt-4">
                             <h6 class="personal">Personal Information</h6>
                             <a href="" class="text-muted edit-text" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop"">Edit</a>
                         </div>
                         <div class="">
-                            <p><img src="{{ asset('assets/images/gender.png') }}" alt="" /> {{ $student->gender }}
+                            <p><img src=" {{ asset('assets/images/gender.png') }}" alt="" />
+                                {{ $student->gender }}
                             </p>
                         </div>
                         <div class="">
@@ -158,23 +165,13 @@
                 </div>
 
                 <div class="col-lg-3 my-md-2 ">
-                    <div class="px-4 rounded text-white w-100 d-flex flex-column align-items-center"
-                        style="background-color: #2F327D;">
-                        <p class="pt-3">- Support</p>
-                        <h6 class="">Easy access to support if needed.</h6>
-                        <div class="flex justify-content-between">
-                            <button class="chat-btn">Chat us</button>
-                            <img src="{{ asset('assets/images/robot-img.png') }}" alt="">
-
-                        </div>
-
-                    </div>
+                    <x-chat-us />
 
                 </div>
             </div>
             @include('pages.students.includes.edit')
     </section>
-   
+
     @section('other_scripts')
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
         <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
