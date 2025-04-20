@@ -25,7 +25,7 @@
         <div class="student-container">
           @forelse ($students as $student )
           <div class="student-card avatar-wrapper">
-            <a href=""><img class="student-img" src="{{ asset('assets/images/student-learnin-2.png') }}"
+            <a href="{{ route('student.dashboard',['student' => $student->id]) }}"><img class="student-img" src="{{ asset('assets/images/student-learnin-2.png') }}"
                 alt="Student" /></a>
 
             <p class="card-title mt-2 avatar-text">{{ $student->name }}</p>
@@ -36,13 +36,6 @@
           @endforelse 
           
 
-          {{-- <div class="student-card avatar-wrapper">
-            <a href="{{ url('student-dashboard') }}">
-              <img class="student-img" src="{{ asset('assets/images/student-learnin-1.png') }}" alt="Student" />
-            </a>
-
-            <p class="card-title mt-2 avatar-text">Matilda</p>
-          </div> --}}
 
           <div class="student-card border d-flex justify-content-center align-items-center add-wrapper">
             <div class="">

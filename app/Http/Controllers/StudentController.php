@@ -17,31 +17,30 @@ use Illuminate\Support\Facades\Log;
 class StudentController extends Controller
 {
 
-    public function __construct
-    (public CourseService $courseService,
-     public StudentService $studentService,
-     public RepositoryHelper $repositoryHelper,
-    )
-    {
-
-    }
+    public function __construct(
+        public CourseService $courseService,
+        public StudentService $studentService,
+        public RepositoryHelper $repositoryHelper,
+    ) {}
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Student $student)
     {
-        //
+        $student = $this->studentService->getStudentInfo(student: $student);
+
+        return view('pages.students.student_dashboard', compact('student'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {     
+    {
         $courses = $this->courseService->handleGetAllCourses();
         $levels =  $this->courseService->handleGetCourseLevels();
         $timezones = $this->repositoryHelper->getTimeZones();
-        
+
         return view('forms.student_registration_form', compact('courses', 'levels', 'timezones'));
     }
 
@@ -50,53 +49,42 @@ class StudentController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreStudentRequest $request)
-    {  
+    {
 
 
-       try{
-        
-        $studentData = null;
-        DB::transaction(function() use ($request, &$studentData) {
+        try {
 
-            $studentData = $this->studentService->handleCreateStudent($request);
+            $studentData = null;
+            DB::transaction(function () use ($request, &$studentData) {
 
-            if(!$studentData) {
-               throw new Exception('Failed to create student');
-              
-              }
+                $studentData = $this->studentService->handleCreateStudent($request);
 
-    
-  
-            $courseLevel = $this->studentService->handleCreateStudentCourseLevel($studentData, $request->course_id, $request->course_level);
- 
-            if(!$courseLevel) {
-             throw new Exception('Failed to assign course level');
-           
+                if (!$studentData) {
+                    throw new Exception('Failed to create student');
+                }
+
+
+
+                $courseLevel = $this->studentService->handleCreateStudentCourseLevel($studentData, $request->course_id, $request->course_level);
+
+                if (!$courseLevel) {
+                    throw new Exception('Failed to assign course level');
+                }
+            });
+
+
+            if ($studentData) {
+
+
+                ToastMagic::success('Student registration completed successfully');
+                return redirect()->route('student.schedule', ['student' => $studentData->id]);
             }
+        } catch (Exception $e) {
 
-
-        });
-
-        
-         if($studentData) {
-
-        
-            ToastMagic::success('Student registration completed successfully');
-            return redirect()->route('student.schedule', ['student' => $studentData->id]);
-         }
-
-
-       }catch(Exception $e){
-
-        Log::error('student registration error: ' .$e->getMessage());
-        ToastMagic::error('An error occurred during student registration');
-        return back();
-
-       }  
-      
-
-       
-    
+            Log::error('student registration error: ' . $e->getMessage());
+            ToastMagic::error('An error occurred during student registration');
+            return back();
+        }
     }
 
     /**
@@ -105,19 +93,14 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         $studentInfo =   $this->studentService->getStudentInfo($student);
-         
-        if(!$studentInfo) {
+
+        if (!$studentInfo) {
             ToastMagic::error('Student information not available');
             return back();
         }
 
 
         return view('admin.student.info', compact('studentInfo'));
-
-       
-
-    
-    
     }
 
     /**
@@ -133,7 +116,19 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        //
+        try {
+
+            $this->studentService->handleUpdateStudentProfile(request: $request, student: $student);
+
+            ToastMagic::success('You have successfully updated your profile');
+            return back();
+
+        } catch (Exception $e) {
+            
+            Log::error("Error updating parent profile:" . $e->getMessage());
+            ToastMagic::error("An error occured while updating profile");
+            return back();
+        }
     }
 
     /**

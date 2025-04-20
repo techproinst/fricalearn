@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\AgeRange;
+use Illuminate\Validation\Rules\Enum;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateStudentRequest extends FormRequest
@@ -11,7 +13,7 @@ class UpdateStudentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,10 @@ class UpdateStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:255'],
+            'birthday' => ['required', 'string'],
+            'age_range' => ['required', new Enum(AgeRange::class)],
+            'profile_photo' => ['required', 'file', 'mimes:png,jpg,jpeg,pdf', 'max:1024'],
         ];
     }
 }

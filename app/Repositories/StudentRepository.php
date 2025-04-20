@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\DataTransferObjects\Students\UpdateStudentDTO;
 use App\Enums\FeeStatus;
 use App\Interfaces\StudentInterface;
 use App\Models\CourseLevel;
@@ -106,6 +107,11 @@ class StudentRepository implements StudentInterface
     public function getStudentByParent($studentId, $parentId)
     {
         return Student::with('parent')->where('parent_id', $parentId)->where('id', $studentId)->first();
+    }
+
+    public function updateStudent(Student $student, UpdateStudentDTO $dto)
+    {
+       return $student->update($dto->toArray());
     }
 
 

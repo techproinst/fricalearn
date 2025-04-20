@@ -61,7 +61,7 @@ class ParentController extends Controller
 
         $students =  $this->parentService->handleGetParentKids();
 
-        return view('pages.select_student', compact('students'));
+        return view('pages.students.select_student', compact('students'));
     }
 
 

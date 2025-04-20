@@ -137,11 +137,16 @@ Route::middleware(['auth:parent', 'isParent'])->group(function () {
     Route::get('/payment/processing', [PaymentController::class, 'loadProcessingPage'])->name('payment.processing');
     Route::get('/parent/payment', [ParentController::class, 'getParentPayments'])->name('parent.payments');
     Route::get('/parent/subscription', [SubscriptionController::class, 'getParentSubscriptions'])->name('parent.subscriptions');
-    Route::post('/parent/profile-update/{parent}', [ParentController::class, 'update'])->name('parent.update');
+    Route::post('/parent/update/{parent}', [ParentController::class, 'update'])->name('parent.update');
+    Route::get('/student/dashboard/{student}', [StudentController::class, 'index'])->name('student.dashboard');
+    Route::post('/student/update/{student}', [StudentController::class, 'update'])->name('student.update');
+
+    
 
 
     Route::post('/parent/logout', [AuthenticatedSessionController::class, 'destroyParent'])->name('parent.logout');
 });
+
 
 /** 
  * Google login

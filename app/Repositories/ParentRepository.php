@@ -137,7 +137,7 @@ class ParentRepository implements ParentInterface
 
     public function getEnrolledStudents($parentId)
     {
-        return Student::with(['parent', 'paidCourseLevels.course',])
+        return Student::with(['parent', 'paidCourseLevels.course', 'activeSubscriptions'])
             ->where('parent_id', $parentId)
             ->has('paidCourseLevels')
             ->has('activeSubscriptions')

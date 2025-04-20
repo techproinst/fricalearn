@@ -39,7 +39,7 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody> 
                                     @forelse($studentEnrollments as $student)
                                         @forelse($student->studentCourseLevels as $courseLevel)
                                             <tr>

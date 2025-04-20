@@ -7,6 +7,7 @@
 @section('other_css')
     <link rel="stylesheet" href="{{ asset('assets/styles/demo.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/styles/student-dashboard.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/styles/dashboard-card-hover.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/styles/file-upload.css') }}">
 @endsection
 
@@ -30,7 +31,9 @@
                         <div class="row">
 
                             @forelse ($students as $student)
+                            
                                 <div class="col-12 col-md-6 col-lg-4 mb-4">
+                                    <a class="student-link" href="{{ route('student.dashboard',['student' => $student->id]) }}">
                                     <div class="card shadow-sm border-0 card-radius">
                                         <img src="{{ asset('assets/images/Frame 1618868856 (2).png') }}"
                                             class="card-img-top pt-3 px-3" alt="..." />
@@ -43,7 +46,9 @@
                                             @endforelse
                                         </div>
                                     </div>
+                                </a>
                                 </div>
+                        
 
                             @empty
                                 <p class="text-danger">You have no registered student yet!!.</p>
