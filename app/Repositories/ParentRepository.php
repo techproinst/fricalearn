@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\DataTransferObjects\UpdateParentDTO;
 use App\Enums\FeeStatus;
 use App\Interfaces\ParentInterface;
 use App\Models\ParentModel;
@@ -136,11 +137,16 @@ class ParentRepository implements ParentInterface
 
     public function getEnrolledStudents($parentId)
     {
-        return Student::with(['parent', 'paidCourseLevels.course', ])
+        return Student::with(['parent', 'paidCourseLevels.course',])
             ->where('parent_id', $parentId)
             ->has('paidCourseLevels')
             ->has('activeSubscriptions')
             ->get();
     }
+
+
+    public function updateParentData(ParentModel $parent, UpdateParentDTO $dto)
+    {
+        return $parent->update($dto->toArray());
+    }
 }
- 

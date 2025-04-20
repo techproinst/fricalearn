@@ -3,10 +3,12 @@
 namespace App\Services;
 
 use App\DataTransferObjects\ParentDTO;
+use App\DataTransferObjects\UpdateParentDTO;
 use App\Events\ParentRegistered;
 use App\Events\ParentRegisteredForDemoCourse;
 use App\Helpers\AppHelper;
 use App\Helpers\RepositoryHelper;
+use App\Http\Requests\UpdateParentModelRequest;
 use App\Interfaces\ParentInterface;
 use Carbon\Carbon;
 use Exception;
@@ -19,14 +21,11 @@ class ParentService
     /**
      * Create a new class instance.
      */
-    public function __construct
-    (public ParentInterface $parentInterface,
-     public AppHelper $appHelper,
-     public RepositoryHelper $repositoryHelper,
-    )
-    {
-        
-    }
+    public function __construct(
+        public ParentInterface $parentInterface,
+        public AppHelper $appHelper,
+        public RepositoryHelper $repositoryHelper,
+    ) {}
 
 
     public function createParent($request)
@@ -36,128 +35,117 @@ class ParentService
         return $this->parentInterface->storeParent($parentDemoDetails);
     }
 
-    public function sendParentDemoCourseLink($parentDetails) 
-    {    
+    public function sendParentDemoCourseLink($parentDetails)
+    {
         try {
 
             event(new ParentRegisteredForDemoCourse($parentDetails));
 
             return true;
-
-        }catch(Exception $e) {
+        } catch (Exception $e) {
 
             Log::error('Error sending email: ' . $e->getMessage());
 
             return false;
-
         }
-         
     }
 
     public function sendVerificationPin($parent)
-    {    
-       try {
+    {
+        try {
 
-       $this->parentInterface->checkPasswordReset($parent);
+            $this->parentInterface->checkPasswordReset($parent);
 
-       $otp = $this->parentInterface->storeOtp($parent, $this->generatePin());
-       
-     //  Log::info($otp);
+            $otp = $this->parentInterface->storeOtp($parent, $this->generatePin());
 
-       if($otp) {
+            //  Log::info($otp);
 
-        event(new ParentRegistered($parent, $otp));
+            if ($otp) {
 
-        return true;
+                event(new ParentRegistered($parent, $otp));
 
-       }
+                return true;
+            }
 
-       return false;
+            return false;
+        } catch (Exception $e) {
 
-       } catch(Exception $e){
+            Log::error('Error sending otp: ' . $e->getMessage());
 
-        Log::error('Error sending otp: ' . $e->getMessage());
-
-        return false;
-
-       } 
-
+            return false;
+        }
     }
 
-    public function generatePin() 
+    public function generatePin()
     {
         return rand(100000, 999999);;
     }
 
-    public function verifyOtp($request) 
+    public function verifyOtp($request)
     {
         $email = $request->validated()['email'];
 
         $otp = '';
-        for($i = 1; $i <= 6; $i++) {
-          $otp .= $request->validated()["otp_$i"];
-        }  
+        for ($i = 1; $i <= 6; $i++) {
+            $otp .= $request->validated()["otp_$i"];
+        }
 
         //fetch otp record
         $otpRecord = $this->parentInterface->getOtpRecord($email);
 
 
-       if(!$otpRecord) {
-        return null;
-       }
+        if (!$otpRecord) {
+            return null;
+        }
 
         $otpCreatedAt = Carbon::parse($otpRecord->created_at);
 
-        if(!Hash::check($otp, $otpRecord->token) || $otpCreatedAt->diffInMinutes(now()) >= 60) {
+        if (!Hash::check($otp, $otpRecord->token) || $otpCreatedAt->diffInMinutes(now()) >= 60) {
 
-            return null; 
-
+            return null;
         }
 
 
         return   $this->parentInterface->getParentByEmail($email);
     }
-    
+
 
     public function markEmailAsVerified($email)
     {
-          return $this->parentInterface->updateEmailVerification($email);
-
+        return $this->parentInterface->updateEmailVerification($email);
     }
 
     public function deleteOtpToken($email)
-    {    
-       return $this->parentInterface->deleteOtpRecord($email);
+    {
+        return $this->parentInterface->deleteOtpRecord($email);
     }
 
-   
 
-    public function mapParentFormData($request) 
-    {   
+
+    public function mapParentFormData($request)
+    {
 
         return ParentDTO::fromArray($request)->toArray();
-       
     }
 
 
     public function getStudents($parent)
     {
-       return $this->parentInterface->fetchStudentByParent($parent);
+        return $this->parentInterface->fetchStudentByParent($parent);
     }
 
 
     public function handleGetParentEnrollments()
     {
-       return $this->parentInterface->getUnpaidStudentEnrollments();
+        return $this->parentInterface->getUnpaidStudentEnrollments();
     }
 
 
     public function handleGetParentKids()
     {
         $parent = $this->appHelper->getAuthParent();
-    
-        return $this->parentInterface->getEnrolledStudents($parent->id);
 
+        return $this->parentInterface->getEnrolledStudents($parent->id);
     }
 
 
@@ -166,8 +154,6 @@ class ParentService
         $parent = $this->appHelper->getAuthParent();
 
         return $this->repositoryHelper->getApprovedPaymentsForParent($parent->id);
-
-
     }
 
 
@@ -176,7 +162,6 @@ class ParentService
         $parent = $this->appHelper->getAuthParent();
 
         return $this->repositoryHelper->getPendingPaymentsForParent($parent->id);
-
     }
 
     public function processDeclinedPayments()
@@ -184,14 +169,33 @@ class ParentService
         $parent = $this->appHelper->getAuthParent();
 
         return $this->repositoryHelper->getDeclinedPaymentsForParent($parent->id);
-
     }
 
 
+    public function handleUpdateParentInfo(UpdateParentModelRequest $request, $parent)
+    {
+        
+         $validatedData = $request->validated();
 
+         $profilePhoto = $this->appHelper->handleFileUpload($request, 'profile_photo');
 
-    
+         if(!$profilePhoto){
+            throw new Exception('Profile photo upload failed');
+         }
 
+         $dto = new UpdateParentDTO(
+            name: $validatedData['name'],
+            phone: $validatedData['phone'],
+            password: $validatedData['password'],
+            profilePhoto: $profilePhoto
 
+         );
 
+         $this->parentInterface->updateParentData($parent, $dto);
+         
+    }
+
+   
+
+   
 }

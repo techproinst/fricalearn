@@ -2,6 +2,9 @@
 
 namespace App\Interfaces;
 
+use App\DataTransferObjects\UpdateParentDTO;
+use App\Models\ParentModel;
+
 interface ParentInterface
 {
     public function storeParent($parentData);
@@ -23,6 +26,8 @@ interface ParentInterface
     public function getUnpaidStudentEnrollments();
 
     public function getEnrolledStudents($parentId);
+
+    public function updateParentData(ParentModel $parent, UpdateParentDTO $dto);
 
 
 

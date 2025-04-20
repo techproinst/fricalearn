@@ -29,7 +29,8 @@ class PaymentService
         public PaymentInterface $paymentInterface,
         public StudentService $studentService,
         public UserService $userService,
-        public RepositoryHelper $repositoryHelper,
+        private RepositoryHelper $repositoryHelper,
+        private AppHelper $appHelper,
     ) {
         //
     }
@@ -89,7 +90,6 @@ class PaymentService
             return null;
         }
 
-        //  dd($paymentReceipt);
 
         $parentId = Auth::guard('parent')->user()->id;
         $student = $this->studentService->getStudentCourseLevel($request->student_id);
@@ -108,24 +108,30 @@ class PaymentService
 
     public function handleFileUpload($request)
     {
-        if (!$request->hasFile('payment_receipt')) {
-            Log::error('Payment receipt upload failed: No file received');
-            return null;
-        }
 
-        $paymentReceipt = $request->file('payment_receipt');
-        $rad = mt_rand(1000, 9999);
 
-        $paymentReceiptName = md5($paymentReceipt->getClientOriginalName()) . $rad . '.' . $paymentReceipt->getClientOriginalExtension();
+        return $this->appHelper->handleFileUpload(request: $request,  field: 'payment_receipt');
 
-        $filePath =  $paymentReceipt->storeAs('uploads', $paymentReceiptName);
 
-        if (!$filePath) {
-            Log::error('Payment receipt upload failed: Unable to store file');
-            return null;
-        }
+        // if (!$request->hasFile('payment_receipt')) {
+        //     Log::error('Payment receipt upload failed: No file received');
+        //     return null;
+        // }
 
-        return  $paymentReceiptName;
+        // $paymentReceipt = $request->file('payment_receipt');
+        // $rad = mt_rand(1000, 9999);
+
+        // $paymentReceiptName = md5($paymentReceipt->getClientOriginalName()) . $rad . '.' . $paymentReceipt->getClientOriginalExtension();
+
+        // $filePath =  $paymentReceipt->storeAs('uploads', $paymentReceiptName);
+
+        // if (!$filePath) {
+        //     Log::error('Payment receipt upload failed: Unable to store file');
+        //     return null;
+        // }
+
+        // return  $paymentReceiptName;
+
     }
 
     public function  genUniqueTransactionNumber(string $prefix): string
@@ -153,7 +159,7 @@ class PaymentService
         $data['student_id'] = $request->student_id;
         $data['course_id']  = $student->course_id;
         $data['course_level_id'] = $student->course_level_id;
-     //   $data['amount'] = $request->amount;
+        //   $data['amount'] = $request->amount;
         $data['amount_due'] = $request->amount;
         $data['invoice_no'] = $this->genUniqueTransactionNumber(prefix: 'INV');
         $data['transaction_reference'] = $this->genUniqueTransactionNumber(prefix: 'TRX');
@@ -428,14 +434,4 @@ class PaymentService
     {
         return $this->paymentInterface->getDeclinedPayments();
     }
-
-
-
-
-
-
-
-
-
-
 }

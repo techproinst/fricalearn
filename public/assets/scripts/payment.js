@@ -1,10 +1,4 @@
-document
-  .getElementById("receiptUpload")
-  .addEventListener("change", function () {
-    let fileName =
-      this.files.length > 0 ? this.files[0].name : "File Name";
-    document.querySelector(".file-name").textContent = fileName;
-  });
+
 
 const buttons = document.querySelectorAll(".account");
 const africaBtn = document.querySelector(".africa-btn");

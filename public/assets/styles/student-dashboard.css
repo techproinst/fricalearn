@@ -35,7 +35,20 @@ h3 div {
 .edit-text {
   color: #ca13ab !important;
   font-size: 14px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
 }
+.edit-text:hover {
+  color: #ffffff  !important;
+  font-size: 12px;
+  padding: 4px 8px;  
+  border-radius: 4px;
+  background: var(--main-color);
+  transform: translateX(-2px);
+
+}
+
 .join-btn {
   color: #ffffff;
   background: var(--main-color);

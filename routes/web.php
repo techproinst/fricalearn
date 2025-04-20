@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 use Stevebauman\Location\Facades\Location;
 
 
-Route::get('/location', function(Request $request)  {
+Route::get('/location', function (Request $request) {
 
     // if ($position = Location::get()) {
     //     // Successfully retrieved position.
@@ -46,10 +46,7 @@ Route::get('/location', function(Request $request)  {
     } else {
         // fallback in case API fails
         echo "Unable to retrieve location information.";
-}
-
-
-
+    }
 });
 
 Route::get('/', function () {
@@ -115,7 +112,7 @@ Route::get('/demo-class/registration-success', [DemoCourseController::class, 'lo
 Route::get('/parent/registration-form', [ParentController::class, 'showRegistrationForm'])->name('parent.registration.form');
 Route::post('/parent/registration', [ParentController::class, 'storeParentForm'])->name('parent.registration.store');
 Route::get('/parent/verify-email/{parent}', [ParentController::class, 'showOtpForm'])->name('parent.verify_otp');
-Route::post('parent/verify-otp', [ParentController::class, 'verifyOtp' ])->name('otp.submit');
+Route::post('parent/verify-otp', [ParentController::class, 'verifyOtp'])->name('otp.submit');
 Route::get('parent/resend-otp/{parent}', [ParentController::class, 'resendOtp'])->name('otp.resend');
 
 
@@ -140,31 +137,25 @@ Route::middleware('auth:parent')->group(function () {
     Route::get('/payment/processing', [PaymentController::class, 'loadProcessingPage'])->name('payment.processing');
     Route::get('/parent/payment', [ParentController::class, 'getParentPayments'])->name('parent.payments');
     Route::get('/parent/subscription', [SubscriptionController::class, 'getParentSubscriptions'])->name('parent.subscriptions');
+    Route::post('/parent/profile-update/{parent}', [ParentController::class, 'update'])->name('parent.update');
 
 
     Route::post('/parent/logout', [AuthenticatedSessionController::class, 'destroyParent'])->name('parent.logout');
-
-
-
-   
-    
-   
 });
 
 /** 
  * Google login
  */
- Route::controller(SocialiteController::class)->group(function() {
+Route::controller(SocialiteController::class)->group(function () {
     Route::get('/auth/google',  'googleLogin')->name('auth.google');
-Route::get('/auth/google-callback', 'googleAuthentication')->name('auth.google_callback');
-
- });
-
+    Route::get('/auth/google-callback', 'googleAuthentication')->name('auth.google_callback');
+});
 
 
-Route::middleware(['auth', 'verified'])->group(function() {
 
-    Route::get('/dashboard', function() {
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
 
@@ -185,9 +176,6 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/admin/subscription', [SubscriptionController::class, 'index'])->name('subscriptions.show');
 
     Route::get('/student-info/{student}', [StudentController::class, 'show'])->name('student.show');
-
-
-
 });
 
 
@@ -197,4 +185,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

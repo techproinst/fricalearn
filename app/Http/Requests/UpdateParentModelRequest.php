@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class UpdateParentModelRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateParentModelRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,13 @@ class UpdateParentModelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string'],
+            'password' => ['required'],
+            // 'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()],
+            'confirm_password' => ['required', 'same:password'],
+            'profile_photo' => ['required', 'file', 'mimes:png,jpg,jpeg,pdf', 'max:1024'],
+
         ];
     }
 }

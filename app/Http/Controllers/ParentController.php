@@ -32,7 +32,7 @@ class ParentController extends Controller
     {
         $students =  $this->parentService->handleGetParentKids();
 
-        return view('pages.parent_dashboard', compact('students'));
+        return view('pages.parents.dashboard', compact('students'));
     }
 
     /**
@@ -244,17 +244,27 @@ class ParentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ParentModel $parentModel)
-    {
-        //
-    }
+    public function edit(ParentModel $parent) {}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update($request, ParentModel $parentModel)
+    public function update(UpdateParentModelRequest $request, ParentModel $parent)
     {
-        //
+
+        try {
+
+            $this->parentService->handleUpdateParentInfo($request, $parent);
+
+            ToastMagic::success('You have successfully updated your profile');
+            return back();
+
+        } catch (Exception $e) {
+            
+            Log::error("Error updating parent profile:" . $e->getMessage());
+            ToastMagic::error("An error occured while updating profile");
+            return back();
+        }
     }
 
     /**

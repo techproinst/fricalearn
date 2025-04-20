@@ -7,6 +7,7 @@
 @section('other_css')
 <link rel="stylesheet" href="{{ asset('assets/styles/demo.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/styles/payment.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/styles/file-upload.css') }}">
 @endsection
 
 @section('content')
@@ -57,7 +58,7 @@
                 <span class="file-name">File Name</span>
                 <span class="upload-text">Upload</span>
               </label>
-              <input type="file" id="receiptUpload" class="custom-file-input" name="payment_receipt" required/>
+              <input type="file" id="upload" class="custom-file-input" name="payment_receipt" required/>
               <input type="text" name="student_id" value="{{ $student->id }}" hidden>
               <input type="text" name="amount" value="{{ $amount[$continent] }}" hidden>
               <input type="text" name="continent" value="{{ $continent }}" hidden>
@@ -79,6 +80,7 @@
 </section>
 
 <script src="{{ asset('assets/scripts/payment.js') }}"></script>
+<script src="{{ asset('assets/scripts/file-upload.js') }}"></script>
 
 
 @endsection

@@ -62,7 +62,7 @@
                   @endforelse
                 @empty
                   <tr>
-                    <td colspan="7">You have no outstanding enrollment yet!!</td>
+                    <td class="text-success" colspan="7">You have no outstanding enrollment yet!!</td>
                   </tr>
                 @endforelse
               </tbody>
