@@ -123,7 +123,7 @@ Route::get('/hausa-courses', [CourseController::class, 'showHausaCourses'])->nam
 
 
 
-Route::middleware('auth:parent')->group(function () {
+Route::middleware(['auth:parent', 'isParent'])->group(function () {
 
     Route::get('/parent/dashboard', [ParentController::class, 'index'])->name('parent.dashboard');
     Route::get('/parent/enrollment', [ParentController::class, 'getIncompleteEnrollment'])->name('parent.enrollments');
