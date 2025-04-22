@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\DataTransferObjects\ClassScheduleDTO;
+use App\DataTransferObjects\Schedules\ClassScheduleDTO;
 use App\Enums\ContinentGroup;
 use App\Interfaces\ClassScheduleInterface;
 use App\Models\ClassSchedule;

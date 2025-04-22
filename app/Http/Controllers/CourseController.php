@@ -42,6 +42,16 @@ class CourseController extends Controller
     }
 
 
+    public function getAllCourses()
+    {
+       $courses =  $this->courseService->getAllCourseDetails();
+
+       // return $courses;
+
+        return view('admin.courses.index', compact('courses'));
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

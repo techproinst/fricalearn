@@ -18,18 +18,24 @@ class CourseRepository implements CourseInterface
         //
     }
 
+
     public function getAllCourses()
     {
-       return Course::all(); 
+        return Course::all();
     }
 
     public function getcourseByLevel($course_id)
     {
-       return  CourseLevel::where('course_id', $course_id)->get();
+        return  CourseLevel::where('course_id', $course_id)->get();
     }
 
     public function getCourseLevels()
     {
         return EnumsCourseLevel::values();
+    }
+
+    public function getAllCourseDetails()
+    {
+        return Course::with('courseLevels')->get();
     }
 }

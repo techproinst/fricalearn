@@ -1,7 +1,7 @@
 <?php
 
-namespace App\DataTransferObjects;
-
+namespace App\DataTransferObjects\Payments;
+    
 readonly class PaymentApprovalDTO
 {
     /**

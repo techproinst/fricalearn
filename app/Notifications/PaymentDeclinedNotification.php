@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Helpers\AppHelper;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -34,7 +35,8 @@ class PaymentDeclinedNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $currencySymbol = $this->paymentData->currency == 'ngn' ? '&#8358;' : '$';
+    
+      $currencySymbol = AppHelper::currencySymbol(currency: $this->paymentData->currency);
 
         return (new MailMessage)
         ->subject('Payment Declined Notification')

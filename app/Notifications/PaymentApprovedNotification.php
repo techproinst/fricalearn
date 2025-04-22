@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Helpers\AppHelper;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -33,8 +34,8 @@ class PaymentApprovedNotification extends Notification
      * Get the mail representation of the notification.
      */
     public function toMail(object $notifiable): MailMessage
-    {   
-         $currencySymbol = $this->paymentData->currency == 'ngn' ? '&#8358;' : '$';
+    {
+        $currencySymbol = AppHelper::currencySymbol(currency: $this->paymentData->currency);
 
         return (new MailMessage)
             ->subject('Payment Approval Notification')
@@ -43,7 +44,7 @@ class PaymentApprovedNotification extends Notification
                 'currencySymbol' => $currencySymbol,
                 'payment' => $this->paymentData,
                 'url' => route('parent.payments'),
-            ]); 
+            ]);
     }
 
     /**

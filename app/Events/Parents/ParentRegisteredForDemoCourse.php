@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Parents;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -10,18 +10,20 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PaymentInitiated
+class ParentRegisteredForDemoCourse
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $parentData;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(public $admins, public $paymentDetails)
+    public function __construct($parentData)
     {
-    
+        $this->parentData = $parentData;
     }
-      
+
     /**
      * Get the channels the event should broadcast on.
      *

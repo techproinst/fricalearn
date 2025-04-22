@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataTransferObjects;
+namespace App\DataTransferObjects\Students;
 
 use Illuminate\Support\Facades\Auth;
 

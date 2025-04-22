@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Parents;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -10,18 +10,16 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ParentRegisteredForDemoCourse
+class ParentRegistered
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
-    public $parentData;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($parentData)
+    public function __construct(public $parent, public $otp)
     {
-        $this->parentData = $parentData;
+        //
     }
 
     /**

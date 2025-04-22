@@ -30,18 +30,28 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-book-open"></i>
-                        <span>Course Menu</span>
+                        <span>Courses Menu</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('demo_course.index') }}">Demo Courses</a></li>
+                        <li><a href="{{ route('courses.show') }}">Courses</a></li>
+                        <li><a href="{{ route('course_materials.show') }}">Upload Course Material</a></li>
                     </ul>
                 </li>
+                
                 <li>
-                    <a href="{{ route('class_schedule.index') }}" class="waves-effect">
-                        <i class=" fas fa-calendar-alt"></i>
-                        <span>Schedule Classes</span>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Schedules Menu</span>
                     </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="{{ route('class_schedule.index') }}">Class Schedules</a></li>
+                        <li><a href="auth-register.html">Class Links</a></li>
+
+                    </ul>
                 </li>
+
+
                 <li>
                     <a href="{{ route('payments.show') }}" class="waves-effect">
                         <i class=" fas fa-money-check-alt"></i>
@@ -51,14 +61,14 @@
                 </li>
                 <li>
                     <a href="{{ route('subscriptions.show') }}" class="waves-effect">
-                        <i class="fas fa-redo-alt"></i>
+                        <i class=" fas fa-sync-alt"></i>
                         <span>Subscriptions Menu</span>
                     </a>
 
                 </li>
 
 
-                {{--
+              {{--  
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -77,6 +87,7 @@
                                 <li><a href="layouts-colored-sidebar.html">Colored Sidebar</a></li>
                             </ul>
                         </li>
+                </li>
 
                         <li>
                             <a href="javascript: void(0);" class="has-arrow">Horizontal</a>

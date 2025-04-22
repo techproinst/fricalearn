@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ClassScheduleController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseLevelController;
+use App\Http\Controllers\CourseMaterialController;
 use App\Http\Controllers\DemoCourseController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\PaymentController;
@@ -141,7 +143,7 @@ Route::middleware(['auth:parent', 'isParent'])->group(function () {
     Route::get('/student/dashboard/{student}', [StudentController::class, 'index'])->name('student.dashboard');
     Route::post('/student/update/{student}', [StudentController::class, 'update'])->name('student.update');
 
-    
+
 
 
     Route::post('/parent/logout', [AuthenticatedSessionController::class, 'destroyParent'])->name('parent.logout');
@@ -179,9 +181,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/decline-payment/{payment}', [PaymentController::class, 'declinePayment'])->name('payment.decline');
 
     Route::get('/admin/subscription', [SubscriptionController::class, 'index'])->name('subscriptions.show');
-
     Route::get('/student-info/{student}', [StudentController::class, 'show'])->name('student.show');
+
+    Route::get('/admin/courses', [CourseController::class, 'getAllCourses'])->name('courses.show');
+    Route::put('/admin/update-course/{courseLevel}', [CourseLevelController::class, 'update'])->name('course_level.update');
+    Route::get('/admin/course-material', [CourseMaterialController::class, 'index'])->name('course_materials.show');
+    Route::get('/courses/{courseId}/levels', [CourseLevelController::class, 'getLevels']);
+    Route::post('/upload/course-material', [CourseMaterialController::class, 'store'])->name('course_material.store');
+   
 });
+
+
+    
 
 
 Route::middleware('auth')->group(function () {

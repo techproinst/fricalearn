@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Repositories\ClassScheduleRepository;
+use App\Repositories\CourseRepository;
 use App\Repositories\PaymentRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\StudentScheduleRepository;
@@ -14,11 +15,12 @@ class RepositoryHelper
      * Create a new class instance.
      */
     public function __construct 
-    ( public StudentRepository $studentRepository,
-      public ClassScheduleRepository $classScheduleRepository,
-      public StudentScheduleRepository $studentScheduleRepository,
-      public PaymentRepository $paymentRepository,
-      public SubscriptionRepository $subscriptionRepository,
+    ( private StudentRepository $studentRepository,
+      private ClassScheduleRepository $classScheduleRepository,
+      private StudentScheduleRepository $studentScheduleRepository,
+      private PaymentRepository $paymentRepository,
+      private SubscriptionRepository $subscriptionRepository,
+      private CourseRepository $courseRepository,
     )
     {
        
@@ -72,6 +74,11 @@ class RepositoryHelper
     public function markSubscriptionAsInactive()
     {
         return $this->subscriptionRepository->markSubscriptionAsInactive();
+    }
+
+    public function getAllCourses()
+    {
+         return $this->courseRepository->getAllCourses();
     }
 
 

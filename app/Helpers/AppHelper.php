@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Enums\Currency;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
@@ -67,5 +68,11 @@ class AppHelper
         }
 
         return  $fileName;
+    }
+
+
+    public static function currencySymbol(string $currency)
+    {
+        return $currency == 'ngn' ? Currency::NAIRA->value : Currency::DOLLAR->value;
     }
 }

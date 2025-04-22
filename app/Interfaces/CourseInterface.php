@@ -9,4 +9,8 @@ interface CourseInterface
     public function getcourseByLevel($course_id);
 
     public function getCourseLevels();
+
+    public function getAllCourseDetails();
+
+
 }

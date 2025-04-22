@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\DataTransferObjects\StudentDTO;
+use App\DataTransferObjects\Students\StudentDTO;
 use App\DataTransferObjects\Students\UpdateStudentDTO;
 use App\Enums\ContinentGroup;
 use App\Helpers\AppHelper;
