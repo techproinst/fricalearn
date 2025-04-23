@@ -33,35 +33,67 @@
     </div>
 
     <div class="row">
-        {{-- @forelse ($demoCourses as $demoCourse )
-  <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Demo Course Name</h4>
-        <h6 class="card-subtitle font-14 text-muted">{{ $demoCourse->courses->name }}</h6>
-      </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-3">Resources</h4>
 
-      <iframe src="{{ $demoCourse->demo_course_link }}" title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      <div class="card-body">
-        <p class="card-text">{{ $demoCourse->courses->description }}</p>
-        @include('admin.courses.demo_course.edit')
-        @include('admin.courses.demo_course.delete')
-        <span class="badge bg-primary" data-bs-toggle="modal"
-          data-bs-target="#edit-form{{ $demoCourse->id }}">Edit</span>
-        <span class="badge bg-danger" data-bs-toggle="modal"
-          data-bs-target="#delete-form{{ $demoCourse->id }}">Delete</span>
-      </div>
-    </div>
-  </div>
+                    <table id="state-saving-datatable" class="table activate-select dt-responsive nowrap w-100">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Course</th>
+                                <th>Level</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Material link</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
 
-  @empty
+                        <tbody>
+                            @forelse ($courseResources as $resource)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $resource->course->name }}</td>
+                                    <td>{{ $resource->courseLevel->level_name }}</td>
+                                    <td>{{ $resource->title }}</td>
+                                    <td>{{ $resource->description }}</td>
+                                    @php
+                                        $videoId = '';
+                                        if (preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $resource->material, $matches)) {
+                                            $videoId = $matches[1];
+                                        }
+                                    @endphp
+                                    <td>
+                                        <iframe src="https://www.youtube.com/embed/{{ $videoId }}"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            referrerpolicy="strict-origin-when-cross-origin" height="100" allowfullscreen>
+                                        </iframe>
+                                    </td>
+                                    <td>
+                                   @include('admin.courses.material.edit')
+                                   @include('admin.courses.material.delete') 
+                                        <span class="badge bg-primary" data-bs-toggle="modal"
+                                            data-bs-target="#edit-form{{ $resource->id }}"> <i class=" fas fa-edit"></i>
+                                            Edit</span>
+                                        <span class="badge bg-danger" data-bs-toggle="modal"
+                                            data-bs-target="#delete-form{{ $resource->id }}"> <i class=" fas fa-trash"></i>
+                                            Delete</span>
 
-  <p>No Demo Course currently available</p>
+                                    </td>
+                                </tr>
+                            @empty
+                                <p class="text-danger">No Course resources Available yet!!</p>
+                            @endforelse
 
-  @endforelse --}}
+                        </tbody>
+                    </table>
 
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- demo course modal -->
@@ -78,7 +110,7 @@
                         <div class="mb-3">
                             <label for="courses">Courses</label>
                             <div class="mb-3">
-                                <select id="course" class="form-select" aria-label="courses" name="course_id" required>
+                                <select  class="form-select course-select" aria-label="courses" name="course_id" required>
                                     <option value="">--select course</option>
                                     @foreach ($courses as $course)
                                         <option value="{{ $course->id }}"
@@ -95,7 +127,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <select id="level" class="form-select" aria-label="level" name="course_level_id" required>
+                            <select  class="form-select level-select" aria-label="level" name="course_level_id" required>
                                 <option value="">--Select Course Level</option>
                             </select>
                             <span class="text-danger">
@@ -108,8 +140,8 @@
                         <div class="mb-3">
                             <label>Title</label>
                             <div>
-                                <input  type="text" class="form-control" required placeholder="Material title"
-                                    name="title"  value="{{ old('title') }}" />
+                                <input type="text" class="form-control" required placeholder="Material title"
+                                    name="title" value="{{ old('title') }}" />
                                 <span class="text-danger">
                                     @error('title')
                                         {{ $message }}
@@ -120,8 +152,8 @@
                         <div class="mb-3">
                             <label>Description</label>
                             <div>
-                                <input  type="text" class="form-control" required placeholder="Description"
-                                    name="description"  value="{{ old('description') }}"/>
+                                <input type="text" class="form-control" required placeholder="Description"
+                                    name="description" value="{{ old('description') }}" />
                                 <span class="text-danger">
                                     @error('description')
                                         {{ $message }}
@@ -133,7 +165,7 @@
                             <label>URL</label>
                             <div>
                                 <input parsley-type="url" type="url" class="form-control" required placeholder="URL"
-                                    name="material"  value="{{ old('material') }}"/>
+                                    name="material" value="{{ old('material') }}" />
                                 <span class="text-danger">
                                     @error('material')
                                         {{ $message }}

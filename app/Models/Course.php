@@ -21,4 +21,11 @@ class Course extends Model
         return $this->hasMany(ClassSchedule::class, 'course_id');
     }
 
+    public function courseMaterials()
+    {
+        return $this->hasMany(CourseMaterial::class, 'course_id');
+    }
+
+
+
 }

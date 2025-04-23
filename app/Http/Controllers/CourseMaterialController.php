@@ -21,8 +21,11 @@ class CourseMaterialController extends Controller
     {
         $courses = $this->courseMaterialService->getAllCourses();
 
-        return view('admin.courses.material.index', compact('courses'));
+        $courseResources = $this->courseMaterialService->getCourseResources();
+
+        return view('admin.courses.material.index', compact('courses', 'courseResources'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,17 +42,15 @@ class CourseMaterialController extends Controller
     {
         try {
 
-             $this->courseMaterialService->processStoreCourseMaterial($request);
-            
+            $this->courseMaterialService->processStoreCourseMaterial($request);
+
             ToastMagic::success('Course material uploaded successfully');
             return back();
-
         } catch (Exception $e) {
 
-            Log::error(message:'Course material upload error: ' .$e->getMessage());
+            Log::error(message: 'Course material upload error: ' . $e->getMessage());
             ToastMagic::error('Course material upload Failed');
             return back();
-
         }
     }
 
@@ -72,9 +73,20 @@ class CourseMaterialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCourseMaterialRequest $request, CourseMaterial $courseMaterial)
+    public function update(storeCourseMaterialRequest $request, CourseMaterial $courseMaterial)
     {
-        //
+        try {
+
+            $this->courseMaterialService->processUpdateCourseMaterial(request: $request, courseMaterial: $courseMaterial);
+
+            ToastMagic::success('Course material updated successfully');
+            return back();
+        } catch (Exception $e) {
+
+            Log::error(message: 'Course material update error: ' . $e->getMessage());
+            ToastMagic::error('Course material update Failed');
+            return back();
+        }
     }
 
     /**
@@ -82,6 +94,18 @@ class CourseMaterialController extends Controller
      */
     public function destroy(CourseMaterial $courseMaterial)
     {
-        //
+        try {
+
+            $this->courseMaterialService->handleDestroyCourseMaterial(courseMaterial: $courseMaterial);
+
+            ToastMagic::success('Course material deleted successfully');
+            return back();
+            
+        } catch (Exception $e) {
+
+            Log::error(message: 'Course material delete error: ' . $e->getMessage());
+            ToastMagic::error('Course material deletion  Failed');
+            return back();
+        }
     }
 }

@@ -19,6 +19,24 @@ class CourseMaterialRepository implements CourseMaterialInterface
 
     public function storeCourseMaterial(CourseMaterialDTO $dto): CourseMaterial
     {
-         return CourseMaterial::create($dto->toArray());
+        return CourseMaterial::create($dto->toArray());
+    }
+
+    public function getCourseResources()
+    {
+        return CourseMaterial::with([
+            'course:id,name,description',
+            'courseLevel:id,level_name'
+        ])->get();
+    }
+
+    public function updateCourseMaterial(CourseMaterial $courseMaterial, CourseMaterialDTO $dto):bool
+    {
+        return $courseMaterial->update($dto->toArray());
+    }
+
+    public function deleteCourseMaterial($courseMaterial):bool
+    {
+        return $courseMaterial->delete();
     }
 }

@@ -188,6 +188,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/course-material', [CourseMaterialController::class, 'index'])->name('course_materials.show');
     Route::get('/courses/{courseId}/levels', [CourseLevelController::class, 'getLevels']);
     Route::post('/upload/course-material', [CourseMaterialController::class, 'store'])->name('course_material.store');
+    Route::put('/update/{courseMaterial}/course-material', [CourseMaterialController::class, 'update'])->name('course_material.update');
+    Route::delete('delete/{courseMaterial}/course-material', [CourseMaterialController::class, 'destroy'])->name('course_material.destroy');
    
 });
 

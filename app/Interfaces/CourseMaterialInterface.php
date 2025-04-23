@@ -8,4 +8,10 @@ use App\Models\CourseMaterial;
 interface CourseMaterialInterface
 {
     public function storeCourseMaterial(CourseMaterialDTO $dto): CourseMaterial;
+
+    public function getCourseResources();
+
+    public function updateCourseMaterial(CourseMaterial $courseMaterial, CourseMaterialDTO $dto):bool;
+
+    public function deleteCourseMaterial(CourseMaterial $courseMaterial):bool;
 }

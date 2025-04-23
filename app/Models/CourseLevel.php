@@ -18,4 +18,9 @@ class CourseLevel extends Model
     {
         return $this->hasMany(Subscription::class);
     }
+
+    public function CourseMaterials()
+    {
+        return $this->hasMany(CourseMaterial::class, 'course_level_id');
+    }
 }
