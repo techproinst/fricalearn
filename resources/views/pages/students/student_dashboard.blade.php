@@ -100,66 +100,103 @@
                             <div>Resources & materials</div>
                         </h4>
                         <div class="row py-3">
-                            <div class="col-12 col-md-6 col-lg-4 mb-4">
-                                <div class="card shadow-sm border-0 card-radius">
-                                    <img src="{{ asset('assets/images/dashboard-card-img.png') }}"
-                                        class="card-img-top pt-3 px-3" alt="..." />
-                                    <div class="card-body">
-                                        <div class="">
-                                            <button class="level-btn me-2">Beginner</button>
-                                            <button type="button" class="level-btn">
-                                                <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45
-                                                Minutes
-                                            </button>
-                                        </div>
-                                        <div class="pt-2 pb-1">
-                                            Learning Yorùbá for Children (Intro Class)
-                                        </div>
+                            @forelse ($courseResources as $resource)
+                                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                                    <div class="card shadow-sm border-0 card-radius">
+                                        @php
+                                        $videoId = '';
+                                        if (preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $resource->material, $matches)) {
+                                            $videoId = $matches[1];
+                                        }
+                                       @endphp
+                                    
+                                        <iframe src="https://www.youtube.com/embed/{{ $videoId }}"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            referrerpolicy="strict-origin-when-cross-origin" height="180" allowfullscreen>
+                                        </iframe>
+                                      
+                                        <div class="card-body">
+                                            <div class="">
+                                                <button
+                                                    class="level-btn me-2">{{ $resource->courseLevel->level_name }}</button>
+                                                <button type="button" class="level-btn">
+                                                    5
+                                                    Minutes
+                                                </button>
+                                            </div>
+                                            <div class="pt-2 pb-1">
+                                                {{ $resource->description }}
+                                            </div>
 
-                                        <a class="mt-2 start-text" href="">Start Watching</a>
+                                            <a class="mt-2 start-text" href="">Start Watching</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-4 mb-4">
-                                <div class="card shadow-sm border-0 card-radius">
-                                    <img src="{{ asset('assets/images/dashboard-card-img.png') }}"
-                                        class="card-img-top pt-3 px-3" alt="..." />
-                                    <div class="card-body">
-                                        <div class="">
-                                            <button class="level-btn me-2">Beginner</button>
-                                            <button type="button" class="level-btn">
-                                                <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45
-                                                Minutes
-                                            </button>
-                                        </div>
-                                        <div class="pt-2 pb-1">
-                                            Learning Yorùbá for Children (Intro Class)
-                                        </div>
 
-                                        <a class="mt-2 start-text" href="">Start Watching</a>
+                            @empty
+                                <p>No course resources available yet!!</p>
+                            @endforelse
+                            {{-- <div class="col-12 col-md-6 col-lg-4 mb-4">
+                            <div class="card shadow-sm border-0 card-radius">
+                                <img src="{{ asset('assets/images/dashboard-card-img.png') }}"
+                                    class="card-img-top pt-3 px-3" alt="..." />
+                                <div class="card-body">
+                                    <div class="">
+                                        <button class="level-btn me-2">Beginner</button>
+                                        <button type="button" class="level-btn">
+                                            <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45
+                                            Minutes
+                                        </button>
                                     </div>
+                                    <div class="pt-2 pb-1">
+                                        Learning Yorùbá for Children (Intro Class)
+                                    </div>
+
+                                    <a class="mt-2 start-text" href="">Start Watching</a>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6 col-lg-4 mb-4">
-                                <div class="card shadow-sm border-0 card-radius">
-                                    <img src="{{ asset('assets/images/dashboard-card-img.png') }}"
-                                        class="card-img-top pt-3 px-3" alt="..." />
-                                    <div class="card-body">
-                                        <div class="">
-                                            <button class="level-btn me-2">Beginner</button>
-                                            <button type="button" class="level-btn">
-                                                <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45
-                                                Minutes
-                                            </button>
-                                        </div>
-                                        <div class="pt-2 pb-1">
-                                            Learning Yorùbá for Children (Intro Class)
-                                        </div>
-
-                                        <a class="mt-2 start-text" href="">Start Watching</a>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 mb-4">
+                            <div class="card shadow-sm border-0 card-radius">
+                                <img src="{{ asset('assets/images/dashboard-card-img.png') }}"
+                                    class="card-img-top pt-3 px-3" alt="..." />
+                                <div class="card-body">
+                                    <div class="">
+                                        <button class="level-btn me-2">Beginner</button>
+                                        <button type="button" class="level-btn">
+                                            <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45
+                                            Minutes
+                                        </button>
                                     </div>
+                                    <div class="pt-2 pb-1">
+                                        Learning Yorùbá for Children (Intro Class)
+                                    </div>
+
+                                    <a class="mt-2 start-text" href="">Start Watching</a>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 mb-4">
+                            <div class="card shadow-sm border-0 card-radius">
+                                <img src="{{ asset('assets/images/dashboard-card-img.png') }}"
+                                    class="card-img-top pt-3 px-3" alt="..." />
+                                <div class="card-body">
+                                    <div class="">
+                                        <button class="level-btn me-2">Beginner</button>
+                                        <button type="button" class="level-btn">
+                                            <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45
+                                            Minutes
+                                        </button>
+                                    </div>
+                                    <div class="pt-2 pb-1">
+                                        Learning Yorùbá for Children (Intro Class)
+                                    </div>
+
+                                    <a class="mt-2 start-text" href="">Start Watching</a>
+                                </div>
+                            </div>
+                        </div> --}}
                         </div>
                     </div>
                 </div>

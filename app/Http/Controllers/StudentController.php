@@ -7,6 +7,7 @@ use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Course;
+use App\Models\StudentCourseLevel;
 use App\Services\CourseService;
 use App\Services\StudentService;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
@@ -29,7 +30,9 @@ class StudentController extends Controller
     {
         $student = $this->studentService->getStudentInfo(student: $student);
 
-        return view('pages.students.student_dashboard', compact('student'));
+        $courseResources  =  $this->studentService->handleGetCourseResources(student:$student);
+
+        return view('pages.students.student_dashboard', compact('student','courseResources'));
     }
 
     /**

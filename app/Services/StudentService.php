@@ -10,6 +10,7 @@ use App\Helpers\RepositoryHelper;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Interfaces\StudentInterface;
 use App\Models\Student;
+use App\Models\StudentCourseLevel;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -123,7 +124,7 @@ class StudentService
 
         $dto = $this->mapValidatedData($validatedData, $profilePhoto);
 
-        $this->studentInterface->updateStudent(student:$student, dto:$dto);
+        $this->studentInterface->updateStudent(student: $student, dto: $dto);
     }
 
     public function mapValidatedData(array $validatedData, string $profilePhoto)
@@ -134,5 +135,12 @@ class StudentService
             ageRange: $validatedData['age_range'],
             profilePhoto: $profilePhoto
         );
+    }
+
+    public function handleGetCourseResources(Student $student)
+    {
+        $studentCourseLevel = $student->paidCourseLevels()->first();
+    
+       return   $this->repositoryHelper->getStudentCourseResources($studentCourseLevel->course_id, $studentCourseLevel->course_level_id);
     }
 }

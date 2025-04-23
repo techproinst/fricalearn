@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Repositories\ClassScheduleRepository;
+use App\Repositories\CourseMaterialRepository;
 use App\Repositories\CourseRepository;
 use App\Repositories\PaymentRepository;
 use App\Repositories\StudentRepository;
@@ -21,6 +22,7 @@ class RepositoryHelper
       private PaymentRepository $paymentRepository,
       private SubscriptionRepository $subscriptionRepository,
       private CourseRepository $courseRepository,
+      private CourseMaterialRepository $courseMaterialRepository,
     )
     {
        
@@ -79,6 +81,11 @@ class RepositoryHelper
     public function getAllCourses()
     {
          return $this->courseRepository->getAllCourses();
+    }
+
+    public function getStudentCourseResources($courseId, $courseLevelId)
+    {   
+        return  $this->courseMaterialRepository->getStudentCourseResources($courseId, $courseLevelId);
     }
 
 

@@ -39,4 +39,13 @@ class CourseMaterialRepository implements CourseMaterialInterface
     {
         return $courseMaterial->delete();
     }
+
+
+    public function getStudentCourseResources(int $courseId, int $courseLevelId)
+    {   
+       return CourseMaterial::with('courseLevel')->where('course_id', $courseId)
+                            ->where('course_level_id', $courseLevelId)
+                            ->inRandomOrder()
+                            ->get();
+    }
 }
