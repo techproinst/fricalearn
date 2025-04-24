@@ -2,15 +2,15 @@
 
 namespace App\Services;
 
-use App\DataTransferObjects\PaymentApprovalDTO;
-use App\DataTransferObjects\PaymentDeclineDTO;
-use App\DataTransferObjects\PaymentDTO;
-use App\DataTransferObjects\SubscriptionDTO;
+use App\DataTransferObjects\Payments\PaymentApprovalDTO;
+use App\DataTransferObjects\Payments\PaymentDeclineDTO;
+use App\DataTransferObjects\Payments\PaymentDTO;
+use App\DataTransferObjects\Subscriptions\SubscriptionDTO;
 use App\Enums\Continent;
 use App\Enums\PaymentStatus;
-use App\Events\PaymentApproved;
-use App\Events\PaymentDeclined;
-use App\Events\PaymentInitiated;
+use App\Events\Payments\PaymentApproved;
+use App\Events\Payments\PaymentDeclined;
+use App\Events\Payments\PaymentInitiated;
 use App\Helpers\AppHelper;
 use App\Helpers\RepositoryHelper;
 use App\Interfaces\PaymentInterface;

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\DataTransferObjects\StudentScheduleDTO;
+use App\DataTransferObjects\Schedules\StudentScheduleDTO;
 use App\Interfaces\StudentScheduleInterface;
 
 class StudentScheduleService

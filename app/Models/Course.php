@@ -15,7 +15,7 @@ class Course extends Model
     {
         return $this->hasMany(CourseLevel::class, 'course_id');
     }
-    
+
     public function classSchedules()
     {
         return $this->hasMany(ClassSchedule::class, 'course_id');
@@ -25,7 +25,4 @@ class Course extends Model
     {
         return $this->hasMany(CourseMaterial::class, 'course_id');
     }
-
-
-
 }

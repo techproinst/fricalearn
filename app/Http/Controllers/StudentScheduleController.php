@@ -37,7 +37,7 @@ class StudentScheduleController extends Controller
     {
         try {
 
-           // dd($request->validated());
+            
 
             $studentSchedules = $this->studentScheduleService->handleCreateStudentSchedule($request->validated());
 

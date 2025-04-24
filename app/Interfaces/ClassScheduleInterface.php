@@ -2,6 +2,9 @@
 
 namespace App\Interfaces;
 
+use App\DataTransferObjects\Schedules\UpcomingClassLinkDTO;
+use App\Models\ClassSchedule;
+
 interface ClassScheduleInterface
 {
    
@@ -27,6 +30,10 @@ interface ClassScheduleInterface
     public function getStudentCourseId($studentId);
 
     public function getTimeZones();
+
+    public function storeUpcomingClassLink(UpcomingClassLinkDTO $dto, ClassSchedule $classSchedule);
+
+  
 
 
 }

@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
-use App\Events\ParentRegistered;
-use App\Events\ParentRegisteredForDemoCourse;
-use App\Events\PaymentApproved;
-use App\Events\PaymentDeclined;
-use App\Events\PaymentInitiated;
+use App\Events\Parents\ParentRegistered;
+use App\Events\Parents\ParentRegisteredForDemoCourse;
+use App\Events\Payments\PaymentApproved;
+use App\Events\Payments\PaymentDeclined;
+use App\Events\Payments\PaymentInitiated;
+use App\Events\Schedules\ClassLinkScheduled;
 use App\Listeners\SendAdminPaymentNotification;
+use App\Listeners\SendClassLinkNotification;
 use App\Listeners\SendDemoCourseEmail;
 use App\Listeners\SendParentEmailVerificationOtp;
 use App\Listeners\SendPaymentApprovalNotification;
@@ -19,6 +21,7 @@ class EventServiceProvider extends ServiceProvider
 
 
     protected $listen = [
+        
         ParentRegisteredForDemoCourse::class => [
             SendDemoCourseEmail::class,
         ],
@@ -35,6 +38,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         PaymentDeclined::class => [
             SendPaymentDeclinedNotification::class,
+        ],
+        ClassLinkScheduled::class => [
+            SendClassLinkNotification::class,
         ]
 
     ];

@@ -11,23 +11,35 @@
 
        
         <div class="modal-body">
-          <div class=" mb-3">
-            <label for="course_id">Courses</label>
             <div class="mb-3">
-                <select class="form-select" aria-label="course_id" name="course_id" required>
-                    <option value="">--select course</option>
-                    @foreach ($courses as $course )
-                    <option value="{{ $course->id }}" {{ old('course_id',$schedule->course_id)==$course->id ? 'selected' : ''
-                        }}>{{ $course->name }}</option>
-                    @endforeach
+                <label for="courses">Courses</label>
+                <div class="mb-3">
+                    <select  class="form-select course-select" aria-label="courses" name="course_id" required>
+                        <option value="">--select course</option>
+                        @foreach ($courses as $course)
+                            <option value="{{ $course->id }}"
+                                {{ old('course_id') == $course->id ? 'selected' : '' }}>{{ $course->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <span class="text-danger">
+                        @error('course_id')
+                            {{ $message }}
+                        @enderror
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <select  class="form-select level-select" aria-label="level" name="course_level_id" required>
+                    <option value="">--Select Course Level</option>
                 </select>
                 <span class="text-danger">
-                    @error('course_id')
-                    {{ $message }}
+                    @error('course_level_id')
+                        {{ $message }}
                     @enderror
                 </span>
             </div>
-        </div>
         {{-- <div class="mb-3">
             <label for="continents">Continents</label>
             <div class="mb-3">

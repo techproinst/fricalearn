@@ -10,8 +10,8 @@ class ClassSchedule extends Model
    protected $guarded = [];
    
    protected $casts = [
-      'morning' => 'datetime',
-      'afternoon' => 'datetime',
+      'morning_time' => 'datetime',
+      'afternoon_time' => 'datetime',
   ];
 
    public function course()
@@ -22,6 +22,11 @@ class ClassSchedule extends Model
    public function timezoneGroup()
    {
       return $this->belongsTo(TimezoneGroup::class, 'timezone_group_id');
+   }
+
+   public function courseLevel()
+   {
+      return $this->belongsTo(CourseLevel::class, 'course_level_id');
    }
 
    

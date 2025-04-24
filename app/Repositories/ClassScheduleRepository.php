@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\DataTransferObjects\Schedules\UpcomingClassLinkDTO;
 use App\Enums\ContinentSchedule;
 use App\Enums\DayOfWeek;
 use App\Enums\FeeStatus;
@@ -26,7 +27,7 @@ class ClassScheduleRepository implements ClassScheduleInterface
 
     public function getAllClassSchedules()
     {
-        return ClassSchedule::with(['course', 'timezoneGroup'])->get();
+        return ClassSchedule::with(['course', 'timezoneGroup', 'courseLevel'])->get();
     }
 
     public function getContinents()
@@ -106,14 +107,14 @@ class ClassScheduleRepository implements ClassScheduleInterface
     {
         return  StudentCourseLevel::where('student_id', $studentId)->where('is_paid', FeeStatus::UNPAID->value)->first();
     }
-    
+
     /*
     public function getContinentClassSchedule($continent, $courseId)
     {
         return ClassSchedule::where('course_id', $courseId)->where('continent', $continent)->get();
     }
     */
-    
+
     public function getTimezoneClassSchedules($timezoneGroupId, $courseId)
     {
         return ClassSchedule::where('course_id', $courseId)->where('timezone_group_id', $timezoneGroupId)->get();
@@ -123,4 +124,18 @@ class ClassScheduleRepository implements ClassScheduleInterface
     {
         return TimezoneGroup::all();
     }
+
+
+    public function storeUpcomingClassLink(UpcomingClassLinkDTO $dto, ClassSchedule $classSchedule)
+    {
+        if ($classSchedule->update($dto->toArray())) {
+
+            return $classSchedule->refresh();
+        }
+
+        return null;
+    }
+
+
+   
 }

@@ -17,11 +17,14 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->foreignId('class_schedule_id')->constrained('class_schedules')->onDelete('cascade');
             $table->string('day');
-            $table->string('slot');
+            $table->string('slot')->nullable();
             $table->time('class_time');
+            $table->enum('session', ['morning', 'afternoon']);
             $table->timestamps();
         });
     }
+
+    
 
     /**
      * Reverse the migrations.

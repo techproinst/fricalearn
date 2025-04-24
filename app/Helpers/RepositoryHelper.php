@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\ClassSchedule;
 use App\Repositories\ClassScheduleRepository;
 use App\Repositories\CourseMaterialRepository;
 use App\Repositories\CourseRepository;
@@ -86,6 +87,16 @@ class RepositoryHelper
     public function getStudentCourseResources($courseId, $courseLevelId)
     {   
         return  $this->courseMaterialRepository->getStudentCourseResources($courseId, $courseLevelId);
+    }
+
+    public function getClassSheduleById($classScheduleId)
+    {
+        return ClassSchedule::find($classScheduleId);
+    }
+
+    public function getStudentByClassSchedule($classSchedule)
+    {
+       return $this->studentScheduleRepository->getStudentByClassSchedule($classSchedule);
     }
 
 

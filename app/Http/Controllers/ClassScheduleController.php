@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Schedules\StoreUpcomingClassRequest;
 use App\Http\Requests\StoreClassScheduleRequest;
 use App\Models\ClassSchedule;
 use App\Models\Student;
@@ -29,6 +30,7 @@ class ClassScheduleController extends Controller
         $classSchedules = $this->classScheduleService->getClassSchedules();
         $timeZones = $this->classScheduleService->handleGetTimeZones();
 
+        
         return view('admin.schedule.classes.index', compact('courses', 'days', 'classSchedules', 'timeZones'));
     }
 
@@ -52,7 +54,6 @@ class ClassScheduleController extends Controller
 
             $studentCourseData = $this->classScheduleService->handleGetStudentCourseId($student->id);
 
-
             if (!$studentCourseData) {
                 throw new Exception('Student course data not found');
             }
@@ -63,6 +64,8 @@ class ClassScheduleController extends Controller
 
             $classSchedules = $this->classScheduleService->handleGetClassScheduleByTimezone($student->timezone_group_id, $studentCourseData->course_id);
             $schedule = $classSchedules->first();
+
+
 
 
             return view('pages.class_schedules', compact('student', 'classSchedules', 'schedule'));
@@ -86,7 +89,8 @@ class ClassScheduleController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreClassScheduleRequest $request)
-    {
+    {    
+        
         $classSchedule = $this->classScheduleService->createClassSchedule($request);
 
         if (!$classSchedule) {
@@ -128,6 +132,22 @@ class ClassScheduleController extends Controller
         }
 
         ToastMagic::success('class schedule updated successfully');
+        return back();
+    }
+
+    public function scheduleUpcomingClass(StoreUpcomingClassRequest $request, ClassSchedule $classSchedule)
+    {
+         $validatedData = $request->validated();
+
+        $isProcessed = $this->classScheduleService->processUpcomingClassLinks(validatedData:$validatedData, classSchedule:$classSchedule);
+
+        if(!$isProcessed){
+            
+            ToastMagic::error('An error occured while processing class link');
+            return back();
+        }
+
+        ToastMagic::success('upcoming class link scheduled successfully');
         return back();
     }
 

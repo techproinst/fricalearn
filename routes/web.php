@@ -174,6 +174,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/class-schedule', [ClassScheduleController::class, 'index'])->name('class_schedule.index');
     Route::post('/class-schedule/store', [ClassScheduleController::class, 'store'])->name('class_schedule.store');
     Route::post('/update-schedule/{classSchedule}', [ClassScheduleController::class, 'update'])->name('schedule.update');
+    Route::post('/class-schedules/{classSchedule}/link', [ClassScheduleController::class, 'scheduleUpcomingClass'])
+    ->name('class_schedules.link');
     Route::delete('/delete-schedule/{classSchedule}', [ClassScheduleController::class, 'destroy'])->name('schedule.destroy');
 
     Route::get('admin/payments', [PaymentController::class, 'getPayments'])->name('payments.show');

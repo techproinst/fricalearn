@@ -15,6 +15,7 @@ readonly class StudentScheduleDTO
      public readonly int $class_schedule_id,
      public readonly string $day,
      public readonly string  $time,
+     public readonly string $session,
      public readonly ?string $slot,
    
     )
@@ -31,6 +32,7 @@ readonly class StudentScheduleDTO
             $array['class_schedule_id'],
             $array['schedule']['day'],
             $array['schedule']['time'],
+            $array['schedule']['session'],
             $array['slot'] ?? null,
         );
     }
@@ -43,6 +45,7 @@ readonly class StudentScheduleDTO
             'class_schedule_id' => $this->class_schedule_id,
             'day' => $this->day,
             'class_time' => AppHelper::convertToUTC($this->time),
+            'session' => $this->session,
             'slot' => $this->slot ?? 'N/A',
 
         ];

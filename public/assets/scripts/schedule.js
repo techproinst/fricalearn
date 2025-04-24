@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     slot.addEventListener("click", function () {
       let selectedDay = this.getAttribute("data-day");
       let selectedTime = this.getAttribute("data-time");
+      let selectedSession = this.getAttribute('data-session');
 
       // Clear all selections across all days
       document.querySelectorAll(".time-wrapper").forEach(item =>
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Clear the hidden inputs for day and time
       document.getElementById("selected_day").value = "";
       document.getElementById("selected_time").value = "";
+      document.getElementById("selected_session").value = "";
 
       // Add selected class to the clicked time slot
       this.classList.add("selected");
@@ -22,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Update the hidden input field dynamically
       document.getElementById("selected_day").value = selectedDay;
       document.getElementById("selected_time").value = selectedTime;
+      document.getElementById("selected_session").value = selectedSession;
 
       // Show toast message
       showToast(`${selectedDay} time slot at ${selectedTime} selected!`);

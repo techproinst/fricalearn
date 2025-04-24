@@ -44,9 +44,11 @@
                 <input type="hidden" name="class_schedule_id" value="{{ $schedule->id }}" />
                 <input type="hidden" name="course_id" value="{{ $schedule->course_id }}" />
 
+
                 <!-- Only one hidden input for the selected day and time -->
                 <input type="hidden" name="schedule[day]" id="selected_day" />
                 <input type="hidden" name="schedule[time]" id="selected_time" />
+                <input type="hidden" name="schedule[session]" id="selected_session" />
 
 
 
@@ -58,17 +60,17 @@
                                     <h5 class="card-title custom-title">{{ $schedule->day }}</h5>
                                     <h6 class="py-3 avail-text">Available Time</h6>
                                     <div class="time-wrapper p-3" data-day="{{ $schedule->day }}"
-                                        data-time="{{ $schedule->morning }}">
+                                        data-time="{{ $schedule->morning_time }}" data-session="morning">
                                         <h6 class="time-text">Time</h6>
-                                        <h6>{{ $schedule->morning->setTimezone('UTC')->format('H:i:A') }}</h6>
+                                        <h6>{{ $schedule->morning_time->setTimezone('UTC')->format('H:i:A') }}</h6>
                                         <button type="button" class="timer-btn">
                                             <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45 Minutes
                                         </button>
                                     </div>
                                     <div class="time-wrapper p-3 mt-3" data-day="{{ $schedule->day }}"
-                                        data-time="{{ $schedule->afternoon }}">
+                                        data-time="{{ $schedule->afternoon_time }}"  data-session="afternoon">
                                         <h6 class="time-text">Time</h6>
-                                        <h6>{{ $schedule->afternoon->setTimezone('UTC')->format('H:i:A') }}</h6>
+                                        <h6>{{ $schedule->afternoon_time->setTimezone('UTC')->format('H:i:A') }}</h6>
                                         <button type="button" class="timer-btn">
                                             <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45 Minutes
                                         </button>
