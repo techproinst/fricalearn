@@ -30,10 +30,24 @@ class StudentController extends Controller
     {
         $student = $this->studentService->getStudentInfo(student: $student);
 
-        $courseResources  =  $this->studentService->handleGetCourseResources(student:$student);
+        $courseResources  =  $this->studentService->handleGetCourseResources(student: $student);
 
-        return view('pages.students.student_dashboard', compact('student','courseResources'));
+        $studentSchedule = $this->studentService->handleGetClassLink($student->id);
+
+        $classSchedule = $studentSchedule->classSchedule;
+        $courseLevel = $classSchedule->courseLevel;
+
+
+
+        return view('pages.students.student_dashboard', compact(
+            'student',
+            'courseResources',
+            'classSchedule',
+            'courseLevel',
+            'studentSchedule'
+        ));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -124,9 +138,8 @@ class StudentController extends Controller
 
             ToastMagic::success('You have successfully updated your profile');
             return back();
-
         } catch (Exception $e) {
-            
+
             Log::error("Error updating parent profile:" . $e->getMessage());
             ToastMagic::error("An error occured while updating profile");
             return back();

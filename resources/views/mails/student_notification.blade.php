@@ -32,12 +32,12 @@
               <h5>🔗 Scheduled Class Links:</h5>
               <ul style="padding-left: 20px;">
       
-                <li style="word-break: break-word; overflow-wrap: break-word;">Morning class
+                <li style="word-break: break-word; overflow-wrap: break-word;">Morning class: 
                   <a style="text-decoration: none; color: #3b2a56;" href="{{ $schedule->morning_link }}">
                     {{ $schedule->morning_link }}
                   </a>
                 </li>
-                <li style="word-break: break-word; overflow-wrap: break-word;">Afternoon class
+                <li style="word-break: break-word; overflow-wrap: break-word;">Afternoon class: 
                   <a style="text-decoration: none; color: #3b2a56;" href="{{ $schedule->afternoon_link }}">
                     {{ $schedule->afternoon_link }}
                   </a>
@@ -54,7 +54,7 @@
               <table align="center" cellpadding="0" cellspacing="0" border="0" style="width: 100%; text-align: center;">
                 <tr>
                   <td bgcolor="#3b2a56" style="border-radius: 5px; text-align: center;">
-                    <a href="{{ route('student.dashboard') }}" style="display: inline-block; font-size: 16px; font-weight: 500; text-decoration: none; color: #ffffff; background-color: #3b2a56;
+                    <a href="{{ route('student.dashboard',['student' => $student->id]) }}" style="display: inline-block; font-size: 16px; font-weight: 500; text-decoration: none; color: #ffffff; background-color: #3b2a56;
                               padding: 12px 20px; border-radius: 5px; width: auto; max-width: 200px;">
                       Proceed to dashboard
                     </a>

@@ -26,30 +26,56 @@
                         </h3>
                         <img class="img-fluid" src="{{ asset('assets/images/dashboard-hero-img.png') }}" alt="" />
                     </div>
-                    <h5 class="pt-3 text-color text-center text-lg-start">
-                        Upcoming Class
-                    </h5>
-                    <div
-                        class="p-4 p d-flex flex-column flex-md-row justify-content-between align-items-md-start bg-white rounded">
-                        <div class="d-flex flex-column flex-md-row">
-                            <img class="upcoming-course-img" src="{{ asset('assets/images/dashboard-course-img.png') }}"
-                                alt="" />
-                            <div class="ms-3">
-                                <p class="text-color">
-                                    Learning Yorùbá for Children (Intro Class)
+                    @if ($studentSchedule && $courseLevel)
+                        <h5 class="pt-3 text-color text-center text-lg-start">
+                            Upcoming Class
+                        </h5>
+                        <div
+                            class="p-4 d-flex flex-column flex-md-row justify-content-between align-items-md-start bg-white rounded">
+                            <div class="d-flex flex-column flex-md-row">
+                                <img class="upcoming-course-img" src="{{ asset('assets/images/dashboard-course-img.png') }}"
+                                    alt="" />
+                                <div class="ms-3">
+                                    <p class="text-color">
+                                        {{ $courseLevel->description
+                                            ? Str::ucfirst(Str::replaceFirst('payment for', '', trim($courseLevel->description)))
+                                            : 'N/A' }}
+                                    </p>
+                                    <button type="button" class="timer-btn">
+                                        <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45 Minutes
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                @php
+                                    $classSchedule = $studentSchedule->classSchedule ?? null;
+                                    $link = null;
+                                    if ($classSchedule) {
+                                        $link =
+                                            $studentSchedule->session === 'morning'
+                                                ? $classSchedule->morning_link
+                                                : $classSchedule->afternoon_link;
+                                    }
+                                @endphp
+                                @if ($link)
+                                    <a class="join-btn" href="{{ $link }}">Join Class</a>
+                                @else
+                                    <span class="text-muted">Link not available</span>
+                                @endif
+                                <h6 class="mb-0 pt-2">Time</h6>
+                                <p>
+                                    {{ $studentSchedule->class_time
+                                        ? $studentSchedule->class_time->setTimezone('UTC')->format('h:i A')
+                                        : 'Time not available' }}
                                 </p>
-                                <button type="button" class="timer-btn">
-                                    <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45 Minutes
-                                </button>
                             </div>
                         </div>
-                        <div class="">
-                            <a class="join-btn" href="">Join Class</a>
+                    @else
+                        <h5 class="pt-3 text-color text-center text-lg-start">
+                            You have no Upcoming Class yet!!
+                        </h5>
+                    @endif
 
-                            <h6 class="mb-0 pt-2">Time</h6>
-                            <p>12:00 WAT</p>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="col-lg-3">
@@ -104,18 +130,18 @@
                                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                                     <div class="card shadow-sm border-0 card-radius">
                                         @php
-                                        $videoId = '';
-                                        if (preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $resource->material, $matches)) {
-                                            $videoId = $matches[1];
-                                        }
-                                       @endphp
-                                    
+                                            $videoId = '';
+                                            if (preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $resource->material, $matches)) {
+                                                $videoId = $matches[1];
+                                            }
+                                        @endphp
+
                                         <iframe src="https://www.youtube.com/embed/{{ $videoId }}"
                                             title="YouTube video player" frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                             referrerpolicy="strict-origin-when-cross-origin" height="180" allowfullscreen>
                                         </iframe>
-                                      
+
                                         <div class="card-body">
                                             <div class="">
                                                 <button

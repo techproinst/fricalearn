@@ -9,4 +9,6 @@ interface StudentScheduleInterface
    public function getStudentSchedule($studentId);
 
    public function getStudentByClassSchedule($classSchedule);
+
+   public function getStudentScheduleById(int $studentId);
 }

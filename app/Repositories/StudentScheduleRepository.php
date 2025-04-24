@@ -49,4 +49,24 @@ class StudentScheduleRepository implements StudentScheduleInterface
 
         return $data;
     }
+
+
+    public function getStudentScheduleById(int $studentId)
+    {
+      // return StudentSchedule::with('classSchedule.courseLevel.course')->where('student_id', $studentId)->first();
+      return StudentSchedule::with([
+        'classSchedule' => function ($query) {
+            $query->select('id', 'day','course_level_id', 'morning_time', 'afternoon_time', 'morning_link', 'afternoon_link');
+
+        },
+        'classSchedule.courseLevel' => function ($query) {
+            $query->select('id', 'course_id', 'level_name', 'description');
+        },
+        'classSchedule.courseLevel.course' => function ($query) {
+            $query->select('id', 'description');
+
+        },
+      ])->where('student_id', $studentId)->first();
+
+    }
 }

@@ -45,6 +45,11 @@ class Student extends Model
                      ->where('end_date', '>=', now());
     }
 
+    public function schedule()
+    {
+        return $this->hasOne(StudentSchedule::class);
+    }
+
 
     
 

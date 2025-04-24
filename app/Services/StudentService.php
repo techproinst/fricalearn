@@ -140,7 +140,14 @@ class StudentService
     public function handleGetCourseResources(Student $student)
     {
         $studentCourseLevel = $student->paidCourseLevels()->first();
-    
-       return   $this->repositoryHelper->getStudentCourseResources($studentCourseLevel->course_id, $studentCourseLevel->course_level_id);
+
+        return  $this->repositoryHelper->getStudentCourseResources($studentCourseLevel->course_id, $studentCourseLevel->course_level_id);
     }
+
+
+     public function handleGetClassLink($studentId)
+    {
+       return $this->repositoryHelper->getStudentScheduleById($studentId);
+    }
+
 }

@@ -99,6 +99,11 @@ class RepositoryHelper
        return $this->studentScheduleRepository->getStudentByClassSchedule($classSchedule);
     }
 
+    public function getStudentScheduleById(int $studentId)
+    {
+        return $this->studentScheduleRepository->getStudentScheduleById(studentId:$studentId);
+    }
+
 
    
 
