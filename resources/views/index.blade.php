@@ -79,7 +79,7 @@
         </div>
       </div>
       <div class="col-md-3 col-lg-4 d-flex justify-content-center justify-content-md-end my-3">
-        <a class="view-btn" href="">View All</a>
+        <a class="view-btn" href="{{ route('courses.index') }}">View All</a>
       </div>
     </div>
 
@@ -178,7 +178,7 @@
       </div>
 
       <div class="text-center my-4">
-        <a class="touch-btn" href="">Get in Touch <span><i class="bi bi-arrow-right"></i></span></a>
+        <a class="touch-btn" href="{{ route('contact.show') }}">Get in Touch <span><i class="bi bi-arrow-right"></i></span></a>
       </div>
     </div>
   </div>

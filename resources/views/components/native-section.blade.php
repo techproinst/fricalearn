@@ -13,10 +13,10 @@
               expert-led program makes learning easy and engaging.
             </p>
 
-            <a class="enroll-now-btn me-3 mt-3 mb-2" href="#"
+            <a class="enroll-now-btn me-3 mt-3 mb-2" href="{{ route('student.create') }}"
               >Enroll Now<span><i class="bi bi-arrow-right ms-2"></i></span
             ></a>
-            <a class="get-btn" href="#"
+            <a class="get-btn" href="{{ route('contact.show') }}"
               >Get In Touch<span><i class="bi bi-arrow-right ms-2"></i></span
             ></a>
           </div>

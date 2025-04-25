@@ -8,7 +8,8 @@
             <li><a class="{{ request()->routeIs('index') ? 'active' : '' }}" href="{{ route('index') }}">Home</a></li>
             <li><a class="{{ request()->routeIs('courses.*') ? 'active' : '' }}"
                     href="{{ route('courses.index') }}">Courses</a></li>
-            <li><a href="">Contact</a></li>
+            <li><a class="{{ request()->routeIs('contact') ? 'active' : '' }}"
+                    href="{{ route('contact.show') }}">Contact</a></li>
         </ul>
     </div>
 

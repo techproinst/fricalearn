@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
             $table->string('level_name'); //basic, intermediate, advance;
+            $table->string('duration')->nullable();
             $table->json('price',10,2);
             $table->string('purpose');
             $table->string('description');

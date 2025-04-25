@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('timezone_group_id')->constrained('timezone_groups')->cascadeOnDelete();
             $table->string('name');
             $table->string('birthday');
+            $table->string('app_no')->nullable();
             $table->enum('age_range', array_column(AgeRange::cases(), 'value'))->nullable();
             $table->enum('gender', ['male', 'female']);
             $table->string('profile_photo')->nullable();

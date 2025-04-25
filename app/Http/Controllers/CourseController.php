@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\CourseEnums;
 use App\Services\CourseService;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
 
-    public function __construct(public CourseService $courseService)
-    {
-        
-    }
+    public function __construct(public CourseService $courseService) {}
     /**
      * Display a listing of the resource.
      */
@@ -22,32 +20,36 @@ class CourseController extends Controller
 
 
     public function showYorubaCourses()
-    {   
-         $course_id = 1;
-         $courseLevels =  $this->courseService->getYorubaCourseLevels($course_id);
-        
+    {
+        $course = $this->courseService->getCourseByName(courseName: CourseEnums::YORUBA->value);
+        $courseLevels =  $this->courseService->getCourseLevels($course->id);
+
         return view('pages.yoruba_courses', compact('courseLevels'));
     }
 
-    
+
     public function showIgboCourses()
     {
-        return view('pages.igbo_courses');
+
+        $course = $this->courseService->getCourseByName(courseName: CourseEnums::IGBO->value);
+        $courseLevels =  $this->courseService->getCourseLevels($course->id);
+
+        return view('pages.igbo_courses', compact('courseLevels'));
     }
 
-    
+
     public function showHausaCourses()
     {
-        return view('pages.hausa_courses');
+        $course = $this->courseService->getCourseByName(courseName: CourseEnums::HAUSA->value);
+        $courseLevels =  $this->courseService->getCourseLevels($course->id);
+    
+        return view('pages.hausa_courses', compact('courseLevels'));
     }
 
 
     public function getAllCourses()
     {
-       $courses =  $this->courseService->getAllCourseDetails();
-
-       // return $courses;
-
+        $courses =  $this->courseService->getAllCourseDetails();
         return view('admin.courses.index', compact('courses'));
     }
 

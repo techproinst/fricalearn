@@ -32,13 +32,14 @@
 <section id="sub-course-card-section">
   <div class="container-lg overflow-hidden">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 my-2">
+      @forelse ($courseLevels as $course )
       <div class="col">
         <div class="card">
           <img src="{{ asset('assets/images/hausa-img-3.png') }}" class="card-img-top pt-4 px-4"
             alt="hausa intro class image" />
           <div class="card-body px-4">
             <h5 class="card-title">
-              Learning Hausa for Children (Introductory Class)
+              Learning Hausa for Children ({{ $course->level_name }})
             </h5>
             <p class="card-text text-muted">
               Nnọọ! Welcome! This interactive course introduces children to
@@ -46,57 +47,19 @@
             </p>
             <div class="py-2">
               <a class="level-btn me-1" href="">4 weeks</a>
-              <a class="level-btn" href="">Beginner</a>
+              <a class="level-btn" href="">{{ $course->level_name }}</a>
             </div>
 
             <a href="{{ route('student.create') }}" class="sub-course-explore-btn mt-3">Enroll Now</a>
           </div>
         </div>
       </div>
-
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('assets/images/hausa-img-2.png') }}" class="card-img-top pt-4 px-4"
-            alt="hausa beginner class image" />
-          <div class="card-body px-4">
-            <h5 class="card-title">
-              Learning Hausa for Children (Beginner Class)
-            </h5>
-            <p class="card-text text-muted">
-              This course introduces children to the basics of the Hausa
-              language (Harshen Hausa) and culture.
-            </p>
-            <div class="py-2">
-              <a class="level-btn me-1" href="">4 weeks</a>
-              <a class="level-btn" href="">Beginner</a>
-            </div>
-
-            <a href="{{ route('student.create') }}" class="sub-course-explore-btn mt-3">Enroll Now</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('assets/images/hausa-img-1.png') }}" class="card-img-top pt-4 px-4"
-            alt="hausa intermediate class image" />
-          <div class="card-body px-4">
-            <h5 class="card-title">
-              Learning Hausa for Children (Intermediate Class)
-            </h5>
-            <p class="card-text text-muted">
-              This course introduces children to the basics of the Hausa
-              language (Harshen Hausa) and culture.
-            </p>
-            <div class="py-2">
-              <a class="level-btn me-1" href="">4 weeks</a>
-              <a class="level-btn" href="">Beginner</a>
-            </div>
-
-            <a href="{{ route('student.create') }}" class="sub-course-explore-btn mt-3">Enroll Now</a>
-          </div>
-        </div>
-      </div>
+        
+      @empty
+      <p>No course available yet!!</p>
+        
+      @endforelse
+      
     </div>
   </div>
 </section>

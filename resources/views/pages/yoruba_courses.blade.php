@@ -56,49 +56,7 @@
       </div>
       @endforeach
 
-      {{-- <div class="col">
-        <div class="card">
-          <img src="{{ asset('assets/images/yourba-img-2.png') }}" class="card-img-top pt-4 px-4"
-            alt="beginner class image">
-          <div class="card-body px-4">
-            <h5 class="card-title">
-              Learning Yorùbá for Children (Beginner Class)
-            </h5>
-            <p class="card-text text-muted">
-              Ẹ kú àbẹ́wò! This course introduces children to the Yorùbá
-              language (èdè Yorùbá) and culture
-            </p>
-            <div class="py-2">
-              <a class="level-btn me-1" href="">4 weeks</a>
-              <a class="level-btn" href="">Beginner</a>
-            </div>
-
-            <a href="#" class="sub-course-explore-btn mt-3">Enroll Now</a>
-          </div>
-        </div>
-      </div> --}}
-
-      {{-- <div class="col">
-        <div class="card">
-          <img src="{{ asset('assets/images/cropped.png') }}" class="card-img-top pt-4 px-4"
-            alt="intermediate class image" />
-          <div class="card-body px-4">
-            <h5 class="card-title">
-              Learning Yorùbá for Children (Intermediate Class)
-            </h5>
-            <p class="card-text text-muted">
-              Ẹ kú àbẹ́wò! This course introduces children to the Yorùbá
-              language (èdè Yorùbá) and culture
-            </p>
-            <div class="py-2">
-              <a class="level-btn me-1" href="">4 weeks</a>
-              <a class="level-btn" href="">Beginner</a>
-            </div>
-
-            <a href="#" class="sub-course-explore-btn mt-3">Enroll Now</a>
-          </div>
-        </div>
-      </div> --}}
+      
     </div>
   </div>
 </section>

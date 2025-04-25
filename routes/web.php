@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ClassScheduleController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseLevelController;
 use App\Http\Controllers\CourseMaterialController;
@@ -18,57 +19,15 @@ use Illuminate\Support\Facades\Route;
 use Stevebauman\Location\Facades\Location;
 
 
-Route::get('/location', function (Request $request) {
-
-    // if ($position = Location::get()) {
-    //     // Successfully retrieved position.
-    //     dd($position);
-    // } else {
-    //     echo 'Failed retrieving position.';
-    // }
-
-    $ip = '8.8.4.4'; // get client IP address
-    $ch = curl_init('http://ipwho.is/' . $ip);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HEADER, false);
-
-    $response = curl_exec($ch);
-    curl_close($ch);
-
-    $data = json_decode($response, true);
-
-    dd($data);
-
-    if ($data && $data['success']) {
-        $country = $data['country'];
-        $flag = $data['flag']['emoji'];
-        $continent = $data['continent'];
-
-        echo "Country: $country $flag | Continent: $continent";
-    } else {
-        // fallback in case API fails
-        echo "Unable to retrieve location information.";
-    }
-});
 
 Route::get('/', function () {
     return view('index');
 })->name('index');
 
-// Route::get('/admin', function () {
-//     return view('layouts.admin');
-// });
-
 
 Route::get('/demo-class', function () {
     return view('pages.demo_class');
 });
-
-
-
-
-
-
 
 
 Route::get('/contact', function () {
@@ -81,29 +40,6 @@ Route::get('/register-parent', function () {
 
 Route::get('/verify-otp', function () {
     return view('pages.verify_email');
-});
-
-Route::get('/register-student', function () {
-    return view('forms.student_registration_form');
-});
-
-// Route::get('/select-class-schedule', function () {
-//     return view('pages.class_schedules');
-// });
-// Route::get('/payment', function () {
-//     return view('pages.payment');
-// });
-
-Route::get('/payment-processing', function () {
-    return view('pages.payment_processing');
-});
-
-Route::get('/student-login', function () {
-    return view('pages.select_student');
-});
-
-Route::get('/student-dashboard', function () {
-    return view('pages.student_dashboard');
 });
 
 
@@ -122,6 +58,8 @@ Route::get('/courses', [CourseController::class, 'index'])->name('courses.index'
 Route::get('/yoruba-courses', [CourseController::class, 'showYorubaCourses'])->name('courses.yoruba');
 Route::get('/igbo-courses', [CourseController::class, 'showIgboCourses'])->name('courses.igbo');
 Route::get('/hausa-courses', [CourseController::class, 'showHausaCourses'])->name('courses.hausa');
+
+Route::get('/contact', [ContactController::class, 'create'])->name('contact.show');
 
 
 
@@ -194,9 +132,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('delete/{courseMaterial}/course-material', [CourseMaterialController::class, 'destroy'])->name('course_material.destroy');
    
 });
-
-
-    
 
 
 Route::middleware('auth')->group(function () {
