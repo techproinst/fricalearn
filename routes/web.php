@@ -60,6 +60,7 @@ Route::get('/igbo-courses', [CourseController::class, 'showIgboCourses'])->name(
 Route::get('/hausa-courses', [CourseController::class, 'showHausaCourses'])->name('courses.hausa');
 
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.show');
+Route::post('/store/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
 

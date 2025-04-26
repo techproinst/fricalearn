@@ -101,31 +101,25 @@ class ClassScheduleService
   {
     try {
 
-   return   DB::transaction(function () use($validatedData, $classSchedule) {
+      return   DB::transaction(function () use ($validatedData, $classSchedule) {
 
         $dto = $this->mapUpcomingClassLinkDTO($validatedData);
 
         $classSchedule = $this->classScheduleInterface->storeUpcomingClassLink($dto, $classSchedule);
-   
-        if(!$classSchedule){
-         throw new Exception(message:"class schedule link update failed");
+
+        if (!$classSchedule) {
+          throw new Exception(message: "class schedule link update failed");
         }
-   
+
         $this->dispatchStudentNotifications($classSchedule->id);
 
         return true;
-            
       });
-
     } catch (Exception $e) {
 
-      Log::error('Error occured while processing class links'. $e->getMessage());
+      Log::error('Error occured while processing class links' . $e->getMessage());
 
       return null;
-
-
-
-
     }
   }
 
@@ -136,16 +130,6 @@ class ClassScheduleService
 
   public function dispatchStudentNotifications($classScheduleId)
   {
-     // $parents = $this->repositoryHelper->getStudentByClassSchedule($classScheduleData);
-
-     //dd($classScheduleId);
-
-       event(new ClassLinkScheduled($classScheduleId));
-
-
+    event(new ClassLinkScheduled($classScheduleId));
   }
-
-
-
-
 }

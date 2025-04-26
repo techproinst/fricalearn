@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
+use App\Events\ContactFormSubmitted;
 use App\Events\Parents\ParentRegistered;
 use App\Events\Parents\ParentRegisteredForDemoCourse;
 use App\Events\Payments\PaymentApproved;
 use App\Events\Payments\PaymentDeclined;
 use App\Events\Payments\PaymentInitiated;
 use App\Events\Schedules\ClassLinkScheduled;
+use App\Listeners\SendAdminNotificationForContactForm;
 use App\Listeners\SendAdminPaymentNotification;
 use App\Listeners\SendClassLinkNotification;
 use App\Listeners\SendDemoCourseEmail;
@@ -21,7 +23,7 @@ class EventServiceProvider extends ServiceProvider
 
 
     protected $listen = [
-        
+
         ParentRegisteredForDemoCourse::class => [
             SendDemoCourseEmail::class,
         ],
@@ -41,7 +43,11 @@ class EventServiceProvider extends ServiceProvider
         ],
         ClassLinkScheduled::class => [
             SendClassLinkNotification::class,
-        ]
+        ],
+        ContactFormSubmitted::class => [
+            SendAdminNotificationForContactForm::class,
+
+        ],
 
     ];
     /**

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events\ParentRegisteredForDemoCourse;
 use App\Interfaces\ClassScheduleInterface;
+use App\Interfaces\ContactInterface;
 use App\Interfaces\CourseInterface;
 use App\Interfaces\CourseLevelInterface;
 use App\Interfaces\CourseMaterialInterface;
@@ -15,6 +16,7 @@ use App\Interfaces\StudentScheduleInterface;
 use App\Interfaces\SubscriptionInterface;
 use App\Listeners\SendDemoCourseEmail;
 use App\Repositories\ClassScheduleRepository;
+use App\Repositories\ContactRepository;
 use App\Repositories\CourseLevelRepository;
 use App\Repositories\CourseMaterialRepository;
 use App\Repositories\CourseRepository;
@@ -44,6 +46,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(SubscriptionInterface::class, SubscriptionRepository::class);
         $this->app->bind(CourseLevelInterface::class, CourseLevelRepository::class);
         $this->app->bind(CourseMaterialInterface::class, CourseMaterialRepository::class);
+        $this->app->bind(ContactInterface::class, ContactRepository::class);
     }
 
     /**

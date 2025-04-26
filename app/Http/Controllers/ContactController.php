@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreContactFormRequest;
 use App\Models\Contact;
+use App\Services\ContactService;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ContactController extends Controller
 {
+
+    public function __construct(public ContactService $contactService) {}
     /**
      * Display a listing of the resource.
      */
@@ -26,9 +33,23 @@ class ContactController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreContactFormRequest $request)
     {
-        //
+        try {
+
+
+            $this->contactService->handleContactForm(validatedData: $request->validated());
+
+            ToastMagic::success('Your request has been sent successfully');
+            return back();
+
+        } catch (Exception $e) {
+
+            Log::error(message: 'Error occured while storing contact form' . $e->getMessage());
+
+            ToastMagic::error('An error occured while processing your request');
+            return back();
+        }
     }
 
     /**
