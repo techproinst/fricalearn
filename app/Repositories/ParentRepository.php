@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\DataTransferObjects\UpdateParentDTO;
+use App\DataTransferObjects\Parents\UpdateParentDTO;
 use App\Enums\FeeStatus;
 use App\Interfaces\ParentInterface;
 use App\Models\ParentModel;

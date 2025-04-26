@@ -1,7 +1,7 @@
 <x-mail::message>
 # Hello {{ $parent->name }}
 
-We are sorry to inform you that your payment of {!!$currencySymbol!!}{{number_format($payment->amount) }} for {{ $payment->description }} has been declined.
+We are sorry to inform you that your payment  with this transaction reference number : {{ $payment->transaction_reference }} has been declined.
 
 # Reason 
 {{ $data->decline_reason }}

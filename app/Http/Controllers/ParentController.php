@@ -156,8 +156,6 @@ class ParentController extends Controller
 
             DB::beginTransaction();
 
-
-
             //update email verification timestamp
             if (!$this->parentService->markEmailAsVerified($parentData->email)) {
                 DB::rollBack();
@@ -179,6 +177,7 @@ class ParentController extends Controller
             Auth::guard('parent')->loginUsingId($parentData->id);
             // dd(Auth::guard('parent')->check());
             return redirect()->route('parent.dashboard');
+            
         } catch (Exception $e) {
             DB::rollBack();
             Log::error('OTP verification error : ' . $e->getMessage());

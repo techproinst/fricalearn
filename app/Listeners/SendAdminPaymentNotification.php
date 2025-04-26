@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\PaymentInitiated;
+use App\Events\Payments\PaymentInitiated;
 use App\Notifications\AdminPaymentNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;

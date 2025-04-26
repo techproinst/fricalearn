@@ -34,11 +34,11 @@ class StudentController extends Controller
 
         $studentSchedule = $this->studentService->handleGetClassLink($student->id);
 
-        $classSchedule = $studentSchedule->classSchedule;
-        $courseLevel = $classSchedule->courseLevel;
+        $classSchedule = $studentSchedule?->classSchedule;
 
+        $courseLevel = $classSchedule?->courseLevel;
 
-
+        
         return view('pages.students.student_dashboard', compact(
             'student',
             'courseResources',
@@ -83,6 +83,8 @@ class StudentController extends Controller
 
 
                 $courseLevel = $this->studentService->handleCreateStudentCourseLevel($studentData, $request->course_id, $request->course_level);
+
+            
 
                 if (!$courseLevel) {
                     throw new Exception('Failed to assign course level');

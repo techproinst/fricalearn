@@ -52,7 +52,7 @@
                                     $link = null;
                                     if ($classSchedule) {
                                         $link =
-                                            $studentSchedule->session === 'morning'
+                                            $studentSchedule->session === App\Enums\Session::MORNING_SESSION->value
                                                 ? $classSchedule->morning_link
                                                 : $classSchedule->afternoon_link;
                                     }
@@ -60,20 +60,22 @@
                                 @if ($link)
                                     <a class="join-btn" href="{{ $link }}">Join Class</a>
                                 @else
-                                    <span class="text-muted">Link not available</span>
+                                    <span class="text-muted">Class link not available yet</span>
                                 @endif
                                 <h6 class="mb-0 pt-2">Time</h6>
                                 <p>
-                                    {{ $studentSchedule->class_time
-                                        ? $studentSchedule->class_time->setTimezone('UTC')->format('h:i A')
-                                        : 'Time not available' }}
+                                    {{ $studentSchedule->session === App\Enums\Session::MORNING_SESSION->value
+                                        ? $classSchedule->morning_time->setTimezone('UTC')->format('h:i:A')
+                                        : ($studentSchedule->session === App\Enums\Session::AFTERNOON_SESSION->value
+                                            ? $classSchedule->morning_afternoon->setTimezone('UTC')->format('h:i:A')
+                                            : 'Time not available yet!!') }}
                                 </p>
                             </div>
                         </div>
                     @else
-                        <h5 class="pt-3 text-color text-center text-lg-start">
-                            You have no Upcoming Class yet!!
-                        </h5>
+                        <p class="pt-3 text-danger text-center text-lg-start">
+                            You have no upcoming class yet or no class schedule available for you.kindly contact support for
+                            more directive!! </p>
                     @endif
 
                 </div>
@@ -163,66 +165,7 @@
                             @empty
                                 <p>No course resources available yet!!</p>
                             @endforelse
-                            {{-- <div class="col-12 col-md-6 col-lg-4 mb-4">
-                            <div class="card shadow-sm border-0 card-radius">
-                                <img src="{{ asset('assets/images/dashboard-card-img.png') }}"
-                                    class="card-img-top pt-3 px-3" alt="..." />
-                                <div class="card-body">
-                                    <div class="">
-                                        <button class="level-btn me-2">Beginner</button>
-                                        <button type="button" class="level-btn">
-                                            <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45
-                                            Minutes
-                                        </button>
-                                    </div>
-                                    <div class="pt-2 pb-1">
-                                        Learning Yorùbá for Children (Intro Class)
-                                    </div>
 
-                                    <a class="mt-2 start-text" href="">Start Watching</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4 mb-4">
-                            <div class="card shadow-sm border-0 card-radius">
-                                <img src="{{ asset('assets/images/dashboard-card-img.png') }}"
-                                    class="card-img-top pt-3 px-3" alt="..." />
-                                <div class="card-body">
-                                    <div class="">
-                                        <button class="level-btn me-2">Beginner</button>
-                                        <button type="button" class="level-btn">
-                                            <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45
-                                            Minutes
-                                        </button>
-                                    </div>
-                                    <div class="pt-2 pb-1">
-                                        Learning Yorùbá for Children (Intro Class)
-                                    </div>
-
-                                    <a class="mt-2 start-text" href="">Start Watching</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4 mb-4">
-                            <div class="card shadow-sm border-0 card-radius">
-                                <img src="{{ asset('assets/images/dashboard-card-img.png') }}"
-                                    class="card-img-top pt-3 px-3" alt="..." />
-                                <div class="card-body">
-                                    <div class="">
-                                        <button class="level-btn me-2">Beginner</button>
-                                        <button type="button" class="level-btn">
-                                            <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45
-                                            Minutes
-                                        </button>
-                                    </div>
-                                    <div class="pt-2 pb-1">
-                                        Learning Yorùbá for Children (Intro Class)
-                                    </div>
-
-                                    <a class="mt-2 start-text" href="">Start Watching</a>
-                                </div>
-                            </div>
-                        </div> --}}
                         </div>
                     </div>
                 </div>

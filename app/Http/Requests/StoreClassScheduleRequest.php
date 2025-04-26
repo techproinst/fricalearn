@@ -27,7 +27,8 @@ class StoreClassScheduleRequest extends FormRequest
             'course_level_id' => ['required', 'integer', 'exists:course_levels,id'],
            // 'continent' => ['required', 'string', 'in:africa_europe,australia_asia,usa_canada'],
             'timezone_group_id' => ['required', 'exists:timezone_groups,id'],
-            'day' => ['required', 'string', 'in:monday,wednessday,friday'],
+            // 'day' => ['required', 'string', 'in:monday,wednessday,friday'],
+            'day' => ['required', 'string'],
             'morning_time' => ['required', 'string', 'date_format:H:i'],
             'afternoon_time' => ['required', 'string','date_format:H:i', 'after:morning'],
         ];
@@ -40,7 +41,9 @@ class StoreClassScheduleRequest extends FormRequest
                                                      )];
 
         }elseif(in_array($this->getMethod(), ['PUT', 'PATCH'])){
-            $scheduleId = $this->route('schedule');
+            $scheduleId = $this->route('classSchedule')->id;
+
+         //   dd($scheduleId);
 
             $rules['course_id'] = ['required', Rule::unique('class_schedules')->where(
                 fn($query) =>

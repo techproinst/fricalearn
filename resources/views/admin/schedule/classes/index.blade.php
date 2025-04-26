@@ -32,48 +32,68 @@
     </div>
 
     <div class="row">
+        <div class="col-lg-6 mx-auto">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-3">Class Schedules</h4>
 
 
-                    <table id="state-saving-datatable" class="table activate-select dt-responsive nowrap w-100">
+
+                    <table id="state-schedule-datatable" class="table activate-select dt-responsive nowrap w-100">
                         <thead>
                             <tr>
                                 <th>S/N</th>
                                 <th>Course</th>
                                 <th>Course Level</th>
                                 <th>Timezone</th>
-                                {{-- <th>Continent</th> --}}
                                 <th>Day</th>
                                 <th>Morning Schedule</th>
+                                <th>Morning Link</th>
                                 <th>Afternoon Schedule</th>
+                                <th>Afternoon Link</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            @forelse ($classSchedules as $schedule)
+                            @foreach ($classSchedules as $schedule)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $schedule->course->name }}</td>
                                     <td>{{ $schedule->courseLevel->level_name }}</td>
-                                    {{-- <td>{{ $schedule->continent }}</td> --}}
                                     <td>{{ $schedule->timezoneGroup->name }}</td>
                                     <td>{{ $schedule->day }}</td>
                                     <td>{{ $schedule->morning_time->setTimezone('UTC')->format('H:i:A') }}</td>
+                                    <td><a href="{{ $schedule->morning_link }}">{{ $schedule->morning_link ?? 'N/A' }}</a>
+                                    </td>
                                     <td>{{ $schedule->afternoon_time->setTimezone('UTC')->format('H:i:A') }}</td>
+                                    <td><a
+                                            href="{{ $schedule->afternoon_link }}">{{ $schedule->afternoon_link ?? 'N/A' }}</a>
+                                    </td>
                                     <td>
                                         @include('admin.schedule.classes.create_class_link')
                                         @include('admin.schedule.classes.edit')
                                         @include('admin.schedule.classes.delete')
+
                                         <div class="d-flex gap-2">
                                             <span class="badge bg-success" data-bs-toggle="modal"
-                                            data-bs-target="#class-link-form{{ $schedule->id }}"> <i class=" fas fa-edit"></i>
-                                            Add Class link</span>
+                                                data-bs-target="#class-link-form{{ $schedule->id }}"> <i
+                                                    class=" fas fa-edit"></i>
+                                                Add Class link</span>
                                             <span class="badge bg-primary" data-bs-toggle="modal"
-                                                data-bs-target="#edit-form{{ $schedule->id }}"> <i class=" fas fa-edit"></i>
+                                                data-bs-target="#edit-form{{ $schedule->id }}"> <i
+                                                    class=" fas fa-edit"></i>
                                                 Edit</span>
                                             <span class="badge bg-danger" data-bs-toggle="modal"
                                                 data-bs-target="#delete-form{{ $schedule->id }}"> <i
@@ -83,9 +103,7 @@
 
                                     </td>
                                 </tr>
-                            @empty
-                                <p class="text-danger">No Class Schedules Available yet!!</p>
-                            @endforelse
+                            @endforeach
 
                         </tbody>
                     </table>
@@ -223,9 +241,6 @@
 @endsection
 
 @section('data_table_script')
-    <script>
-        $('#state-saving-datatable').DataTable({
-            stateSave: true
-        })
-    </script>
+    <script src="{{ asset('assets/scripts/modal.js') }}"></script>
+    <script src="{{ asset('assets/scripts/admin/class-schedule.js') }}"></script>
 @endsection

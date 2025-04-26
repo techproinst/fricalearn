@@ -90,7 +90,6 @@ class PaymentService
             return null;
         }
 
-
         $parentId = Auth::guard('parent')->user()->id;
         $student = $this->studentService->getStudentCourseLevel($request->student_id);
 
@@ -108,30 +107,7 @@ class PaymentService
 
     public function handleFileUpload($request)
     {
-
-
         return $this->appHelper->handleFileUpload(request: $request,  field: 'payment_receipt');
-
-
-        // if (!$request->hasFile('payment_receipt')) {
-        //     Log::error('Payment receipt upload failed: No file received');
-        //     return null;
-        // }
-
-        // $paymentReceipt = $request->file('payment_receipt');
-        // $rad = mt_rand(1000, 9999);
-
-        // $paymentReceiptName = md5($paymentReceipt->getClientOriginalName()) . $rad . '.' . $paymentReceipt->getClientOriginalExtension();
-
-        // $filePath =  $paymentReceipt->storeAs('uploads', $paymentReceiptName);
-
-        // if (!$filePath) {
-        //     Log::error('Payment receipt upload failed: Unable to store file');
-        //     return null;
-        // }
-
-        // return  $paymentReceiptName;
-
     }
 
     public function  genUniqueTransactionNumber(string $prefix): string

@@ -73,8 +73,8 @@
                                         </iframe>
                                     </td>
                                     <td>
-                                   @include('admin.courses.material.edit')
-                                   @include('admin.courses.material.delete') 
+                                        @include('admin.courses.material.edit')
+                                        @include('admin.courses.material.delete')
                                         <span class="badge bg-primary" data-bs-toggle="modal"
                                             data-bs-target="#edit-form{{ $resource->id }}"> <i class=" fas fa-edit"></i>
                                             Edit</span>
@@ -85,7 +85,9 @@
                                     </td>
                                 </tr>
                             @empty
-                                <p class="text-danger">No Course resources Available yet!!</p>
+                                <tr>
+                                    <td colspan="8" class="text-danger">No course resources available yet!!</td>
+                                </tr>
                             @endforelse
 
                         </tbody>
@@ -110,7 +112,7 @@
                         <div class="mb-3">
                             <label for="courses">Courses</label>
                             <div class="mb-3">
-                                <select  class="form-select course-select" aria-label="courses" name="course_id" required>
+                                <select class="form-select course-select" aria-label="courses" name="course_id" required>
                                     <option value="">--select course</option>
                                     @foreach ($courses as $course)
                                         <option value="{{ $course->id }}"
@@ -127,7 +129,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <select  class="form-select level-select" aria-label="level" name="course_level_id" required>
+                            <select class="form-select level-select" aria-label="level" name="course_level_id" required>
                                 <option value="">--Select Course Level</option>
                             </select>
                             <span class="text-danger">
@@ -184,4 +186,8 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="{{ asset('assets/scripts/course-level.js') }}"></script>
+    @section('data_table_script')
+        <script src="{{ asset('assets/scripts/admin/datatable.js') }}"></script>
+        <script src="{{ asset('assets/scripts/admin/modal.js') }}"></script>
+    @endsection
 @endsection

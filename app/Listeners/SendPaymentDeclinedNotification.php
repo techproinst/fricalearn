@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\PaymentDeclined;
+use App\Events\Payments\PaymentDeclined;
 use App\Notifications\PaymentDeclinedNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;

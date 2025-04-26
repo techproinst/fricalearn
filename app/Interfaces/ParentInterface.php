@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-use App\DataTransferObjects\UpdateParentDTO;
+use App\DataTransferObjects\Parents\UpdateParentDTO;
 use App\Models\ParentModel;
 
 interface ParentInterface

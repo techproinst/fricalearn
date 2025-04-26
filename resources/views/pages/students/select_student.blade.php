@@ -31,7 +31,7 @@
             <p class="card-title mt-2 avatar-text">{{ $student->name }}</p>
           </div>          
           @empty
-          <p>No active enrolled student!!</p>
+          <p class="text-danger">No active enrolled student yet!!</p>
             
           @endforelse 
           

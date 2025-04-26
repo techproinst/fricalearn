@@ -45,13 +45,14 @@ class DemoCourseEmail extends Mailable
     public function content(): Content
     {  
          
-
+          
         return new Content(
             view: 'mails.demo_course_mail',
             with: [
                    'parent' => $this->parent,
                    'parentCourse' => $this->parentCourse,
                    'demoCourseLinks' => $this->demoCourseLinks,
+                
             ]
         );
     }

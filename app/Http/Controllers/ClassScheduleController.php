@@ -30,7 +30,7 @@ class ClassScheduleController extends Controller
         $classSchedules = $this->classScheduleService->getClassSchedules();
         $timeZones = $this->classScheduleService->handleGetTimeZones();
 
-        
+
         return view('admin.schedule.classes.index', compact('courses', 'days', 'classSchedules', 'timeZones'));
     }
 
@@ -41,16 +41,6 @@ class ClassScheduleController extends Controller
     {
         try {
 
-            /*
-            $continent = $this->classScheduleService->handleGetContinent();
-
-    
-            if(!$continent) {
-                throw new Exception('User continent not found');
-
-            }
-
-            */
 
             $studentCourseData = $this->classScheduleService->handleGetStudentCourseId($student->id);
 
@@ -58,18 +48,15 @@ class ClassScheduleController extends Controller
                 throw new Exception('Student course data not found');
             }
 
-            /*
-            $classSchedules = $this->classScheduleService->handleGetClassScheduleByContinent($continent, $studentCourseData->course_id);
-            $schedule = $classSchedules->first(); */
-
             $classSchedules = $this->classScheduleService->handleGetClassScheduleByTimezone($student->timezone_group_id, $studentCourseData->course_id);
             $schedule = $classSchedules->first();
 
-
+            if ($classSchedules->isEmpty()) {
+                throw new Exception('Student class schedules not found');
+            }
 
 
             return view('pages.class_schedules', compact('student', 'classSchedules', 'schedule'));
-
         } catch (Exception $e) {
 
             Log::error('Class schedule error: ' . $e->getMessage());
@@ -82,15 +69,15 @@ class ClassScheduleController extends Controller
 
 
 
-       // return view('pages.class_schedules');
+        // return view('pages.class_schedules');
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreClassScheduleRequest $request)
-    {    
-        
+    {
+
         $classSchedule = $this->classScheduleService->createClassSchedule($request);
 
         if (!$classSchedule) {
@@ -122,7 +109,8 @@ class ClassScheduleController extends Controller
      * Update the specified resource in storage.
      */
     public function update(StoreClassScheduleRequest $request, ClassSchedule $classSchedule)
-    {
+    {    
+        
         $classSchedule = $this->classScheduleService->handleUpdateClassSchedule($request, $classSchedule);
 
         if (!$classSchedule) {
@@ -137,12 +125,12 @@ class ClassScheduleController extends Controller
 
     public function scheduleUpcomingClass(StoreUpcomingClassRequest $request, ClassSchedule $classSchedule)
     {
-         $validatedData = $request->validated();
+        $validatedData = $request->validated();
 
-        $isProcessed = $this->classScheduleService->processUpcomingClassLinks(validatedData:$validatedData, classSchedule:$classSchedule);
+        $isProcessed = $this->classScheduleService->processUpcomingClassLinks(validatedData: $validatedData, classSchedule: $classSchedule);
 
-        if(!$isProcessed){
-            
+        if (!$isProcessed) {
+
             ToastMagic::error('An error occured while processing class link');
             return back();
         }

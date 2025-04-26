@@ -2,10 +2,11 @@
 
 namespace App\Repositories;
 
-
+use App\Enums\CourseLevel as EnumsCourseLevel;
 use App\Interfaces\CourseInterface;
 use App\Models\Course;
 use App\Models\CourseLevel;
+
 
 
 class CourseRepository implements CourseInterface
@@ -31,7 +32,7 @@ class CourseRepository implements CourseInterface
 
     public function getCourseLevels()
     {
-        return CourseLevel::values();
+        return EnumsCourseLevel::values();
     }
 
     public function getAllCourseDetails()

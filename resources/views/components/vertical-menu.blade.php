@@ -46,7 +46,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         <li><a href="{{ route('class_schedule.index') }}">Class Schedules</a></li>
-                        <li><a href="auth-register.html">Class Links</a></li>
+                       
 
                     </ul>
                 </li>

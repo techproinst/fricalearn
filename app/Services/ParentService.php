@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\DataTransferObjects\ParentDTO;
-use App\DataTransferObjects\UpdateParentDTO;
-use App\Events\ParentRegistered;
-use App\Events\ParentRegisteredForDemoCourse;
+use App\DataTransferObjects\Parents\ParentDTO;
+use App\DataTransferObjects\Parents\UpdateParentDTO;
+use App\Events\Parents\ParentRegistered;
+use App\Events\Parents\ParentRegisteredForDemoCourse;
 use App\Helpers\AppHelper;
 use App\Helpers\RepositoryHelper;
 use App\Http\Requests\UpdateParentModelRequest;
@@ -100,7 +100,7 @@ class ParentService
 
         $otpCreatedAt = Carbon::parse($otpRecord->created_at);
 
-        if (!Hash::check($otp, $otpRecord->token) || $otpCreatedAt->diffInMinutes(now()) >= 60) {
+        if (!Hash::check($otp, $otpRecord->token) || $otpCreatedAt->diffInMinutes(now()) >= 10) {
 
             return null;
         }
@@ -124,7 +124,6 @@ class ParentService
 
     public function mapParentFormData($request)
     {
-
         return ParentDTO::fromArray($request)->toArray();
     }
 
@@ -182,14 +181,15 @@ class ParentService
          if(!$profilePhoto){
             throw new Exception('Profile photo upload failed');
          }
-
-         $dto = new UpdateParentDTO(
+         
+        $dto = new UpdateParentDTO(
             name: $validatedData['name'],
             phone: $validatedData['phone'],
             password: $validatedData['password'],
             profilePhoto: $profilePhoto
 
          );
+
 
          $this->parentInterface->updateParentData($parent, $dto);
          

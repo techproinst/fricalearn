@@ -17,8 +17,6 @@ class StudentScheduleService
 
     public function handleCreateStudentSchedule($request)
     {  
-       
-
         $mappedStudentScheduleData = $this->mapStudentSchedule($request);
 
         return $this->studentScheduleInterface->storeStudentClassSchedule($mappedStudentScheduleData);

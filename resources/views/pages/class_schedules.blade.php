@@ -7,7 +7,6 @@
 @section('other_css')
     <link rel="stylesheet" href="{{ asset('assets/styles/class-schedule.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/styles/toast-message.css') }}" />
-  
 @endsection
 
 @section('content')
@@ -60,7 +59,8 @@
                                     <h5 class="card-title custom-title">{{ $schedule->day }}</h5>
                                     <h6 class="py-3 avail-text">Available Time</h6>
                                     <div class="time-wrapper p-3" data-day="{{ $schedule->day }}"
-                                        data-time="{{ $schedule->morning_time }}" data-session="morning">
+                                        data-time="{{ $schedule->morning_time }}"
+                                        data-session="{{ App\Enums\Session::MORNING_SESSION->value }}">
                                         <h6 class="time-text">Time</h6>
                                         <h6>{{ $schedule->morning_time->setTimezone('UTC')->format('H:i:A') }}</h6>
                                         <button type="button" class="timer-btn">
@@ -68,7 +68,8 @@
                                         </button>
                                     </div>
                                     <div class="time-wrapper p-3 mt-3" data-day="{{ $schedule->day }}"
-                                        data-time="{{ $schedule->afternoon_time }}"  data-session="afternoon">
+                                        data-time="{{ $schedule->afternoon_time }}"
+                                        data-session="{{ App\Enums\Session::AFTERNOON_SESSION->value }}">
                                         <h6 class="time-text">Time</h6>
                                         <h6>{{ $schedule->afternoon_time->setTimezone('UTC')->format('H:i:A') }}</h6>
                                         <button type="button" class="timer-btn">
@@ -86,7 +87,8 @@
                     <button class="proceed-btn" type="submit">Proceed</button>
                 </div>
                 <div class="text-center">
-                    <span>Can't find a suitable schedule?</span> <a class="suitable-text" href="whatsapp://send?text=Hello World!&phone=+9131365111"> Contact us to find
+                    <span>Can't find a suitable schedule?</span> <a class="suitable-text"
+                        href="whatsapp://send?text=Hello World!&phone=+9131365111"> Contact us to find
                         a suitable
                         schedule for you</a>
 
