@@ -6,7 +6,7 @@
   "deploy": {
     "runtime": "V2",
     "numReplicas": 1,
-    "startCommand": "php artisan migrate --force",
+    "startCommand": "php artisan migrate:fresh --force",
     "preDeployCommand": "php artisan db:seed",
     "sleepApplication": false,
     "multiRegionConfig": {
