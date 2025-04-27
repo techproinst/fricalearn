@@ -5,11 +5,11 @@
         <!-- User details -->
         <div class="user-profile text-center mt-3">
             <div class="">
-                <img src="{{ asset('assets/admin/images/users/avatar-1.jpg') }}" alt=""
+                <img src="{{ asset('assets/images/logo.png') }}" alt=""
                     class="avatar-md rounded-circle">
             </div>
             <div class="mt-3">
-                <h4 class="font-size-16 mb-1">Julia Hudda</h4>
+                <h4 class="font-size-16 mb-1">{{ Auth::guard('web')->user()->name }}</h4>
                 <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
                     Online</span>
             </div>
