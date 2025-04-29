@@ -65,14 +65,14 @@
                 href="{{ route('login') }}">Login</a>
         @endguest
 
-        <li><a class="mobile-link active" href="#">Home</a></li>
-        <li><a class="mobile-link" href="#">Courses</a></li>
-        <li><a class="mobile-link" href="#">Contact</a></li>
+        <li><a class="mobile-link active" href="{{ route('index') }}">Home</a></li>
+        <li><a class="mobile-link" href="{{ route('courses.index') }}">Courses</a></li>
+        <li><a class="mobile-link" href="{{ route('contact.show') }}">Contact</a></li>
 
         @auth('parent')
-            <li><a class="dropdown-item mobile-link" href="#">Profile</a></li>
+            <li><a class="dropdown-item mobile-link" href="{{ route('parent.dashboard') }}">Profile</a></li>
             <li><a class="dropdown-item mobile-link" href="#">Settings</a></li>
-            <li><a class="dropdown-item mobile-link text-danger" href="#">Logout</a></li>
+            <li><a class="dropdown-item mobile-link text-danger" href="{{ route('parent.logout') }}">Logout</a></li>
         @endauth
 
     </ul>
