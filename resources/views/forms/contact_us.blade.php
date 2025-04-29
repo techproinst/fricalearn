@@ -11,7 +11,8 @@
 @section('content')
     <section id="form-section">
         <div class="container">
-            <div class="row bg-white pt-5 pb-5 px-5 form-wrapper">
+            <div class="row mx-2 bg-white pt-5 pb-5 px-5 form-wrapper">
+
                 <div class="col-12 col-md-10 col-lg-8 mx-auto border-end border-lg-end">
                     <form action="{{ route('contact.store') }}" method="POST" class="row g-3 me-5">
                       @csrf
@@ -85,7 +86,7 @@
                     </form>
                 </div>
 
-                <div class="col-lg-3 d-none d-lg-block d-flex flex-column align-self-start gap-3 ms-5">
+                <div class="col-lg-3  d-none d-lg-block d-flex flex-column align-self-start gap-3 ms-5">
                     <div class="text-center contact-wrapper p-4 mb-4">
                         <i class="bi bi-envelope-fill icon-color"></i>
                         <p class="m-0">Info@fricalearn.com</p>
@@ -105,13 +106,14 @@
                         <a href=""> <img src="{{ asset('assets/images') }}/instagram.png" alt="" /></a>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <section id="mobile-contact">
         <div class="container">
-            <div class="row bg-white p-5">
+            <div class="row bg-white p-5 mx-2 rounded">
                 <!-- First Row -->
                 <div class="col-md-6 d-flex flex-column justify-content-between align-items-center">
                     <div class="text-center contact-wrapper p-4 mb-4">

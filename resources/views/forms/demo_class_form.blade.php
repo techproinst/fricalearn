@@ -20,7 +20,8 @@
 <section id="form-section">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 mx-auto bg-white p-5 rounded">
+      <div class="col-lg-6 mx-auto">
+        <div class="card bg-white p-5 rounded border-white">
         <div class="text-center">
           <h1>
             <div style="word-spacing: 6px">Demo Classes</div>
@@ -114,6 +115,7 @@
       </div>
     </div>
   </div>
+</div>
 </section>
 
 

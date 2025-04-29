@@ -12,7 +12,7 @@
 @section('content')
 <section id="form-section">
   <div class="container">
-    <div class="row my-5">
+    <div class="row my-5 mx-1">
       <div class="col-lg-6 mx-auto bg-white p-5 rounded">
         <div class="text-center">
           <h1>

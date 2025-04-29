@@ -14,8 +14,8 @@
 @section('content')
 <section id="form-section">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-6 mx-auto bg-white p-5 rounded">
+    <div class="row mx-1">
+      <div class="col-lg-6  mx-auto bg-white p-5 rounded">
         <div class="text-center">
           <h1>
             <div style="word-spacing: 6px">Sign Up</div>

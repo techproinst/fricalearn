@@ -13,7 +13,7 @@
 @section('content')
 <section id="form-section">
   <div class="container">
-    <div class="row">
+    <div class="row mx-1">
       <div class="col-lg-6 mx-auto bg-white py-5 rounded">
         <div class="text-center">
           <img src="{{ asset('assets/images/email-icon.png') }}" alt="" />
