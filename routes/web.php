@@ -17,6 +17,7 @@ use App\Http\Controllers\SubscriptionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Stevebauman\Location\Facades\Location;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -139,6 +140,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+
+
+Route::get('/test-mail', function () {
+    Mail::raw('This is a test email from FricaLearn.', function ($message) {
+        $message->to('kareemkazeem100@gmail.com')
+                ->subject('Test Email');
+    });
+
+    return 'Email sent!';
 });
 
 require __DIR__ . '/auth.php';
