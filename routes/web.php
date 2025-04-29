@@ -143,6 +143,15 @@ Route::middleware('auth')->group(function () {
 });
 
 
+use Illuminate\Support\Facades\File;
+
+Route::get('/logs', function () {
+    $log = File::get(storage_path('logs/laravel.log'));
+    return nl2br(e($log));
+});
+
+
+
 
 
 Route::get('/test-mail', function () {
