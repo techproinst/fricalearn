@@ -27,6 +27,7 @@ use App\Repositories\StudentRepository;
 use App\Repositories\StudentScheduleRepository;
 use App\Repositories\SubscriptionRepository;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
 
@@ -59,5 +60,8 @@ class AppServiceProvider extends ServiceProvider
         // if (app()->environment('production')) {
         //     URL::forceScheme('https');
         // }
+        
+       Schema::defaultStringLength(191);
+
     }
 }
