@@ -46,8 +46,8 @@
               language (èdè Yorùbá) and culture
             </p>
             <div class="py-2">
-              <a class="level-btn me-1" href="">4 weeks</a>
-              <a class="level-btn" href="">{{ $course->level_name }}</a>
+              {{-- <a class="level-btn me-1" href="">4 weeks</a> --}}
+              <a  class="level-btn" href="">{{ $course->level_name }}</a>
             </div>
 
             <a href="{{ route('student.create') }}" class="sub-course-explore-btn mt-3">Enroll Now</a>

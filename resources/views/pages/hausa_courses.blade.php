@@ -46,7 +46,7 @@
               the Igbo language and culture through fun
             </p>
             <div class="py-2">
-              <a class="level-btn me-1" href="">4 weeks</a>
+              {{-- <a class="level-btn me-1" href="">4 weeks</a> --}}
               <a class="level-btn" href="">{{ $course->level_name }}</a>
             </div>
 
