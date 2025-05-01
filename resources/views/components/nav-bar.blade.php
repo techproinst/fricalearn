@@ -42,7 +42,6 @@
 
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('parent.dashboard') }}">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li>
                         <form method="POST" action="{{ route('parent.logout') }}">
                             @csrf
@@ -68,12 +67,16 @@
         <li><a class="mobile-link active" href="{{ route('index') }}">Home</a></li>
         <li><a class="mobile-link" href="{{ route('courses.index') }}">Courses</a></li>
         <li><a class="mobile-link" href="{{ route('contact.show') }}">Contact</a></li>
+
+        @guest('parent')
         <li><a class="mobile-link" href="{{ route('parent.registration.form') }}">Sign up</a></li>
         <li><a class="mobile-link" href="{{ route('login') }}">Login</a></li>
+            
+        @endguest
+      
 
         @auth('parent')
             <li><a class="dropdown-item mobile-link" href="{{ route('parent.dashboard') }}">Profile</a></li>
-            <li><a class="dropdown-item mobile-link" href="#">Settings</a></li>
             <li><a class="dropdown-item mobile-link text-danger" href="{{ route('parent.logout') }}">Logout</a></li>
         @endauth
 
