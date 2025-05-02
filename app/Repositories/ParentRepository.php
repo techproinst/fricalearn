@@ -126,7 +126,7 @@ class ParentRepository implements ParentInterface
 
         $students = $parent->students()->withWhereHas('studentCourseLevels', function ($query) {
             $query->where('is_paid', FeeStatus::UNPAID->value);
-        })->get();
+        })->paginate(10);
 
         //   dd($students);
 
