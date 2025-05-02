@@ -119,7 +119,7 @@ On a live server, use a process manager like **Supervisor** to keep it running c
 ## 🚀 Live Demo
 
 You can test the platform live at:  
-[frika.techpro.ng](http://frika.techprong.com)
+[frika.techprong.com](http://frika.techprong.com)
 
 
 ## 🧾 License
