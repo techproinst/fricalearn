@@ -8,9 +8,9 @@
           <!-- Header -->
           <tr>
             <td align="center" style="padding-bottom: 20px;">
-              <img src="{{ asset('assets/images/logo.png') }}" alt="Frika Learn" width="100"
+              <img src="{{ asset('assets/images/logo.png') }}" alt="frica Learn" width="100"
                 style="display: block; max-width: 100%;" />
-              <h1 style="margin: 10px 0; font-size: 24px; color: #3b2a56;">Frika Learn</h1>
+              <h1 style="margin: 10px 0; font-size: 24px; color: #3b2a56;">frica Learn</h1>
             </td>
           </tr>
 
@@ -62,7 +62,7 @@
                 </tr>
               </table>
 
-              <p>Happy learning! 🚀<br>Frika Learn Team</p>
+              <p>Happy learning! 🚀<br>frica Learn Team</p>
             </td>
           </tr>
         </table>
@@ -73,15 +73,15 @@
           <tr>
             <td>
               <p>Follow us on:</p>
-              <a href="#"><img src="{{ asset('assets/images/twitter-dark.png') }}" alt="Twitter" width="24" /></a>
-              <a href="#"><img src="{{ asset('assets/images/facebook-dark.png') }}" alt="Facebook" width="24" /></a>
-              <a href="#"><img src="{{ asset('assets/images/linkedin-dark.png') }}" alt="LinkedIn" width="24" /></a>
+              <a href="https://x.com/FricaLearn"><img src="{{ asset('assets/images/twitter-dark.png') }}" alt="Twitter" width="24" /></a>
+              <a href="https://web.facebook.com/profile.php?id=61570586593408"><img src="{{ asset('assets/images/facebook-dark.png') }}" alt="Facebook" width="24" /></a>
+              <a href="https://www.linkedin.com/in/fricalearn/"><img src="{{ asset('assets/images/linkedin-dark.png') }}" alt="LinkedIn" width="24" /></a>
             </td>
           </tr>
           <tr>
             <td>
               <p>Copyright © 2025</p>
-              <p>Sent by Frika Learn Support: <a href="mailto:support@frikalearn.com"
+              <p>Sent by frica Learn Support: <a href="mailto:support@frikalearn.com"
                   style="color: #3b2a56;">support@frikalearn.com</a></p>
             </td>
           </tr>

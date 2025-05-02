@@ -35,6 +35,19 @@
   }
 }
 
+@media (max-width: 400px) {
+  .africa-btn,
+  .other-btn {
+    font-size: 12px;
+    padding: 11px 30px;
+    width: 100%;
+  
+  }
+
+ 
+}
+
+
 
 .africa-btn.clicked {
   background: var(--main-color);

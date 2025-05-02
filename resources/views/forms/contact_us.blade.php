@@ -101,9 +101,9 @@
                     </div>
                     <div class="text-center contact-wrapper p-3 contact-social-link">
                         <p class="m-0">Follow us on</p>
-                        <a href=""> <img src="{{ asset('assets/images') }}/contact-x.png" alt="" /></a>
-                        <a href=""> <img src="{{ asset('assets/images') }}/linkedin.png" alt="" /></a>
-                        <a href=""> <img src="{{ asset('assets/images') }}/instagram.png" alt="" /></a>
+                        <a href="https://x.com/FricaLearn"> <img src="{{ asset('assets/images') }}/contact-x.png" alt="" /></a>
+                        <a href="https://www.linkedin.com/in/fricalearn/"> <img src="{{ asset('assets/images') }}/linkedin.png" alt="" /></a>
+                        <a href="https://www.instagram.com/fricalearn/"> <img src="{{ asset('assets/images') }}/instagram.png" alt="" /></a>
                     </div>
                 </div>
 
@@ -134,10 +134,10 @@
                     </div>
                     <div class="text-center contact-wrapper p-3 contact-social-link">
                         <p class="m-0">Follow us on</p>
-                        <a href=""> <img src="{{ asset('assets/images/Button (2).png') }}" alt="facebook" /></a>
-                        <a href=""> <img src="{{ asset('assets/images/contact-x.png') }}" alt="twitter" /></a>
-                        <a href=""> <img src="{{ asset('assets/images/linkedin.png') }}" alt="linkedin" /></a>
-                        <a href=""> <img src="{{ asset('assets/images/instagram.png') }}" alt="instagram" /></a>
+                        <a href="https://web.facebook.com/profile.php?id=61570586593408"> <img src="{{ asset('assets/images/Button (2).png') }}" alt="facebook" /></a>
+                        <a href="https://x.com/FricaLearn"> <img src="{{ asset('assets/images/contact-x.png') }}" alt="twitter" /></a>
+                        <a href="https://www.linkedin.com/in/fricalearn/"> <img src="{{ asset('assets/images/linkedin.png') }}" alt="linkedin" /></a>
+                        <a href="https://www.instagram.com/fricalearn/"> <img src="{{ asset('assets/images/instagram.png') }}" alt="instagram" /></a>
                     </div>
                 </div>
             </div>

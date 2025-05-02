@@ -14,9 +14,9 @@
           <div
             class="d-flex justify-content-center justify-content-lg-start gap-3"
           >
-            <a class="social-link" href="#"><i class="bi bi-facebook"></i></a>
-            <a class="social-link" href="#"><i class="bi bi-twitter"></i></a>
-            <a class="social-link" href="#"><i class="bi bi-linkedin"></i></a>
+            <a class="social-link" href="https://web.facebook.com/profile.php?id=61570586593408"><i class="bi bi-facebook"></i></a>
+            <a class="social-link" href="https://x.com/FricaLearn"><i class="bi bi-twitter"></i></a>
+            <a class="social-link" href="https://www.linkedin.com/in/fricalearn/"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
 

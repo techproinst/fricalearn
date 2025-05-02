@@ -122,6 +122,7 @@ You can test the platform live at:
 [frika.techprong.com](http://frika.techprong.com)
 
 
+
 ## 🧾 License
 
 This project is licensed under the **MIT License**.

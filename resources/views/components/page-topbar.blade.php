@@ -3,21 +3,21 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="index.html" class="logo logo-dark">
+                <a href="#" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/admin/images/logo.png') }}" alt="logo-sm" height="22">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo-sm" height="22">
                     </span>
                     <span class="logo-lg">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="logo-dark" height="20">
                     </span>
                 </a>
 
-                <a href="index.html" class="logo logo-light">
+                <a href="#" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/admin/images/logo.png') }}" alt="logo-sm-light" height="22">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo-sm-light" height="20">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo-light" height="20"> <span class="text-white">Frika Learn</span>
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo-light" height="20"> <span class="text-white">frica Learn</span>
                     </span>
                 </a>
             </div>
