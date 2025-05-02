@@ -25,7 +25,7 @@ class StorePaymentRequest extends FormRequest
             'student_id' => ['required', 'integer', 'exists:students,id'],
             'amount' => ['required', 'string'],
             'continent' => ['required', 'string'],
-            'payment_receipt' => ['required', 'file','mimes:jpg,jpeg,png,pdf','max:1024'],
+            'payment_receipt' => ['required', 'file','mimes:jpg,jpeg,png,pdf','max:2048'],
         ];
 
     }
