@@ -40,6 +40,7 @@ nav ul {
 
 
 
+
 nav ul li {
   margin: 0 5px;
 }
@@ -174,7 +175,7 @@ input[type="checkbox"] {
 
   }
 
-  nav ul li a,
+  nav ul li a, 
    .dropdown-item.mobile-link {
     color: var(--nav-bg);
     width: 100%;
@@ -184,6 +185,13 @@ input[type="checkbox"] {
     transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
+ .mobile-submit-btn {
+  border: none;
+  background-color: transparent;
+  color: red;
+  
+  }
+  
   #click:checked~ul li a {
     margin-left: 0px;
   }
@@ -195,10 +203,11 @@ input[type="checkbox"] {
 
   }
 
-  .mobile-link {
+  .mobile-link{
     display: block;
   }
 
+ 
   .sign-up,
   .login {
     display: none;

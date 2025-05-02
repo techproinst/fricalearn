@@ -76,7 +76,12 @@
 
         @auth('parent')
             <li><a class="dropdown-item mobile-link" href="{{ route('parent.dashboard') }}">Profile</a></li>
-            <li><a class="dropdown-item mobile-link text-danger" href="{{ route('parent.logout') }}">Logout</a></li>
+
+            <form method="POST" action="{{ route('parent.logout') }}">
+                @csrf
+                <li><a class="dropdown-item mobile-link text-danger"><button class="mobile-submit-btn" type="submit">Logout</button></a></li>
+
+            </form>
         @endauth
 
     </ul>
