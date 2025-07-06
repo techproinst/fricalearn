@@ -9,3 +9,7 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::command('app:process-expired-subscriptions')->everyMinute();
+
+Schedule::command('queue:work')->everyFiveMinutes();
+
+
