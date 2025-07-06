@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Mail;
 Route::get('/email', function(){
     
 Mail::raw('This is a test', function ($message) {
-    $message->to('test-zdel8o8lo@srv1.mail-tester.com')
+    $message->to('test-4yoteitf0@srv1.mail-tester.com')
             ->subject('Frica Learn SMTP Test');
 });
 
