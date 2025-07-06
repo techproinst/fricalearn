@@ -10,6 +10,8 @@ Artisan::command('inspire', function () {
 
 Schedule::command('app:process-expired-subscriptions')->everyMinute();
 
-Schedule::command('queue:work --once')->everyMinutes();
+Schedule::command('queue:work --once')->everyMinutes()
+        ->appendOutputTo(storage_path('logs/queue.log'));
+;
 
 
