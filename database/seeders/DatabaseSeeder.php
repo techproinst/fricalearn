@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
            CourseSeeder::class,
            CourseLevelSeeder::class,
-          //  UserSeeder::class,
+            UserSeeder::class,
            TimezoneGroupSeeder::class,
         ]);
         
