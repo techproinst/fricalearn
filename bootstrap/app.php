@@ -21,7 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
      ->withSchedule(function (Schedule $schedule) {
-        $schedule->command('queue:work --once')
+        $schedule->command('queue:process')
             ->everyMinute()
             ->runInBackground()
             ->appendOutputTo(storage_path('logs/queue.log'));
