@@ -19,7 +19,14 @@ use Illuminate\Support\Facades\Route;
 use Stevebauman\Location\Facades\Location;
 use Illuminate\Support\Facades\Mail;
 
+Route::get('/email', function(){
+    
+Mail::raw('This is a test', function ($message) {
+    $message->to('your@email.com')
+            ->subject('Test Email');
+});
 
+});
 
 Route::get('/', function () {
     return view('index');
