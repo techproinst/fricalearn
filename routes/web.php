@@ -19,16 +19,7 @@ use Illuminate\Support\Facades\Route;
 use Stevebauman\Location\Facades\Location;
 use Illuminate\Support\Facades\Mail;
 
-Route::get('/email', function(){
-    
-Mail::raw('This is a test', function ($message) {
-    $message->to('test-4yoteitf0@srv1.mail-tester.com')
-            ->subject('Frica Learn SMTP Test');
-});
 
-return 'mail sent';
-
-});
 
 Route::get('/', function () {
     return view('index');
