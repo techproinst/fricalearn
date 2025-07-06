@@ -20,15 +20,15 @@ return Application::configure(basePath: dirname(__DIR__))
 
         ]);
     })
-    //  ->withSchedule(function (Schedule $schedule) {
-    //     $schedule->command('queue:work')
-    //         ->everyMinute()
-    //         ->runInBackground()
-    //         ->appendOutputTo(storage_path('logs/queue.log'));
+     ->withSchedule(function (Schedule $schedule) {
+        $schedule->command('queue:work')
+            ->everyMinute()
+            ->runInBackground()
+            ->appendOutputTo(storage_path('logs/queue.log'));
 
-    //     // Optional: schedule additional logic
-    //     // $schedule->job(new Heartbeat)->everyFiveMinutes();
-    // })
+        // Optional: schedule additional logic
+        // $schedule->job(new Heartbeat)->everyFiveMinutes();
+    })
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
