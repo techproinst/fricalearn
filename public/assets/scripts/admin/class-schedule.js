@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  // Initialize Active and Expired tables
+
   var activeTable = $('#state-schedule-datatable').DataTable({
       responsive: {
           details: {

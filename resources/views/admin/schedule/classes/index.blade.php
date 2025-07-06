@@ -81,10 +81,11 @@
                                     <td><a
                                             href="{{ $schedule->afternoon_link }}">{{ $schedule->afternoon_link ?? 'N/A' }}</a>
                                     </td>
-                                    <td>
-                                        @include('admin.schedule.classes.create_class_link')
+                                    @include('admin.schedule.classes.create_class_link')
                                         @include('admin.schedule.classes.edit')
                                         @include('admin.schedule.classes.delete')
+                                    <td>
+                                        
 
                                         <div class="d-flex gap-2">
                                             <span class="badge bg-success" data-bs-toggle="modal"
