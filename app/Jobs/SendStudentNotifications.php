@@ -36,10 +36,11 @@ class SendStudentNotifications implements ShouldQueue
         $classScheduleData = $repositoryHelper->getClassSheduleById($this->classScheduleId);
         $studentsAndParents = $repositoryHelper->getStudentByClassSchedule($classScheduleData);
 
-
         foreach ($studentsAndParents as $entry) {
             $student = $entry['student'];
             $parent = $entry['parent'];
+
+            
 
             try {
 
