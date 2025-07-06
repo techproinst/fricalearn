@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Schedule;
 Schedule::command('app:process-expired-subscriptions')->everyMinute()->runInBackground();
 
 // Process queued jobs
-Schedule::command('queue:process')->everyMinute()
+Schedule::command('queue:work')->everyMinute()
     ->appendOutputTo(storage_path('logs/queue.log'))
     ->runInBackground();
 
 // Optional test
-Schedule::command('inspire')->everyMinute()->appendOutputTo(storage_path('logs/test.log'));
+//Schedule::command('inspire')->everyMinute()->appendOutputTo(storage_path('logs/test.log'));
