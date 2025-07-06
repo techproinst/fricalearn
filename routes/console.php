@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Schedule;
 // Your custom command
 Schedule::command('app:process-expired-subscriptions')
 ->everyMinute()
-->appendOutputTo(storage_path('logs/expiry.log'))
-->runInBackground();
+->withoutOverlapping();
+
 
 // Process queued jobs
-Schedule::command('queue:work')->everyMinute()
-    ->appendOutputTo(storage_path('logs/queue.log'))
-    ->runInBackground();
+Schedule::command('queue:work --once')->everyMinute()
+        ->withoutOverlapping();
+   
 
-// Optional test
-//Schedule::command('inspire')->everyMinute()->appendOutputTo(storage_path('logs/test.log'));
+   // cd /home/rombdjvllyaj/public_html/fricalearn && /usr/local/bin/php artisan schedule:run >> /dev/null 2>&1
+    
