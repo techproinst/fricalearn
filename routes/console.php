@@ -10,9 +10,5 @@ Artisan::command('inspire', function () {
 
 Schedule::command('app:process-expired-subscriptions')->everyMinute()->runInBackground();
 
-Schedule::command('queue:work --once')->everyMinute()
-        ->appendOutputTo(storage_path('logs/queue.log'))
-        ->runInBackground();
-
 
 
