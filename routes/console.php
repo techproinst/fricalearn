@@ -12,9 +12,9 @@ Schedule::command('app:process-expired-subscriptions')
 ->runInBackground();
 
 // Process queued jobs
-// Schedule::command('queue:work')->everyMinute()
-//     ->appendOutputTo(storage_path('logs/queue.log'))
-//     ->runInBackground();
+Schedule::command('queue:work')->everyMinute()
+    ->appendOutputTo(storage_path('logs/queue.log'))
+    ->runInBackground();
 
 // Optional test
 //Schedule::command('inspire')->everyMinute()->appendOutputTo(storage_path('logs/test.log'));
