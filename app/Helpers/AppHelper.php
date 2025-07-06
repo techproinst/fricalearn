@@ -60,7 +60,7 @@ class AppHelper
 
         $fileName = md5($uploadedFile->getClientOriginalName()) . $rad . '.' . $uploadedFile->getClientOriginalExtension();
 
-        $filePath =  $uploadedFile->storeAs('uploads', $fileName);
+        $filePath =  $uploadedFile->storeAs('uploads', $fileName, 'public');
 
         if (!$filePath) {
             Log::error(message: "File upload failed: Unable to store file '{$fileName}'");
