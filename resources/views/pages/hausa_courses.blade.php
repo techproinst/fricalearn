@@ -54,12 +54,12 @@
           </div>
         </div>
       </div>
-        
+
       @empty
       <p>No course available yet!!</p>
-        
+
       @endforelse
-      
+
     </div>
   </div>
 </section>
@@ -71,9 +71,9 @@
     </h1>
 
     <p class="text-muted text-center text-md-start">
+
            Take your language journey further by exploring our Yoruba and Igbo courses! Each one is designed with the same kid-friendly, engaging style—so your 
 child can discover even more of Africa’s rich cultures and languages in a fun, easy way.
-
     </p>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-5 my-2">

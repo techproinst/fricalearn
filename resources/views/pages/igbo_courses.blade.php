@@ -54,11 +54,11 @@
           </div>
         </div>
       </div>
-        
+
       @empty
-       <p>No course available yet!!</p>  
+       <p>No course available yet!!</p>
       @endforelse
-     
+
     </div>
   </div>
 </section>
