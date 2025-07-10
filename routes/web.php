@@ -35,6 +35,15 @@ Route::get('/contact', function () {
     return view('forms.contact_us');
 });
 
+Route::get('/about-us', function () {
+    return view('about');
+})->name('about');
+
+
+Route::get('/terms-of-service', function () {
+    return view('terms');
+})->name('terms');
+
 Route::get('/register-parent', function () {
     return view('forms.parent_registration_form');
 });

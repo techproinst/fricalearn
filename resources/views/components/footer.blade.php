@@ -22,7 +22,7 @@
 
         <div class="col-lg-3 quick-links text-center text-lg-start">
           <h6 class="mt-4">Quick Links</h6>
-          <p><a href="#">About Us</a></p>
+          <p><a href="{{ route('about') }}">About Us</a></p>
           <p><a href="{{ route('courses.yoruba') }}">Yoruba Courses</a></p>
           <p><a href="{{ route('courses.igbo') }}">Igbo Courses</a></p>
           <p><a href="{{ route('courses.hausa') }}">Hausa Courses</a></p>
@@ -30,9 +30,9 @@
 
         <div class="col-lg-3 legal-links text-center text-lg-start">
           <h6 class="mt-4">Legals</h6>
-          <p><a href="#">Terms of Service</a></p>
-          <p><a href="#">Frequently Asked Questions</a></p>
-          <p><a href="#">Our Goals</a></p>
+          <p><a href="{{ route('terms') }}">Terms of Service</a></p>
+         {{--  <p><a href="#">Frequently Asked Questions</a></p> --}}
+         {{-- <p><a href="#">Our Goals</a></p> --}}
         </div>
       </div>
 
