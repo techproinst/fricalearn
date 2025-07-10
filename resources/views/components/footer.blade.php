@@ -23,9 +23,9 @@
         <div class="col-lg-3 quick-links text-center text-lg-start">
           <h6 class="mt-4">Quick Links</h6>
           <p><a href="#">About Us</a></p>
-          <p><a href="course-yoruba.html">Yoruba Courses</a></p>
-          <p><a href="course-igbo.html">Igbo Courses</a></p>
-          <p><a href="course-hausa.html">Hausa Courses</a></p>
+          <p><a href="{{ route('courses.yoruba') }}">Yoruba Courses</a></p>
+          <p><a href="{{ route('courses.igbo') }}">Igbo Courses</a></p>
+          <p><a href="{{ route('courses.hausa') }}">Hausa Courses</a></p>
         </div>
 
         <div class="col-lg-3 legal-links text-center text-lg-start">

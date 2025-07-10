@@ -21,7 +21,7 @@
           </h1>
           <p class="text-muted">
             Once you complete payment, we’ll email your child’s login
-            details, class schedule, andlearning materials—check your inbox
+            details, class schedule, and learning materials—check your inbox
             or spam folder! 🚀
           </p>
         </div>
@@ -29,7 +29,7 @@
           @csrf
           <div class="mb-3">
             <label for="name" class="form-label">Full Name</label>
-            <input type="text" class="form-control demo-input-height" id="name" placeholder="Enter your Name"
+            <input type="text" class="form-control demo-input-height" id="name" placeholder=""
               name="name" value="{{ old('name') }}"  required/>
             @error('name')
             <span class="text-danger">
