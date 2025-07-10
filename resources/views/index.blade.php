@@ -70,12 +70,10 @@
     <div class="row align-items-center">
       <div class="col-md-9 col-lg-8">
         <div class="text-muted">
-          Lorem ipsum dolor sit amet. Error facere unde quibusdam optio cum
-          quasi?
+          We offer beginner-friendly Yoruba, Igbo, and Hausa language courses designed specially for kids.
         </div>
         <div class="text-muted">
-          Lorem ipsum dolor. Omnis eaque optio voluptas quos cum tempore ea
-          qui earum odit magni.
+         Each course combines fun lessons, colorful visuals, songs, and storytelling to help children learn naturally and joyfully.
         </div>
       </div>
       <div class="col-md-3 col-lg-4 d-flex justify-content-center justify-content-md-end my-3">

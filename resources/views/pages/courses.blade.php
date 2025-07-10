@@ -21,9 +21,8 @@
       </div>
       <div class="col-lg-6">
         <p class="text-muted text-center text-lg-start">
-          Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam
-          eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac
-          cum eget habitasse in velit fringilla feugiat senectus in.
+          Each course combines fun lessons, colorful visuals, songs, and storytelling to help children learn naturally and joyfully. Whether your child is just 
+starting out or already understands a bit, our courses make language learning playful, interactive, and rooted in culture.
         </p>
       </div>
     </div>
