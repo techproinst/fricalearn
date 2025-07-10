@@ -21,12 +21,8 @@
       </div>
       <div class="col-lg-6">
         <p class="text-muted text-center text-lg-start">
-<<<<<<< HEAD
           Each course combines fun lessons, colorful visuals, songs, and storytelling to help children learn naturally and joyfully. Whether your child is just 
 starting out or already understands a bit, our courses make language learning playful, interactive, and rooted in culture.
-=======
-          Each course combines fun lessons, colorful visuals, songs, and storytelling to help children learn naturally and joyfully. Whether your child is just starting out or already understands a bit, our courses make language learning playful, interactive, and rooted in culture.
->>>>>>> d5a7347d5f3c9d917e4babee4034c872e5f2fda1
         </p>
       </div>
     </div>

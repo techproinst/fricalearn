@@ -91,7 +91,7 @@
             </h5>
             <p class="card-text text-muted">
               È kú àbẹ̀wò! This course introduces children to the Yoruba
-              language (Ẹ̀dè).
+              language (Èdè).
             </p>
             <a href="{{ route('courses.yoruba') }}" class="explore-btn my-2">Explore Courses</a>
           </div>
@@ -107,7 +107,7 @@
             </h5>
             <p class="card-text text-muted">
               Nnọọ! Welcome! This Interactive course introduces children to
-              the language.
+              the Igbo language.
             </p>
             <a href="{{ route('courses.igbo') }}" class="explore-btn my-2">Explore Courses</a>
           </div>

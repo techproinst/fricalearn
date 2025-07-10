@@ -53,12 +53,8 @@
                             @empty
                                 <p class="text-danger">You have no registered student yet!!.</p>
                                 <h6 class="text-success">Registration Procedures</h6>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam non quaerat odio iusto
-                                    beatae
-                                    inventore ab suscipit dolor doloremque laborum consequatur nesciunt asperiores tenetur,
-                                    commodi repellat atque cumque? Consequuntur dolorum deserunt nostrum quos autem est
-                                    impedit
-                                    fugiat rem voluptas nam.</p>
+                                <p>Welcome to your FricaLearn Dashboard — track your progress, explore new courses, and enroll your kids in any available 
+class to keep the learning going!</p>
                             @endforelse
 
 
