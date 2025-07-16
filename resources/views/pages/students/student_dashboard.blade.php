@@ -58,7 +58,7 @@
                                     }
                                 @endphp
                                 @if ($link)
-                                    <a class="join-btn" href="{{ $link }}">Join Class</a>
+                                    <a class="join-btn" href="{{ $link }}" target="_blank">Join Class</a>
                                 @else
                                     <span class="text-muted">Class link not available yet</span>
                                 @endif

@@ -30,7 +30,7 @@
           </div>
         </div>
 
-        <a class="demo-btn my-4" href="{{ route('demo_class.create') }}">Explore Our Demo Classes</a>
+        <a class="demo-btn my-4" href="{{ route('demo_class.create') }}">Explore Our Free Classes</a>
       </div>
       <div class="col-12 col-md-6 d-flex justify-content-center">
         <img class="img-fluid me-5 test" src="{{ asset('assets/images/hero-image.png')}}" alt="hero-image" />

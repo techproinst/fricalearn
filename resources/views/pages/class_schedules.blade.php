@@ -88,7 +88,7 @@
                 </div>
                 <div class="text-center">
                     <span>Can't find a suitable schedule?</span> <a class="suitable-text"
-                        href="whatsapp://send?text=Hello World!&phone=+9131365111"> Contact us to find
+                        href="whatsapp://send?text=Hello World!&phone=+2348174485504"> Contact us to find
                         a suitable
                         schedule for you</a>
 

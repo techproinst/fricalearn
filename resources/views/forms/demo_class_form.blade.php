@@ -24,9 +24,9 @@
         <div class="card bg-white p-5 rounded border-white">
         <div class="text-center">
           <h1>
-            <div style="word-spacing: 6px">Demo Classes</div>
+            <div style="word-spacing: 6px">Free Classes</div>
           </h1>
-          <p class="text-muted">Sign Up For Our Demo Classes</p>
+          <p class="text-muted">Sign Up For Our Free Classes</p>
         </div>
         <form action="{{ route('demo_class.store') }}" method="POST">
           @csrf
@@ -109,7 +109,7 @@
           </div>
 
           <button type="submit" class="watch-btn text-center w-100 mt-1">
-            Watch Demo Class
+            Watch Free Class
           </button>
         </form>
       </div>

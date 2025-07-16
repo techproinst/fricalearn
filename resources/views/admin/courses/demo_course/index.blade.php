@@ -14,7 +14,7 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">courses</a></li>
-                    <li class="breadcrumb-item active">Demo Course</li>
+                    <li class="breadcrumb-item active">Free Course</li>
                 </ol>
             </div>
 
@@ -26,10 +26,10 @@
 <div class="row">
     <div class="col-md-6 col-lg-6 col-xl-3">
         <div class="card card-body">
-            <h3 class="card-title">Upload Demo Course Links</h3>
+            <h3 class="card-title">Upload Free Course Links</h3>
             <div>
                 <button type="button" class="btn btn-outline-primary waves-effect waves-light" data-bs-toggle="modal"
-                    data-bs-target="#myModal">Add Demo Course</button>
+                    data-bs-target="#myModal">Add Free Course</button>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
     <div class="col-12 col-md-6 col-lg-4 col-xl-3">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Demo Course Name</h4>
+                <h4 class="card-title">Free Course Name</h4>
                 <h6 class="card-subtitle font-14 text-muted">{{ $demoCourse->courses->name }}</h6>
             </div>
 
@@ -63,7 +63,7 @@
         
     @empty
 
-    <p>No Demo Course currently available</p>
+    <p>No Free Course currently available</p>
         
     @endforelse
    
@@ -74,7 +74,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Add Demo Course</h5>
+                <h5 class="modal-title" id="myModalLabel">Add Free Course</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form class="custom-validation" action="{{ route('demo_course.store') }}" method="POST">

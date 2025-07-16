@@ -11,7 +11,7 @@
             <span class="info">Info@fricalearn.com</span>
           </p>
 
-          <a class="see-btn my-2" href="">See All FAQ’s</a>
+        {{--  <a class="see-btn my-2" href="">See All FAQ’s</a> --}}
         </div>
         <div class="col-lg-8">
           <div class="accordion">
@@ -25,7 +25,7 @@
                   Absolutely! You can enroll in multiple courses
                   simultaneously and access them at your convenience.
                 </p>
-                <a class="accordion-btn" href="">
+            {{--   <a class="accordion-btn" href="">
                   <div
                     class="d-flex justify-content-between align-items-center"
                   >
@@ -34,7 +34,7 @@
                       class="bi bi-arrow-right accordion-arrow text-dark"
                     ></i>
                   </div>
-                </a>
+                </a> --}}
               </div>
             </div>
 
@@ -51,7 +51,7 @@
                   Our instructors provide support through live sessions,
                   email, and discussion forums.
                 </p>
-                <a class="accordion-btn" href="">
+             {{--   <a class="accordion-btn" href="">
                   <div
                     class="d-flex justify-content-between align-items-center"
                   >
@@ -60,7 +60,7 @@
                       class="bi bi-arrow-right accordion-arrow text-dark"
                     ></i>
                   </div>
-                </a>
+                </a> --}}
               </div>
             </div>
 
@@ -78,7 +78,7 @@
                   Most courses are self-paced, but some have scheduled start
                   and end dates.
                 </p>
-                <a class="accordion-btn" href="">
+               {{--  <a class="accordion-btn" href="">
                   <div
                     class="d-flex justify-content-between align-items-center"
                   >
@@ -87,7 +87,7 @@
                       class="bi bi-arrow-right accordion-arrow text-dark"
                     ></i>
                   </div>
-                </a>
+                </a> --}}
               </div>
             </div>
 
@@ -104,7 +104,7 @@
                   Some courses require basic knowledge, but many are
                   beginner-friendly.
                 </p>
-                <a class="accordion-btn" href="">
+              {{--  <a class="accordion-btn" href="">
                   <div
                     class="d-flex justify-content-between align-items-center"
                   >
@@ -113,7 +113,7 @@
                       class="bi bi-arrow-right accordion-arrow text-dark"
                     ></i>
                   </div>
-                </a>
+                </a> --}}
               </div>
             </div>
 
@@ -129,7 +129,7 @@
                 <p>
                   Yes, most course materials are available for offline access.
                 </p>
-                <a class="accordion-btn" href="">
+              {{--  <a class="accordion-btn" href="">
                   <div
                     class="d-flex justify-content-between align-items-center"
                   >
@@ -138,7 +138,7 @@
                       class="bi bi-arrow-right accordion-arrow text-dark"
                     ></i>
                   </div>
-                </a>
+                </a> --}}
               </div>
             </div>
           </div>
