@@ -16,9 +16,15 @@
             <a class="enroll-now-btn me-3 mt-3 mb-2" href="{{ route('student.create') }}"
               >Enroll Now<span><i class="bi bi-arrow-right ms-2"></i></span
             ></a>
-            <a class="get-btn" href="{{ route('contact.show') }}"
+         {{--   <a class="get-btn" href="{{ route('contact.show') }}"
               >Get In Touch<span><i class="bi bi-arrow-right ms-2"></i></span
             ></a>
+         --}}
+<a class="get-btn" href="https://forms.gle/7Fga4qEtcU51dsn98" target="_blank" rel="noopener noreferrer">
+ Join the Waiting List
+  <span><i class="bi bi-arrow-right ms-2"></i></span>
+</a>
+
           </div>
         </div>
         <div class="col-lg-6 d-flex justify-content-center">

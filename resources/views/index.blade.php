@@ -30,7 +30,7 @@
           </div>
         </div>
 
-        <a class="demo-btn my-4" href="{{ route('demo_class.create') }}">Explore Our Free Classes</a>
+        <a class="demo-btn my-4" href="{{ route('demo_class.create') }}">Explore Free Classes</a>
       </div>
       <div class="col-12 col-md-6 d-flex justify-content-center">
         <img class="img-fluid me-5 test" src="{{ asset('assets/images/hero-image.png')}}" alt="hero-image" />
@@ -39,19 +39,48 @@
   </div>
 </section>
 
+
+{{-- The pop-up --}}
+<!-- Launch Popup Modal -->
+<div class="modal fade" id="launchModal" tabindex="-1" aria-labelledby="launchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow-lg">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold" id="launchModalLabel">🎉 We’re Launching!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="fs-5">
+          We are launching for <b>people in the UK</b> on <b>October 11th</b>.
+        </p>
+        <p class="text-danger fw-semibold">Enjoy free classes – limited spaces available!</p>
+        <a href="https://forms.gle/7Fga4qEtcU51dsn98" target="_blank" rel="noopener noreferrer"
+           class="btn demo-btn px-4 py-2 mt-3">
+          Join Our Waiting List
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- Pop-up end -->
+
+
+
+
 <section class="rating">
   <div class="container-lg">
     <div class="row d-flex justify-content-center align-items-center text-center">
-      <div class="col-12 col-md-6 col-lg-3 mb-4 rating-border text-color">
+  {{--    <div class="col-12 col-md-6 col-lg-3 mb-4 rating-border text-color">
         <h1 class="mb-0">5+</h1>
         <p class="mb-0">Years in Business</p>
       </div>
+--}}
       <div class="col-12 col-md-6 col-lg-3 mb-4 second-rating-border text-color">
         <h1 class="mb-0">5+</h1>
         <p class="mb-0">Years in Business</p>
       </div>
       <div class="col-12 col-md-6 col-lg-3 mb-4 rating-border text-color">
-        <h1 class="mb-0">7k+</h1>
+        <h1 class="mb-0">3k+</h1>
         <p class="mb-0">Happy Customers</p>
       </div>
       <div class="col-12 col-md-6 col-lg-3 text-color">
@@ -245,3 +274,13 @@
 <x-native-section />
 
 @endsection
+
+
+<script>
+   
+    document.addEventListener("DOMContentLoaded", function () {
+        var launchModal = new bootstrap.Modal(document.getElementById('launchModal'));
+        launchModal.show();
+    });
+</script>
+

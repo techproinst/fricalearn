@@ -42,9 +42,15 @@
               Learning Igbo for Children ({{ $course->level_name }})
             </h5>
             <p class="card-text text-muted">
-              Nnọọ! Welcome! This interactive course introduces children to
-              the Igbo language and culture through fun
-            </p>
+                      @if ($course->level_name === 'introductory')
+                        Nnọọ! Welcome! This introductory course introduces children to Igbo sounds, greetings, numbers, and playful songs. It’s designed to spark curiosity and build confidence in the language.
+                      @elseif ($course->level_name === 'beginner')
+                        Nnọọ! Welcome! In this beginner course, children move from basic words to short phrases and everyday expressions. They’ll enjoy simple stories and cultural lessons to strengthen their Igbo.
+                      @elseif ($course->level_name === 'intermediate')
+                        Nnọọ! Welcome! The intermediate course helps children build fluency by forming sentences, learning grammar, and exploring Igbo proverbs and folktales. A deeper journey into both language and culture.
+                      @endif
+        </p>
+
             <div class="py-2">
               {{-- <a class="level-btn me-1" href="">4 weeks</a> --}}
               <a class="level-btn" href="">{{ $course->level_name }}</a>

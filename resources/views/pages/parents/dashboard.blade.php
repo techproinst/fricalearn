@@ -51,7 +51,7 @@
                         
 
                             @empty
-                                <p class="text-danger">You have no registered student yet!!.</p>
+                                <p class="text-danger">You have no registered student yet!!. Kindly click on the plus sign (+) to register a kid</p>
                                 <h6 class="text-success">Registration Procedures</h6>
                                 <p>Welcome to your FricaLearn Dashboard — track your progress, explore new courses, and enroll your kids in any available 
 class to keep the learning going!</p>

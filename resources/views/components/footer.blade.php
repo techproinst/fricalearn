@@ -6,8 +6,7 @@
           <p><i class="bi bi-envelope-fill me-2"></i>Info@fricalearn.com</p>
           <p><i class="bi bi-telephone-fill me-2"></i>+44 735 166 2748</p>
           <p>
-            <i class="bi bi-geo-alt-fill me-2"></i>3a, High Street Gillingham
-            Kent ME7 5AA
+            <i class="bi bi-geo-alt-fill me-2"></i>23, Elmwood Road, Rochester. ME3 8NB
           </p>
 
           <h6 class="pt-4">Social Profiles</h6>

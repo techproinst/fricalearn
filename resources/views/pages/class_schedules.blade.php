@@ -64,7 +64,7 @@
                                         <h6 class="time-text">Time</h6>
                                         <h6>{{ $schedule->morning_time->setTimezone('UTC')->format('H:i:A') }}</h6>
                                         <button type="button" class="timer-btn">
-                                            <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45 Minutes
+                                            <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 1 Hour
                                         </button>
                                     </div>
                                     <div class="time-wrapper p-3 mt-3" data-day="{{ $schedule->day }}"
@@ -73,7 +73,7 @@
                                         <h6 class="time-text">Time</h6>
                                         <h6>{{ $schedule->afternoon_time->setTimezone('UTC')->format('H:i:A') }}</h6>
                                         <button type="button" class="timer-btn">
-                                            <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 45 Minutes
+                                            <img src="{{ asset('assets/images/timer.png') }}" alt="" /> 1 Hour
                                         </button>
                                     </div>
                                 </div>

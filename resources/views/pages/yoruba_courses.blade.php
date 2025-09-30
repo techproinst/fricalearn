@@ -41,13 +41,23 @@
             <h5 class="card-title">
               Learning Yorùbá for Children ({{ $course->level_name }})
             </h5>
+            <!--<p class="card-text text-muted">-->
+            <!--  Ẹ kú àbẹ́wò! This course gently introduces children to the Yorùbá language (èdè Yorùbá) and culture. At this stage, they’ll learn basic greetings, simple words, and fun songs to start building a strong foundation.-->
+            <!--</p>-->
+            
             <p class="card-text text-muted">
-              Ẹ kú àbẹ́wò! This course introduces children to the Yorùbá
-              language (èdè Yorùbá) and culture
+                      @if ($course->level_name === 'introductory')
+                        Ẹ kú àbẹ́wò! This introductory course gently exposes children to Yorùbá sounds, greetings, numbers, and fun songs. It’s a playful start that builds curiosity and confidence.
+                      @elseif ($course->level_name === 'beginner')
+                        Ẹ kú àbẹ́wò! In this beginner course, children move beyond sounds to simple words, short phrases, and cultural stories. They’ll practice speaking and listening in everyday contexts.
+                      @elseif ($course->level_name === 'intermediate')
+                        Ẹ kú àbẹ́wò! The intermediate course helps children build fluency with sentences, grammar, and conversational Yorùbá. They’ll explore proverbs, songs, and cultural lessons in greater depth.
+                      @endif
             </p>
+
             <div class="py-2">
               {{-- <a class="level-btn me-1" href="">4 weeks</a> --}}
-              <a  class="level-btn" href="">{{ $course->level_name }}</a>
+              <p class="level-btn" href="">{{ $course->level_name }}</p>
             </div>
 
             <a href="{{ route('student.create') }}" class="sub-course-explore-btn mt-3">Enroll Now</a>

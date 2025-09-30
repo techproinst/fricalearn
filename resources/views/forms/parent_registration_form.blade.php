@@ -28,7 +28,7 @@
           @csrf
           <div class="mb-3">
             <label for="full_name" class="form-label">Full Name</label>
-            <input type="text" class="form-control demo-input-height" id="fullname" placeholder="Enter your Name"
+            <input type="text" class="form-control demo-input-height" id="fullname" placeholder=""
               name="name" value="{{ old('name') }}" />
             <span class="text-danger">
               @error('name')
@@ -40,7 +40,7 @@
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control demo-input-height" id="email" placeholder="Enter your Email"
+            <input type="email" class="form-control demo-input-height" id="email" placeholder=""
               name="email" value="{{ old('email') }}" />
             <span class="text-danger">
               @error('email')
@@ -53,7 +53,7 @@
           </div>
           <div class="mb-2">
             <label for="phone" class="form-label">Phone Number</label><br />
-            <input type="tel" class="form-control demo-input-height w-100" id="phone" placeholder="(234) 000 000 0000"
+            <input type="tel" class="form-control demo-input-height w-100" id="phone" placeholder=""
               name="phone" value="{{ old('phone') }}" />
             <span class="text-danger">
               @error('phone')
@@ -65,32 +65,40 @@
 
           </div>
 
-          <div class="mb-2">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control demo-input-height" id="password"
-              placeholder="Enter your Password" name="password" value="{{ old('password') }}" />
-            <span class="text-danger">
-              @error('password')
-              {{ $message }}
+      <div class="mb-2">
+    <label for="password" class="form-label">Password</label>
+    <div class="input-group">
+        <input type="password" class="form-control demo-input-height" id="password"
+            placeholder="" name="password" value="{{ old('password') }}" />
+        <span class="input-group-text" style="cursor: pointer;" onclick="togglePassword('password', 'togglePasswordIcon1')">
+            <i id="togglePasswordIcon1" class="fa fa-eye"></i>
+        </span>
+    </div>
+    <span class="text-danger">
+        @error('password')
+        {{ $message }}
+        @enderror
+    </span>
+</div>
 
-              @enderror
+<div class="mb-2">
+    <label for="confirm_password" class="form-label">Confirm Password</label>
+    <div class="input-group">
+        <input type="password" class="form-control demo-input-height" id="confirm-password"
+            placeholder="" name="confirm_password" value="{{ old('password') }}" />
+        <span class="input-group-text" style="cursor: pointer;" onclick="togglePassword('confirm-password', 'togglePasswordIcon2')">
+            <i id="togglePasswordIcon2" class="fa fa-eye"></i>
+        </span>
+    </div>
+    <span class="text-danger">
+        @error('confirm_password')
+        {{ $message }}
+        @enderror
+    </span>
+</div>
 
-            </span>
 
-          </div>
-          <div class="mb-2">
-            <label for="confirm_password" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control demo-input-height" id="confirm-password"
-              placeholder="Enter your Password" name="confirm_password" value="{{ old('password') }}" />
-            <span class="text-danger">
-              @error('confirm_password')
-              {{ $message }}
-
-              @enderror
-
-            </span>
-
-          </div>
+          
           <div class="form-check my-3">
             <input class="form-check-input d-block" type="checkbox" name="terms"
               value="1" {{ old('terms') ? 'checked' : '' }} />
@@ -129,6 +137,24 @@
   </div>
 </section>
 
+
+<script>
+    function togglePassword(fieldId, iconId) {
+        const field = document.getElementById(fieldId);
+        const icon = document.getElementById(iconId);
+        
+        if (field.type === "password") {
+            field.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            field.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/intlTelInput.min.js"></script>
 <script src="{{ asset('assets/scripts/phone_input.js') }}"></script>
+
 @endsection

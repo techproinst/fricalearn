@@ -7,7 +7,6 @@
 @section('other_css')
 <link rel="stylesheet" href="{{ asset('assets/styles/demo.css') }}" />
 <link rel="stylesheet" href="{{asset('assets/styles/login.css')}}" />
-
 @endsection
 
 @section('content')
@@ -29,52 +28,58 @@
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control demo-input-height" name="email" :value="old('email')"
-                            required autofocus autocomplete="username" placeholder="Enter your Email" />
+                            required autofocus autocomplete="username" placeholder="" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
+                    
                     <div class="mb-1">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control demo-input-height" id="password"
-                            placeholder="Enter your Password" name="password" required
-                            autocomplete="current-password" />
+                        <div class="input-group">
+                            <input type="password" class="form-control demo-input-height" id="password"
+                                placeholder="" name="password" required autocomplete="current-password" />
+                            <span class="input-group-text" style="cursor: pointer;" onclick="togglePassword('password', 'togglePasswordIcon')">
+                                <i id="togglePasswordIcon" class="fa fa-eye"></i>
+                            </span>
+                        </div>
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
+
                     <div class="text-end">
                         @if(Route::has('password.request'))
                         <a href="{{ route('password.request') }}">Forgot Password?</a>
                         @endif
-
                     </div>
+
                     <div class="form-check">
-                        <input class="form-check-input d-block" type="checkbox" value="" id="remember_me"
-                            name="remember" />
+                        <input class="form-check-input d-block" type="checkbox" value="" id="remember_me" name="remember" />
                         <label class="form-check-label rem-color" for="remember_me">
                             Remember Me
                         </label>
                     </div>
+
                     <button type="submit" class="watch-btn text-center w-100 mt-4">
                         Login
                     </button>
-                    {{-- <div class="separator">
-                        <span>OR</span>
-                    </div>
-                    <a class="google-sign-btn my-2" href=""><img width="23" src="./images/google-icon.png" alt="" />
-                        Sign
-                        Up with Google</a>
-                    <div class="text-center mt-2">
-                        <p class="dont-text">
-                            Don’t have an account?
-                            <span><a href="">Sign Up</a>
-                                <img width="10" src="./images/up-arrow.png" alt="" /></span>
-                        </p>
-                    </div> --}}
                 </form>
             </div>
         </div>
     </div>
 </section>
 
-
-
-
+{{-- Toggle password script --}}
+<script>
+    function togglePassword(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
 @endsection

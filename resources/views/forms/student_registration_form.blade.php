@@ -38,8 +38,8 @@
             @enderror
           </div>
           <div class="mb-3">
-            <label for="Birthday" class="form-label">Birthday</label>
-            <input class="form-control demo-input-height" type="text" id="daypicker" placeholder="e.g. December-29 "
+            <label for="Birthday" class="form-label">Birthday (Day & Month)</label>
+            <input class="form-control demo-input-height" type="text" id="daypicker" placeholder=""
               name="birthday" value="{{ old('birthday') }}" required>
             @error('birthday')
             <span class="text-danger">
@@ -64,9 +64,9 @@
           <div class="mb-3">
             <label for="gender" class="form-label">Gender</label>
             <select class="form-select demo-input-height mb-3" aria-label="gender" id="gender" name="gender" required>
-              <option value="">--Select Gender</option>
-              <option value="male">male</option>
-              <option value="female">female</option>
+              <option value=""></option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
             </select>
             @error('gender')
             <span class="text-danger">
@@ -78,7 +78,7 @@
           <div class="mb-3">
             <label for="course_id" class="form-label">Select Course</label>
             <select class="form-select demo-input-height mb-3" aria-label="course_id" id="course_id" name="course_id" required>
-              <option value=''>--Select Course</option>
+              <option value=''></option>
               @foreach ($courses as $course )
               <option value="{{ $course->id }}" {{ old('course_id')==$course->id ? 'selected' : '' }}>{{ $course->name
                 }}</option>
@@ -93,7 +93,7 @@
           <div class="mb-3">
             <label for="course_level" class="form-label">Select Course Level</label>
             <select class="form-select demo-input-height mb-3" aria-label="level" id="level" name="course_level" required>
-              <option value=''>--Select Level</option>
+              <option value=''></option>
               @foreach ($levels as $level )
               <option value="{{ $level }}" {{ old('level')==$level ? 'selected' : '' }}>{{ $level}}</option>
               @endforeach
@@ -107,7 +107,7 @@
           <div class="mb-3">
             <label for="timezone" class="form-label">Select Time zone</label>
             <select class="form-select demo-input-height mb-3" aria-label="level" id="level" name="timezone_group_id" required>
-              <option value=''>--Select Timezone</option>
+              <option value=''></option>
               @foreach ($timezones as $timezone )
               <option value="{{ $timezone->id }}" {{ old('timezone')==$timezone ? 'selected' : '' }}>{{ $timezone->name}}</option>
               @endforeach
