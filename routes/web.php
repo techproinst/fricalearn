@@ -35,6 +35,15 @@ Route::get('/contact', function () {
     return view('forms.contact_us');
 });
 
+Route::get('/about-us', function () {
+    return view('about');
+})->name('about');
+
+
+Route::get('/terms-of-service', function () {
+    return view('terms');
+})->name('terms');
+
 Route::get('/register-parent', function () {
     return view('forms.parent_registration_form');
 });
@@ -74,10 +83,10 @@ Route::middleware(['auth:parent', 'isParent'])->group(function () {
     Route::post('/student/registration-form/store', [StudentController::class, 'store'])->name('student.store');
     Route::get('/select-class-schedule/{student}', [ClassScheduleController::class, 'create'])->name('student.schedule');
     Route::post('/student-class-schedule', [StudentScheduleController::class, 'store'])->name('student.store_schedule');
-    Route::get('/initialize-payment/{student}', [PaymentController::class, 'showPaymentPage'])->name('payment');
-    Route::post('/payment/store/{student}', [PaymentController::class, 'store'])->name('payment.store');
-    Route::get('/payment/processing', [PaymentController::class, 'loadProcessingPage'])->name('payment.processing');
-    Route::get('/parent/payment', [ParentController::class, 'getParentPayments'])->name('parent.payments');
+   Route::get('/initialize-payment/{student}', [PaymentController::class, 'showPaymentPage'])->name('payment');
+   Route::post('/payment/store/{student}', [PaymentController::class, 'store'])->name('payment.store');
+  Route::get('/payment/processing', [PaymentController::class, 'loadProcessingPage'])->name('payment.processing');
+   Route::get('/parent/payment', [ParentController::class, 'getParentPayments'])->name('parent.payments');
     Route::get('/parent/subscription', [SubscriptionController::class, 'getParentSubscriptions'])->name('parent.subscriptions');
     Route::post('/parent/update/{parent}', [ParentController::class, 'update'])->name('parent.update');
     Route::get('/student/dashboard/{student}', [StudentController::class, 'index'])->name('student.dashboard');

@@ -30,7 +30,7 @@
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control demo-input-height" name="email" :value="old('email')"
-                            required autofocus autocomplete="username" placeholder="Enter your Email" />
+                            required autofocus autocomplete="username" placeholder="" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                   

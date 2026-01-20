@@ -23,6 +23,7 @@
             Make payment into the account below and upload your receipt for
             confirmation.🚀
           </p>
+<p>NB: Please, put your kid name as the reference number</p>
         </div>
 
         <div class="text-center currency-wrapper border py-2 mx-5">
@@ -30,23 +31,23 @@
           <button class="other-btn account">Pounds Account</button>
         </div>
         <div class="my-4 p-3 details-wrapper africa-details">
-          <button class="bank-btn">Bank Name</button>
+          <button class="bank-btn">Bank Name: Providus Bank</button>
           <h1 class="text-center py-3 text-color">
             <div>&#8358; {{number_format($amount['africa'])}}</div>
           </h1>
           <div class="text-center py-3 acc-details">
-            <p>Account Number</p>
-            <p>Account Name</p>
+            <p>Account Number: Frica Learn</p>
+            <p>Account Name: 1234567890</p>
           </div>
         </div>
         <div class="my-4 p-3 details-wrapper other-details">
-          <button class="bank-btn">Bank Name</button>
+          <button class="bank-btn">Bank Name: Providus Bank</button>
           <h1 class="text-center py-3 text-color">
             <div>$ {{number_format($amount['other']) }}</div>
           </h1>
           <div class="text-center py-3 acc-details">
-            <p>Account Number</p>
-            <p>Account Name</p>
+            <p>Account Number: 1234567890</p>
+            <p>Account Name: Frica Learn</p>
           </div>
         </div>
         <div>
@@ -55,7 +56,7 @@
             <label for="course" class="form-label">Upload receipt</label>
             <div class="custom-file-upload">
               <label for="receiptUpload" class="custom-upload-label">
-                <span class="file-name">File Name</span>
+                <span class="file-name">📤  File Name</span>
                 <span class="upload-text">Upload</span>
               </label>
               <input type="file" id="upload" class="custom-file-input" name="payment_receipt" required/>

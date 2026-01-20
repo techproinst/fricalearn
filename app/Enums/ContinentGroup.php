@@ -12,6 +12,8 @@ enum ContinentGroup: string
     case AUSTRALIA = 'Australia';
     case ANTARCTICA = 'Antarctica';
 
+    case OCEANIA = 'Oceania';
+
 
     public static  function mapContinentToGroup(ContinentGroup $continent): ?string
     {   
@@ -23,6 +25,7 @@ enum ContinentGroup: string
             self::NORTH_AMERICA => 'usa_canada',
             self::SOUTH_AMERICA => 'south_america',
             self::AUSTRALIA => 'asia_australia',
+            self::OCEANIA => 'asia_australia',
             self::ANTARCTICA => 'antarctica',
             default => null,
         };
@@ -37,6 +40,7 @@ enum ContinentGroup: string
          self::NORTH_AMERICA => 'other',
          self::SOUTH_AMERICA => 'other',
          self::AUSTRALIA => 'other',
+         self::OCEANIA => 'other',
          self::ANTARCTICA => 'other',
          default => null,
 

@@ -8,6 +8,7 @@
             <li><a class="{{ request()->routeIs('index') ? 'active' : '' }}" href="{{ route('index') }}">Home</a></li>
             <li><a class="{{ request()->routeIs('courses.*') ? 'active' : '' }}"
                     href="{{ route('courses.index') }}">Courses</a></li>
+              <li><a class="{{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About Us</a></li>
             <li><a class="{{ request()->routeIs('contact') ? 'active' : '' }}"
                     href="{{ route('contact.show') }}">Contact</a></li>
         </ul>
@@ -66,6 +67,7 @@
 
         <li><a class="mobile-link active" href="{{ route('index') }}">Home</a></li>
         <li><a class="mobile-link" href="{{ route('courses.index') }}">Courses</a></li>
+        <li><a class="mobile-link" href="{{ route('about') }}">About Us</a></li>
         <li><a class="mobile-link" href="{{ route('contact.show') }}">Contact</a></li>
 
         @guest('parent')

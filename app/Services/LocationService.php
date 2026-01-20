@@ -29,9 +29,15 @@ class LocationService
 
         Log::info('User location : '. $data['continent']);
    
-        $continent = ContinentGroup::tryFrom($data['continent']);
+        $continentEnum = ContinentGroup::tryFrom($data['continent']);
 
-        return $data['success'] ?? false ? $mappingFunction($continent) : null;
+        if(!$continentEnum){
+          Log::warning("Unknown Continent: {$data['continent']}");
+          return "other";
+
+        }
+
+        return $data['success'] ?? false ? $mappingFunction($continentEnum) : null;
 
       } else {
 

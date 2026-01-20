@@ -23,7 +23,7 @@
           support team. See you in class! 🚀
         </p>
 
-        <a class="start-btn mt-2" href="https://youtube.com">Start Class</a>
+        <a class="start-btn mt-2" href="https://youtube.com/@fricalearn?si=WbRlgo-2MgI4bv1N" target="_blank">Start Class</a>
       </div>
     </div>
   </div>
